@@ -3,7 +3,7 @@
     "displayName": "markdown-checkbox",
     "description": "create checkboxes in markdown",
     "version": "0.0.1",
-    "publisher": "PKief",
+    "publisher": "Philipp Kief",
     "engines": {
         "vscode": "^1.4.0"
     },
