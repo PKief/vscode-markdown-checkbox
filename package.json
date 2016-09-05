@@ -1,0 +1,61 @@
+{
+    "name": "markdown-checkbox",
+    "displayName": "markdown-checkbox",
+    "description": "create checkboxes in markdown",
+    "version": "0.0.1",
+    "publisher": "PKief",
+    "engines": {
+        "vscode": "^1.4.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.createCheckbox",
+        "onCommand:extension.markCheckbox"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.createCheckbox",
+                "title": "Markdown: Create a checkbox"
+            },
+            {
+                "command": "extension.markCheckbox",
+                "title": "Markdown: Mark a checkbox"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.createCheckbox",
+                "key": "ctrl+shift+c",
+                "mac": "cmd+shift+c",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.markCheckbox",
+                "key": "ctrl+shift+enter",
+                "mac": "cmd+shift+enter",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "menus": {
+        "explorer/context": [
+            {
+                "command": "extension.createMDCheckbox",
+                "group": "md"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    }
+}
