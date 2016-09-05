@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(extMarkCheckbox);
 
-    let extCreateCheckbox = vscode.commands.registerCommand('extension.createCheckbox', () => {                
+    let extCreateCheckbox = vscode.commands.registerCommand('extension.createCheckbox', () => {
         var editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
@@ -52,13 +52,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 /** create a new checkbox at the current cursor position */
 function createCheckbox(editor: vscode.TextEditor) {
-    const cursorPosition = editor.selection.active.character;    
+    const cursorPosition = editor.selection.active.character;
 
     editor.edit((editBuilder: vscode.TextEditorEdit) => {
         editBuilder.insert(new vscode.Position(
             editor.selection.active.line,
             editor.selection.active.character
-        ),'[ ] ');
+        ), '[ ] ');
     });
 }
 
