@@ -19,11 +19,11 @@
         "commands": [
             {
                 "command": "extension.createCheckbox",
-                "title": "Markdown: Create a checkbox"
+                "title": "Markdown: Create checkbox"
             },
             {
                 "command": "extension.markCheckbox",
-                "title": "Markdown: Mark a checkbox"
+                "title": "Markdown: Mark checkbox"
             }
         ],
         "keybindings": [
@@ -39,15 +39,23 @@
                 "mac": "cmd+shift+enter",
                 "when": "editorTextFocus"
             }
-        ]
-    },
-    "menus": {
-        "explorer/context": [
-            {
-                "command": "extension.createMDCheckbox",
-                "group": "md"
-            }
-        ]
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == markdown",                                
+                    "command": "extension.createCheckbox",
+                    "alt": "extension.createCheckbox",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == markdown",                                        
+                    "command": "extension.markCheckbox",
+                    "alt": "extension.markCheckbox",
+                    "group": "navigation"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
