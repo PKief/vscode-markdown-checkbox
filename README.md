@@ -21,11 +21,5 @@ _only for markdown!_
 * [X] todos
 * [X] in the list
 
-Pages like `GitHub` or `GitLab` are rendering the checkboxes as 'real' ones:
-
-- <input type="checkbox" name="sample" value="Sample" id="check1" checked>Sample 1</label>
-- <input type="checkbox" name="sample" value="Sample" id="check1">Sample 2</label>
-- <input type="checkbox" name="sample" value="Sample" id="check1" checked>Sample 3</label>
-
 ## Licence
 MIT
