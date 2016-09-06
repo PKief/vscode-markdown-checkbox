@@ -14,12 +14,9 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let extMarkCheckbox = vscode.commands.registerCommand('extension.markCheckbox', () => {
-        // The code you place here will be executed every time your command is executed
-
+    let extMarkCheckbox = vscode.commands.registerCommand('extension.markCheckbox', () => {        
         // Display a message box to the user
         // vscode.window.showInformationMessage('Create cb!');
-
         var editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
@@ -39,9 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (!editor) {
             return;
         }
-
         let doc = editor.document;
-
         if (doc.languageId === "markdown") {
             createCheckbox(editor);
         }
@@ -64,36 +59,30 @@ function createCheckbox(editor: vscode.TextEditor) {
 
 /** mark a checkbox as checked or unchecked */
 function toggleCheckbox(editor) {
-    // the Position object gives you the line and character where the cursor is
+    // the position object gives you the line and character where the cursor is
     const position = editor.selection.active;
     const lineText = editor.document.lineAt(position.line);
-
-    // replace whitespace with check mark
-    // search for whitespace         
-    // const cbPosition = lineText.text.search(/\[\s\]/g);
+    
     const cbPosition = lineText.text.toString().indexOf('[ ]');
-    const cbPositionMarked = lineText.text.toString().indexOf('[X]');    
+    const cbPositionMarked = lineText.text.toString().indexOf('[X]');
 
-    if (cbPosition > -1) {
+    const lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);    
+
+    if (lineHasCheckbox) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
-            editBuilder.replace(new vscode.Range(
-                new vscode.Position(position.line, cbPosition + 1),
-                new vscode.Position(position.line, cbPosition + 2)
-            ), 'X');
-        });
-    } else if (cbPositionMarked > -1) {
-        editor.edit((editBuilder: vscode.TextEditorEdit) => {
-            editBuilder.replace(new vscode.Range(
-                new vscode.Position(position.line, cbPositionMarked + 1),
-                new vscode.Position(position.line, cbPositionMarked + 2)
-            ), ' ');
+            if (cbPosition > -1) {
+                editBuilder.replace(new vscode.Range(
+                    new vscode.Position(position.line, cbPosition + 1),
+                    new vscode.Position(position.line, cbPosition + 2)
+                ), 'X');
+            } else if (cbPositionMarked > -1) {
+                editBuilder.replace(new vscode.Range(
+                    new vscode.Position(position.line, cbPositionMarked + 1),
+                    new vscode.Position(position.line, cbPositionMarked + 2)
+                ), ' ');
+            }
         });
     }
-}
-
-/**/
-function markCheckbox(editor: vscode.TextEditor, character: String){
-
 }
 
 // this method is called when your extension is deactivated

@@ -7,4 +7,3 @@ created by Philipp Kief
 ![Preview](./app-preview.gif)
 
 * [X] test
-m [X] test 
