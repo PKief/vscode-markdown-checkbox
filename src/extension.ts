@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
         let doc = editor.document;
 
         if (doc.languageId === "markdown") {
-            markCheckbox(editor);
+            toggleCheckbox(editor);
         }
     });
 
@@ -63,15 +63,16 @@ function createCheckbox(editor: vscode.TextEditor) {
 }
 
 /** mark a checkbox as checked or unchecked */
-function markCheckbox(editor) {
+function toggleCheckbox(editor) {
     // the Position object gives you the line and character where the cursor is
     const position = editor.selection.active;
     const lineText = editor.document.lineAt(position.line);
 
     // replace whitespace with check mark
     // search for whitespace         
-    const cbPosition = lineText.text.search(/\[\s\]/g);
-    const cbPositionMarked = lineText.text.search(/\[x|X\]/g);
+    // const cbPosition = lineText.text.search(/\[\s\]/g);
+    const cbPosition = lineText.text.toString().indexOf('[ ]');
+    const cbPositionMarked = lineText.text.toString().indexOf('[X]');    
 
     if (cbPosition > -1) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
@@ -83,11 +84,16 @@ function markCheckbox(editor) {
     } else if (cbPositionMarked > -1) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.replace(new vscode.Range(
-                new vscode.Position(position.line, cbPosition + 2),
-                new vscode.Position(position.line, cbPosition + 3)
+                new vscode.Position(position.line, cbPositionMarked + 1),
+                new vscode.Position(position.line, cbPositionMarked + 2)
             ), ' ');
         });
     }
+}
+
+/**/
+function markCheckbox(editor: vscode.TextEditor, character: String){
+
 }
 
 // this method is called when your extension is deactivated
