@@ -9,11 +9,11 @@ Markdown Checkbox
 _only for markdown!_
 ### Create a checkbox:
 
-> Press `ctrl-shift-c`
+> Press `ctrl+shift+c`
 
 ### Mark it as done:
 
-> Press `ctrl-shift-enter`
+> Press `ctrl+shift+enter`
 
 ---
 
