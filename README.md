@@ -8,10 +8,13 @@ Markdown Checkbox
 ## Keybindings
 _only for markdown!_
 ### Create a checkbox:
+
 > Press `ctrl-shift-c`
 
 ### Mark it as done:
+
 > Press `ctrl-shift-enter`
+
 ---
 
 ## Example
