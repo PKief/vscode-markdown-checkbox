@@ -6,5 +6,5 @@ created by Philipp Kief
 
 ![Preview](./app-preview.gif)
 
-* X] test
+* [X] test
 m [X] test 
