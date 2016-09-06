@@ -1,5 +1,4 @@
-Markdown Checkbox
-=
+# Markdown Checkbox
 
 ## How to use
 
