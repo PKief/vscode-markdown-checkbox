@@ -1,9 +1,25 @@
-# Markdown Checkbox
-
-created by Philipp Kief
+Markdown Checkbox
+=
 
 ## How to use
 
-![Preview](./app-preview.gif)
+![Preview](./images/preview.gif)
 
-* [X] test
+## Keybindings
+_only for markdown!_
+### Create a checkbox:
+> Press `ctrl-shift-c`
+
+### Mark it as done:
+> Press `ctrl-shift-enter`
+---
+
+## Example
+### Todolist:
+* [X] do
+* [X] the
+* [X] todos
+* [X] in the list
+
+## Licence
+MIT

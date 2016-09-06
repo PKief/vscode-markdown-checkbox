@@ -1,7 +1,7 @@
 {
     "name": "markdown-checkbox",
-    "displayName": "markdown-checkbox",
-    "description": "create checkboxes in markdown",
+    "displayName": "Markdown Checkbox",
+    "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
     "version": "0.0.1",
     "publisher": "Philipp Kief",
     "engines": {
@@ -14,7 +14,13 @@
         "onCommand:extension.createCheckbox",
         "onCommand:extension.markCheckbox"
     ],
+    "icon": "images/checkbox.gif",
+    "galleryBanner": {
+        "color": "#121212",
+        "theme": "dark"
+    },
     "main": "./out/src/extension",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "contributes": {
         "commands": [
             {
@@ -43,13 +49,13 @@
         "menus": {
             "editor/context": [
                 {
-                    "when": "resourceLangId == markdown",                                
+                    "when": "resourceLangId == markdown",
                     "command": "extension.createCheckbox",
                     "alt": "extension.createCheckbox",
                     "group": "navigation"
                 },
                 {
-                    "when": "resourceLangId == markdown",                                        
+                    "when": "resourceLangId == markdown",
                     "command": "extension.markCheckbox",
                     "alt": "extension.markCheckbox",
                     "group": "navigation"
