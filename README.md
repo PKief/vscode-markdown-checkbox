@@ -14,7 +14,6 @@ _only for markdown!_
 
 > Press `ctrl+shift+enter`
 
----
 
 ## Example
 ### Todolist:
