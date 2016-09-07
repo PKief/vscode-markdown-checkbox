@@ -36,6 +36,7 @@ Added feature:
 - select lines to mark multiple checkboxes at once 
 
 ### 0.0.6
+
 - fixed bugs
 - smaller size of extension
 - improved code
