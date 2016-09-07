@@ -37,6 +37,7 @@ Added feature:
 
 ### 0.0.5
 - fixed bugs
+- smaller size of extension
 
 ## Licence
 MIT
