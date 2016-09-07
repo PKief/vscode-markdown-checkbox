@@ -24,7 +24,7 @@
 
 ### 0.0.1 - 0.0.3
 
-Initial release of the extensions with the following features:
+Initial release of the extension with the following features:
 - Add checkbox
 - mark checkbox as done / undone
 - add commands to Keybindings
@@ -32,8 +32,11 @@ Initial release of the extensions with the following features:
 
 ### 0.0.4
 
-Added features:
+Added feature:
 - select multiple lines to mark all checkboxes at once 
+
+### 0.0.5
+- fixed bugs
 
 ## Licence
 MIT
