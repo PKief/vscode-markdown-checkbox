@@ -22,7 +22,7 @@
 
 ## Release Notes
 
-### 0.0.1 - 0.0.3
+### 0.0.3
 
 Initial release of the extension with the following features:
 - add checkboxes
@@ -40,5 +40,8 @@ Added feature:
 - smaller size of extension
 - improved code
 
-## Licence
+### 0.0.6
+- fixed bug
+
+## License
 MIT
