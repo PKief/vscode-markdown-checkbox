@@ -30,5 +30,10 @@ Initial release of the extensions with the following features:
 - add commands to Keybindings
 - add commands to context menu
 
+### 0.0.4
+
+Added features:
+- select multiple lines to mark all checkboxes at once 
+
 ## Licence
 MIT
