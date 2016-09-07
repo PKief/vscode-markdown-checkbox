@@ -35,7 +35,7 @@ Initial release of the extension with the following features:
 Added feature:
 - select lines to mark multiple checkboxes at once 
 
-### 0.0.6
+### 0.0.5
 
 - fixed bugs
 - smaller size of extension
