@@ -25,10 +25,10 @@
 ### 0.0.1 - 0.0.3
 
 Initial release of the extension with the following features:
-- Add checkbox
-- mark checkbox as done / undone
-- add commands to keybindings
-- add commands to context menu
+- add checkboxes
+- mark checkboxes as done / undone
+- commands for keybinding
+- commands in the context menu
 
 ### 0.0.4
 
