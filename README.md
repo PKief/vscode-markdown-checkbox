@@ -2,7 +2,7 @@
 
 ## How to use
 
-![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/preview.gif)
+![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/withimages/images/preview.gif)
 
 ## Keybindings
 ### Create a checkbox:
@@ -27,17 +27,18 @@
 Initial release of the extension with the following features:
 - Add checkbox
 - mark checkbox as done / undone
-- add commands to Keybindings
+- add commands to keybindings
 - add commands to context menu
 
 ### 0.0.4
 
 Added feature:
-- select multiple lines to mark all checkboxes at once 
+- select lines to mark multiple checkboxes at once 
 
 ### 0.0.5
 - fixed bugs
 - smaller size of extension
+- improved code
 
 ## Licence
 MIT
