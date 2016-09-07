@@ -14,10 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let extMarkCheckbox = vscode.commands.registerCommand('extension.markCheckbox', () => {        
+    let extMarkCheckbox = vscode.commands.registerCommand('extension.markCheckbox', () => {
         // Display a message box to the user
         // vscode.window.showInformationMessage('Create cb!');
-        var editor = vscode.window.activeTextEditor;
+        var editor = getEditor();
         if (!editor) {
             return;
         }
@@ -25,14 +25,12 @@ export function activate(context: vscode.ExtensionContext) {
         let doc = editor.document;
 
         if (doc.languageId === "markdown") {
-            toggleCheckbox(editor);
+            toggleCheckbox();
         }
-    });
-
-    context.subscriptions.push(extMarkCheckbox);
+    });    
 
     let extCreateCheckbox = vscode.commands.registerCommand('extension.createCheckbox', () => {
-        var editor = vscode.window.activeTextEditor;
+        var editor = getEditor();
         if (!editor) {
             return;
         }
@@ -42,47 +40,61 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(extCreateCheckbox);
+    context.subscriptions.push(extMarkCheckbox,extCreateCheckbox);
 }
 
-/** create a new checkbox at the current cursor position */
+// create a new checkbox at the current cursor position
 function createCheckbox(editor: vscode.TextEditor) {
-    const cursorPosition = editor.selection.active.character;
+    const cursorPosition = getCursorPosition();
 
     editor.edit((editBuilder: vscode.TextEditorEdit) => {
         editBuilder.insert(new vscode.Position(
-            editor.selection.active.line,
-            editor.selection.active.character
+            cursorPosition.line,
+            cursorPosition.character
         ), '[ ] ');
     });
 }
 
-/** mark a checkbox as checked or unchecked */
-function toggleCheckbox(editor) {
+// mark a checkbox as checked or unchecked
+function toggleCheckbox() {
     // the position object gives you the line and character where the cursor is
-    const position = editor.selection.active;
-    const lineText = editor.document.lineAt(position.line);
-    
+    const cursorPosition = getCursorPosition();
+    const lineText = getEditor().document.lineAt(cursorPosition.line);
+
     const cbPosition = lineText.text.toString().indexOf('[ ]');
     const cbPositionMarked = lineText.text.toString().indexOf('[X]');
 
-    const lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);    
+    const lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);
 
     if (lineHasCheckbox) {
-        editor.edit((editBuilder: vscode.TextEditorEdit) => {
-            if (cbPosition > -1) {
-                editBuilder.replace(new vscode.Range(
-                    new vscode.Position(position.line, cbPosition + 1),
-                    new vscode.Position(position.line, cbPosition + 2)
-                ), 'X');
-            } else if (cbPositionMarked > -1) {
-                editBuilder.replace(new vscode.Range(
-                    new vscode.Position(position.line, cbPositionMarked + 1),
-                    new vscode.Position(position.line, cbPositionMarked + 2)
-                ), ' ');
-            }
-        });
+        if (cbPosition > -1) {
+            markField(cbPosition, 'X');
+        } else if (cbPositionMarked > -1) {
+            markField(cbPositionMarked, ' ');
+        }
     }
+}
+
+// returns the current cursor position
+function getCursorPosition(): vscode.Position {
+    return getEditor().selection.active;
+}
+
+// returns the active editor of vs code
+function getEditor(): vscode.TextEditor {
+    return vscode.window.activeTextEditor;
+}
+
+// mark the field inside the checkbox with a character
+function markField(checkboxPosition: number, character: string) {
+    // vscode.window.showInformationMessage(checkboxPosition.toString());    
+    const cursorPosition = getCursorPosition();
+    getEditor().edit((editBuilder: vscode.TextEditorEdit) => {
+        editBuilder.replace(new vscode.Range(
+            new vscode.Position(cursorPosition.line, checkboxPosition + 1),
+            new vscode.Position(cursorPosition.line, checkboxPosition + 2)
+        ), character);
+    });
 }
 
 // this method is called when your extension is deactivated
