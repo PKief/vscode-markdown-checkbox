@@ -57,7 +57,7 @@ function createCheckbox(editor: vscode.TextEditor) {
     } else {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.replace(editor.selection, '[ ] ');
-        });               
+        });
     }
 }
 
