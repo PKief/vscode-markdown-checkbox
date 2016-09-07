@@ -21,5 +21,15 @@ _only for markdown!_
 * [X] todos
 * [X] in the list
 
+## Release Notes
+
+### 0.0.1 - 0.0.3
+
+Initial release of the extensions with the following features:
+- Add checkbox
+- mark checkbox as done / undone
+- add commands to Keybindings
+- add commands to context menu
+
 ## Licence
 MIT
