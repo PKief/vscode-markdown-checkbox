@@ -40,5 +40,8 @@ Added feature:
 - smaller size of extension
 - improved code
 
+### 0.0.6
+- fixed bug
+
 ## License
 MIT
