@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "markdown-checkbox" is now active!');    
+    console.log('Congratulations, your extension "markdown-checkbox" is now active!');
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
@@ -47,13 +47,18 @@ export function activate(context: vscode.ExtensionContext) {
 // create a new checkbox at the current cursor position
 function createCheckbox(editor: vscode.TextEditor) {
     const cursorPosition = getCursorPosition();
-
-    editor.edit((editBuilder: vscode.TextEditorEdit) => {
-        editBuilder.insert(new vscode.Position(
-            cursorPosition.line,
-            cursorPosition.character
-        ), '[ ] ');
-    });
+    if (editor.selection.isEmpty) {
+        editor.edit((editBuilder: vscode.TextEditorEdit) => {
+            editBuilder.insert(new vscode.Position(
+                cursorPosition.line,
+                cursorPosition.character
+            ), '[ ] ');
+        });
+    } else {
+        editor.edit((editBuilder: vscode.TextEditorEdit) => {
+            editBuilder.replace(editor.selection, '[ ] ');
+        });               
+    }
 }
 
 // mark a checkbox as checked or unchecked
@@ -69,13 +74,13 @@ function toggleCheckbox() {
         var selection = editor.selection;
         for (var r = selection.start.line; r <= selection.end.line; r++) {
             lines.push(editor.document.lineAt(r));
-        }        
+        }
         toggleLine(0);
         function toggleLine(index) {
             if (lines.length > index) {
                 toggleCheckboxOfLine(lines[index]).then(() => {
                     toggleLine(++index);
-                });                                               
+                });
             }
         }
     }
