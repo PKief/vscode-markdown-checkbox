@@ -1,4 +1,4 @@
-# Markdown Checkbox
+# Markdown checkbox
 
 ## How to use
 
