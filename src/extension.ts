@@ -59,10 +59,10 @@ function createCheckbox(editor: vscode.TextEditor) {
 function toggleCheckbox() {
     // the position object gives you the line and character where the cursor is
     const cursorPosition = getCursorPosition();
-    const lineText = getEditor().document.lineAt(cursorPosition.line);
+    const lineText = getEditor().document.lineAt(cursorPosition.line).text.toString();
 
-    const cbPosition = lineText.text.toString().indexOf('[ ]');
-    const cbPositionMarked = lineText.text.toString().indexOf('[X]');
+    const cbPosition = lineText.indexOf('[ ]');
+    const cbPositionMarked = lineText.indexOf('[X]');
 
     const lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);
 
