@@ -77,9 +77,13 @@ function toggleCheckbox() {
         toggleLine(0);
         function toggleLine(index) {
             if (lines.length > index) {
-                toggleCheckboxOfLine(lines[index]).then(() => {
+                if (toggleCheckboxOfLine(lines[index])) {
+                    toggleCheckboxOfLine(lines[index]).then(() => {
+                        toggleLine(++index);
+                    });
+                } else {
                     toggleLine(++index);
-                });
+                }
             }
         }
     }
