@@ -5,51 +5,51 @@
 ![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/withimages/images/preview.gif)
 
 ## Keybindings
-### Create a checkbox:
+Create a checkbox:
 
 > Press `ctrl+shift+c`
 
-### Mark it as done:
+Mark it as done:
 
 > Press `ctrl+shift+enter`
 
-## Example
-### Todolist:
-* [X] do
-* [X] the
-* [X] todos
-* [X] in the list
 
-~ [X] asdasdasd
-~ [X] asdasdasdasd
-~ [ ] asdasda
-* [ ] asdasdasd
+## Configuration
+You can customize this extension with the following options.
 
-## Release Notes
+> *File -> Preferences -> Workspace Settings*
 
-### 0.0.3
+### Checkbox position
+Create the checkbox always at the beginning of a line (*default*) or at the current cursor position:
 
-Initial release of the extension with the following features:
-- [X] add checkboxes
-- [X] mark checkboxes as done / undone
-- [X] commands for keybinding
-- [X] commands in the context menu
+    options: "line" | "cursor"
 
-### 0.0.4
+```json
+"markdown-checkbox.checkboxPosition": "line"
+```
 
-Added feature:
-- [X] select lines to mark multiple checkboxes at once 
+### Need a bullet point?
+Do you need a bullet point before the created checkbox? Select true (*default*) for this:
 
-### 0.0.5
+    options: true | false
+
+```json
+"markdown-checkbox.withBulletPoint": true
+```
+
+### Type of bullet points
+Select a type of bullet point:
+
+    options: "*" | "-" | "+"
+  
+```json
+"markdown-checkbox.typeOfBulletPoint": "*"
+```
+
+## Latest update
 
 + [X] fixed bugs
-~ [X] smaller size of extension
-- [X] improved code
-* [X] improved code
-
-### 0.0.7
-
-* [ ] 
++ [X] added workspace settings 
 
 ## License
 MIT
