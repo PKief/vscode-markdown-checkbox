@@ -1,88 +1,104 @@
 {
-  "name": "markdown-checkbox",
-  "displayName": "Markdown Checkbox",
-  "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
-  "version": "0.0.6",
-  "publisher": "PKief",
-  "engines": {
-    "vscode": "^1.4.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "keywords": [
-    "markdown",
-    "todos",
-    "checkbox"
-  ],
-  "homepage": "https://github.com/PKief/vscode-extension-markdown-checkbox/blob/master/README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PKief/vscode-extension-markdown-checkbox.git"
-  },
-  "bugs": {
-    "url": "https://github.com/PKief/vscode-extension-markdown-checkbox/issues"
-  },
-  "activationEvents": [
-    "onCommand:extension.createCheckbox",
-    "onCommand:extension.markCheckbox"
-  ],
-  "icon": "images/checkbox.png",
-  "galleryBanner": {
-    "color": "#121212",
-    "theme": "dark"
-  },
-  "main": "./out/src/extension",
-  "license": "SEE LICENSE IN LICENSE.txt",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.createCheckbox",
-        "title": "Markdown: Create checkbox"
-      },
-      {
-        "command": "extension.markCheckbox",
-        "title": "Markdown: Mark checkbox"
-      }
+    "name": "markdown-checkbox",
+    "displayName": "Markdown Checkbox",
+    "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
+    "version": "0.0.6",
+    "publisher": "PKief",
+    "engines": {
+        "vscode": "^1.4.0"
+    },
+    "categories": [
+        "Other"
     ],
-    "keybindings": [
-      {
-        "command": "extension.createCheckbox",
-        "key": "ctrl+shift+c",
-        "mac": "cmd+shift+c",
-        "when": "editorTextFocus"
-      },
-      {
-        "command": "extension.markCheckbox",
-        "key": "ctrl+shift+enter",
-        "mac": "cmd+shift+enter",
-        "when": "editorTextFocus"
-      }
+    "keywords": [
+        "markdown",
+        "todos",
+        "checkbox"
     ],
-    "menus": {
-      "editor/context": [
-        {
-          "when": "resourceLangId == markdown",
-          "command": "extension.createCheckbox",
-          "alt": "extension.createCheckbox",
-          "group": "navigation"
+    "homepage": "https://github.com/PKief/vscode-extension-markdown-checkbox/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PKief/vscode-extension-markdown-checkbox.git"
+    },
+    "bugs": {
+        "url": "https://github.com/PKief/vscode-extension-markdown-checkbox/issues"
+    },
+    "activationEvents": [
+        "onCommand:extension.createCheckbox",
+        "onCommand:extension.markCheckbox"
+    ],
+    "icon": "images/checkbox.png",
+    "galleryBanner": {
+        "color": "#121212",
+        "theme": "dark"
+    },
+    "main": "./out/src/extension",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.createCheckbox",
+                "title": "Markdown: Create checkbox"
+            },
+            {
+                "command": "extension.markCheckbox",
+                "title": "Markdown: Mark checkbox"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.createCheckbox",
+                "key": "ctrl+shift+c",
+                "mac": "cmd+shift+c",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.markCheckbox",
+                "key": "ctrl+shift+enter",
+                "mac": "cmd+shift+enter",
+                "when": "editorTextFocus"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "extension.createCheckbox",
+                    "alt": "extension.createCheckbox",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "extension.markCheckbox",
+                    "alt": "extension.markCheckbox",
+                    "group": "navigation"
+                }
+            ]
         },
-        {
-          "when": "resourceLangId == markdown",
-          "command": "extension.markCheckbox",
-          "alt": "extension.markCheckbox",
-          "group": "navigation"
+        "configuration": {
+            "type": "object",
+            "title": "Markdown Checkbox configuration",
+            "properties": {
+                "markdown-checkbox.withBulletPoint": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Create a bullet point before the created checkbox."
+                },
+                "markdown-toc.depthTo": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Create checkbox at cursor position. If false the checkbox will be created at the beginning of the line."
+                }                
+            }
         }
-      ]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "devDependencies": {
-    "typescript": "^1.8.5",
-    "vscode": "^0.11.0"
-  }
 }
