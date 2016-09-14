@@ -48,8 +48,9 @@ Select a type of bullet point:
 
 ## Latest update
 
-+ [X] fixed bugs
-+ [X] added workspace settings 
+* [X] fixed bugs
+* [X] added bullet points
+* [X] added workspace settings 
 
 ## License
 MIT
