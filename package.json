@@ -2,7 +2,7 @@
     "name": "markdown-checkbox",
     "displayName": "Markdown Checkbox",
     "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "PKief",
     "engines": {
         "vscode": "^1.4.0"
@@ -33,7 +33,7 @@
         "theme": "dark"
     },
     "main": "./out/src/extension",
-    "license": "SEE LICENSE IN LICENSE.txt",
+    "license": "SEE LICENSE IN LICENSE.md",
     "contributes": {
         "commands": [
             {
@@ -84,10 +84,17 @@
                     "default": true,
                     "description": "Create a bullet point before the created checkbox."
                 },
-                "markdown-toc.depthTo": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Create checkbox at cursor position. If false the checkbox will be created at the beginning of the line."
+                "markdown-checkbox.typeOfBulletPoint": {
+                    "type": "string",
+					"enum": ["*", "-", "+"],
+                    "default": "*",
+                    "description": "Bullet point character."
+                },
+                "markdown-checkbox.checkboxPosition": {
+                    "type": "string",
+                    "enum": ["line", "cursor"],
+                    "default": "line",
+                    "description": "Create checkbox either at the beginning of the line of the cursor of at the cursor position."
                 }                
             }
         }

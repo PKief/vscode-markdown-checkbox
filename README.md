@@ -20,26 +20,36 @@
 * [X] todos
 * [X] in the list
 
+~ [X] asdasdasd
+~ [X] asdasdasdasd
+~ [ ] asdasda
+* [ ] asdasdasd
+
 ## Release Notes
 
 ### 0.0.3
 
 Initial release of the extension with the following features:
-- add checkboxes
-- mark checkboxes as done / undone
-- commands for keybinding
-- commands in the context menu
+- [X] add checkboxes
+- [X] mark checkboxes as done / undone
+- [X] commands for keybinding
+- [X] commands in the context menu
 
 ### 0.0.4
 
 Added feature:
-- select lines to mark multiple checkboxes at once 
+- [X] select lines to mark multiple checkboxes at once 
 
 ### 0.0.5
 
-- fixed bugs
-- smaller size of extension
-- improved code
++ [X] fixed bugs
+~ [X] smaller size of extension
+- [X] improved code
+* [X] improved code
+
+### 0.0.7
+
+* [ ] 
 
 ## License
 MIT
