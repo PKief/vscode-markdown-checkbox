@@ -54,10 +54,10 @@ function createCheckbox(editor: vscode.TextEditor) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.insert(new vscode.Position(
                 cursorPosition.line,
-                checkboxPosition==='line' ? 0 : cursorPosition.character
-            ), (withBulletPoint ? typeOfBulletPoint +' ' : '') + '[ ] ');
+                checkboxPosition === 'line' ? 0 : cursorPosition.character
+            ), (withBulletPoint ? typeOfBulletPoint + ' ' : '') + '[ ] ');
         });
-    }    
+    }
 }
 
 // mark a checkbox as checked or unchecked
