@@ -57,17 +57,6 @@ Example
 + [ ] plus
 ```
 
-### Strikethrough
-Strike through the line of the checkbox after the checkbox has been checked (*disabled by default*):
-
-    options: true | false
-  
-```json
-"markdown-checkbox.strikeThroughWhenChecked": false
-```
-Preview:
-* [X] ~~*added bullet points*~~
-
 ### Italic
 Italic font style of line of the checkbox after the checkbox has been checked (*disabled by default*):
 
@@ -78,6 +67,17 @@ Italic font style of line of the checkbox after the checkbox has been checked (*
 ```
 Preview
 * [X] *added bullet points*
+
+### Strikethrough
+Strikethrough the line of the checkbox after the checkbox has been checked (*disabled by default*):
+
+    options: true | false
+  
+```json
+"markdown-checkbox.strikeThroughWhenChecked": false
+```
+Preview:
+* [X] ~~*added bullet points*~~
 
 ## Latest update
 
