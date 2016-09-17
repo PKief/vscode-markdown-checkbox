@@ -74,7 +74,9 @@ Preview:
 * [X] ~~*added bullet points*~~
 
 ### Checkbox position
-Create the checkbox always at the beginning of a line (*default*) or at the current cursor position:
+Create the checkbox always at the beginning of a line (*default*) or at the current cursor position.
+
+**Important:** If you select the "cursor" option, the strikethrough and the italic style will not be available! And it is recommended that you turn the bullet points option to false! This is only if you want your checkbox not at the beginning of the line. I cannot imagine a use case for it, but you have the possibility to do what you want ;)
 
     options: "line" | "cursor"
 

@@ -136,6 +136,7 @@ function markField(checkboxPosition: vscode.Position, char: string) {
 
         let italicWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('italicWhenChecked');
         let strikeThroughWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('strikeThroughWhenChecked');
+        let checkboxPositionCursor = vscode.workspace.getConfiguration('markdown-checkbox').get('checkboxPosition');
 
         let line = getEditor().document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
@@ -143,7 +144,7 @@ function markField(checkboxPosition: vscode.Position, char: string) {
         let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
         // console.log(textWithoutCheckbox);
 
-        if (lhc === 0) {
+        if (lhc === 0 && checkboxPositionCursor !== 'cursor') {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             editBuilder.replace(new vscode.Range(
                 new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
