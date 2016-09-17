@@ -138,27 +138,24 @@ function markField(checkboxPosition: vscode.Position, char: string) {
         if (strikeThroughWhenChecked) {
             let style = '';
             let line = getEditor().document.lineAt(checkboxPosition.line);
-            let lhc = lineHasCheckbox(line);   
+            let lhc = lineHasCheckbox(line);
             let lineText = line.text.trim();
-            let test = lineText.substr(checkboxPosition.character+4,lineText.length).trim();
-            console.log(test);
-            
-            
+            let test = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
+            console.log(test);            
 
-
-            // if (lhc === 0) {
-            //     editBuilder.insert(new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4), '~~');
-            //     editBuilder.insert(new vscode.Position(checkboxPosition.line, line.text.trim().length), '~~');
-            // } else {
-            //     editBuilder.delete(new vscode.Range(
-            //         new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
-            //         new vscode.Position(checkboxPosition.line, checkboxPosition.character + 5))
-            //     );
-            //     editBuilder.delete(new vscode.Range(
-            //         new vscode.Position(checkboxPosition.line, line.text.trim().length - 1),
-            //         new vscode.Position(checkboxPosition.line, line.text.trim().length))
-            //     );
-            // }
+            if (lhc === 0) {
+                let newText = '~~' + test + '~~';
+                editBuilder.replace(new vscode.Range(
+                    new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
+                    new vscode.Position(checkboxPosition.line, line.text.length)
+                ), newText);
+            } else {
+                let newText = test.replace(/~~/g, '');
+                editBuilder.replace(new vscode.Range(
+                    new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
+                    new vscode.Position(checkboxPosition.line, line.text.length)
+                ), newText);
+            }
         }
     });
 }
