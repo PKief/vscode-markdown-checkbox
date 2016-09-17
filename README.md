@@ -83,7 +83,10 @@ Preview:
 
 * [X] added bullet points
 * [X] added workspace settings 
+* [X] possibility to strikethrough the "checked" lines
+* [X] possibility to show the "checked" line in italic 
 * [X] fixed bugs
+* [X] improved flow
 
 ## License
 MIT

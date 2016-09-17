@@ -104,7 +104,7 @@
                 "markdown-checkbox.italicWhenChecked": {
                     "type": "boolean",                    
                     "default": true,
-                    "description": "Strike through the line of the checkbox after checked."
+                    "description": "Italic font style of line of the checkbox after the checkbox has been checked."
                 }               
             }
         }
