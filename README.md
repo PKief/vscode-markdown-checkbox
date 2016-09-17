@@ -81,9 +81,9 @@ Preview
 
 ## Latest update
 
-* [X] *added bullet points*
-* [ ] added workspace settings 
-* [ ] fixed bugs
+* [X] added bullet points
+* [X] added workspace settings 
+* [X] fixed bugs
 
 ## License
 MIT

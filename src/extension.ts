@@ -140,7 +140,10 @@ function markField(checkboxPosition: vscode.Position, char: string) {
             let line = getEditor().document.lineAt(checkboxPosition.line);
             let lhc = lineHasCheckbox(line);   
             let lineText = line.text.trim();
-            console.log(lineText.search(/\S/));
+            let test = lineText.substr(checkboxPosition.character+4,lineText.length).trim();
+            console.log(test);
+            
+            
 
 
             // if (lhc === 0) {
