@@ -50,7 +50,7 @@ function createCheckbox(editor: vscode.TextEditor) {
     let typeOfBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('typeOfBulletPoint');
     const cursorPosition = getCursorPosition();
 
-    if (!lineHasCheckbox(editor.document.lineAt(getCursorPosition().line))) {
+    if (lineHasCheckbox(editor.document.lineAt(getCursorPosition().line)) < 0) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.insert(new vscode.Position(
                 cursorPosition.line,
@@ -89,13 +89,19 @@ function toggleCheckbox() {
     }
 }
 
-// check if line has a checkbox
+// check if line has a checkbox (-1 = no checkbox, 0 = unmarked, 1 = marked)
 function lineHasCheckbox(line: vscode.TextLine) {
     var lineText = line.text.toString();
     var cbPosition = lineText.indexOf('[ ]');
     var cbPositionMarked = lineText.indexOf('[X]');
 
-    return (cbPosition > -1 || cbPositionMarked > -1);
+    if (cbPosition > -1) {
+        return 0;
+    } else if (cbPositionMarked > -1) {
+        return 1;
+    } else {
+        return -1;
+    }
 }
 
 // mark or unmark the checkbox of a given line in the editor
@@ -105,11 +111,12 @@ function toggleCheckboxOfLine(line: vscode.TextLine) {
     var cbPositionMarked = lineText.indexOf('[X]');
 
     // var lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);
+    let lhc = lineHasCheckbox(line);
 
-    if (lineHasCheckbox(line)) {
-        if (cbPosition > -1) {
+    if (lhc !== -1) {
+        if (lhc === 0) {
             return markField(new vscode.Position(line.lineNumber, cbPosition), 'X');
-        } else if (cbPositionMarked > -1) {
+        } else if (lhc === 1) {
             return markField(new vscode.Position(line.lineNumber, cbPositionMarked), ' ');
         }
     }
@@ -124,6 +131,32 @@ function markField(checkboxPosition: vscode.Position, char: string) {
             new vscode.Position(checkboxPosition.line, checkboxPosition.character + 1),
             new vscode.Position(checkboxPosition.line, checkboxPosition.character + 2)
         ), char);
+
+        let italicWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('italicWhenChecked');
+        let strikeThroughWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('strikeThroughWhenChecked');
+
+        if (strikeThroughWhenChecked) {
+            let style = '';
+            let line = getEditor().document.lineAt(checkboxPosition.line);
+            let lhc = lineHasCheckbox(line);   
+            let lineText = line.text.trim();
+            console.log(lineText.search(/\S/));
+
+
+            // if (lhc === 0) {
+            //     editBuilder.insert(new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4), '~~');
+            //     editBuilder.insert(new vscode.Position(checkboxPosition.line, line.text.trim().length), '~~');
+            // } else {
+            //     editBuilder.delete(new vscode.Range(
+            //         new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
+            //         new vscode.Position(checkboxPosition.line, checkboxPosition.character + 5))
+            //     );
+            //     editBuilder.delete(new vscode.Range(
+            //         new vscode.Position(checkboxPosition.line, line.text.trim().length - 1),
+            //         new vscode.Position(checkboxPosition.line, line.text.trim().length))
+            //     );
+            // }
+        }
     });
 }
 

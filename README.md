@@ -36,6 +36,10 @@ Do you need a bullet point before the created checkbox? Select true (*default*) 
 ```json
 "markdown-checkbox.withBulletPoint": true
 ```
+Example:
+```
+* [ ] todo
+```
 
 ### Type of bullet points
 Select a type of bullet point:
@@ -46,11 +50,40 @@ Select a type of bullet point:
 "markdown-checkbox.typeOfBulletPoint": "*"
 ```
 
+Example
+```
+* [ ] asterisk
+- [ ] minus
++ [ ] plus
+```
+
+### Strikethrough
+Strike through the line of the checkbox after the checkbox has been checked (*disabled by default*):
+
+    options: true | false
+  
+```json
+"markdown-checkbox.strikeThroughWhenChecked": false
+```
+Preview:
+* [X] ~~*added bullet points*~~
+
+### Italic
+Italic font style of line of the checkbox after the checkbox has been checked (*disabled by default*):
+
+    options: true | false
+  
+```json
+"markdown-checkbox.italicWhenChecked": false
+```
+Preview
+* [X] *added bullet points*
+
 ## Latest update
 
-* [X] fixed bugs
-* [X] added bullet points
-* [X] added workspace settings 
+* [X] *added bullet points*
+* [ ] added workspace settings 
+* [ ] fixed bugs
 
 ## License
 MIT
