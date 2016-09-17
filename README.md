@@ -21,14 +21,6 @@ You can customize this extension with the following options.
 
 > *File -> Preferences -> Workspace Settings*
 
-### Checkbox position
-Create the checkbox always at the beginning of a line (*default*) or at the current cursor position:
-
-    options: "line" | "cursor"
-
-```json
-"markdown-checkbox.checkboxPosition": "line"
-```
 
 ### Need a bullet point?
 Do you need a bullet point before the created checkbox? Select true (*default*) for this:
@@ -80,6 +72,15 @@ Strikethrough the line of the checkbox after the checkbox has been checked (*dis
 ```
 Preview:
 * [X] ~~*added bullet points*~~
+
+### Checkbox position
+Create the checkbox always at the beginning of a line (*default*) or at the current cursor position:
+
+    options: "line" | "cursor"
+
+```json
+"markdown-checkbox.checkboxPosition": "line"
+```
 
 ## Latest update
 
