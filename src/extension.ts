@@ -45,17 +45,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 // create a new checkbox at the current cursor position
 function createCheckbox(editor: vscode.TextEditor) {
+    let withBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('withBulletPoint');
+    let checkboxPosition = vscode.workspace.getConfiguration('markdown-checkbox').get('checkboxPosition');
+    let typeOfBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('typeOfBulletPoint');
     const cursorPosition = getCursorPosition();
-    if (editor.selection.isEmpty) {
+
+    if (!lineHasCheckbox(editor.document.lineAt(getCursorPosition().line))) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.insert(new vscode.Position(
                 cursorPosition.line,
-                cursorPosition.character
-            ), '[ ] ');
-        });
-    } else {
-        editor.edit((editBuilder: vscode.TextEditorEdit) => {
-            editBuilder.replace(editor.selection, '[ ] ');
+                checkboxPosition === 'line' ? 0 : cursorPosition.character
+            ), (withBulletPoint ? typeOfBulletPoint + ' ' : '') + '[ ] ');
         });
     }
 }
@@ -77,12 +77,25 @@ function toggleCheckbox() {
         toggleLine(0);
         function toggleLine(index) {
             if (lines.length > index) {
-                toggleCheckboxOfLine(lines[index]).then(() => {
+                if (toggleCheckboxOfLine(lines[index])) {
+                    toggleCheckboxOfLine(lines[index]).then(() => {
+                        toggleLine(++index);
+                    });
+                } else {
                     toggleLine(++index);
-                });
+                }
             }
         }
     }
+}
+
+// check if line has a checkbox
+function lineHasCheckbox(line: vscode.TextLine) {
+    var lineText = line.text.toString();
+    var cbPosition = lineText.indexOf('[ ]');
+    var cbPositionMarked = lineText.indexOf('[X]');
+
+    return (cbPosition > -1 || cbPositionMarked > -1);
 }
 
 // mark or unmark the checkbox of a given line in the editor
@@ -91,9 +104,9 @@ function toggleCheckboxOfLine(line: vscode.TextLine) {
     var cbPosition = lineText.indexOf('[ ]');
     var cbPositionMarked = lineText.indexOf('[X]');
 
-    var lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);
+    // var lineHasCheckbox = (cbPosition > -1 || cbPositionMarked > -1);
 
-    if (lineHasCheckbox) {
+    if (lineHasCheckbox(line)) {
         if (cbPosition > -1) {
             return markField(new vscode.Position(line.lineNumber, cbPosition), 'X');
         } else if (cbPositionMarked > -1) {
