@@ -139,10 +139,9 @@ function markField(checkboxPosition: vscode.Position, char: string) {
         let line = getEditor().document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
         let lineText = line.text.trim();
-        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
-        // console.log(textWithoutCheckbox);
+        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();        
 
-        if (lhc === 0) {
+        if (lhc === 0 && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             editBuilder.replace(new vscode.Range(
                 new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
