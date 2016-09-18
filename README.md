@@ -52,23 +52,23 @@ Example
 ```
 
 ### Italic
-Italic font style of line of the checkbox after the checkbox has been checked (*disabled by default*):
+Italic font style of line of the checkbox after the checkbox has been checked:
 
     options: true | false
   
 ```json
-"markdown-checkbox.italicWhenChecked": false
+"markdown-checkbox.italicWhenChecked": true
 ```
 Preview
 * [X] *added bullet points*
 
 ### Strikethrough
-Strikethrough the line of the checkbox after the checkbox has been checked (*disabled by default*):
+Strikethrough the line of the checkbox after the checkbox has been checked:
 
     options: true | false
   
 ```json
-"markdown-checkbox.strikeThroughWhenChecked": false
+"markdown-checkbox.strikeThroughWhenChecked": true
 ```
 Preview:
 * [X] ~~*added bullet points*~~
@@ -77,8 +77,8 @@ Preview:
 
 * [X] added bullet points
 * [X] added workspace settings 
-* [X] possibility to strikethrough the "checked" lines
-* [X] possibility to show the "checked" line in italic 
+* [X] strikethrough the "checked" lines
+* [X] show the "checked" line in italic 
 * [X] fixed bugs
 * [X] improved flow
 
