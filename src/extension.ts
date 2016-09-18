@@ -67,6 +67,8 @@ function toggleCheckbox() {
         var cursorPosition = getCursorPosition();
         var line = editor.document.lineAt(cursorPosition.line);
         toggleCheckboxOfLine(line);
+        var endLine = editor.document.lineAt(editor.selection.end.line);
+        getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
     } else {
         let lines = [];
         var selection = editor.selection;
