@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 // create a new checkbox at the current cursor position
 function createCheckbox(editor: vscode.TextEditor) {
-    let withBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('withBulletPoint');    
+    let withBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('withBulletPoint');
     let typeOfBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('typeOfBulletPoint');
     const cursorPosition = getCursorPosition();
 
@@ -87,7 +87,7 @@ function toggleCheckbox() {
                 }
             }
         }
-    }    
+    }
 }
 
 // check if line has a checkbox (-1 = no checkbox, 0 = unmarked, 1 = marked)
@@ -134,12 +134,12 @@ function markField(checkboxPosition: vscode.Position, char: string) {
         ), char);
 
         let italicWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('italicWhenChecked');
-        let strikeThroughWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('strikeThroughWhenChecked');        
+        let strikeThroughWhenChecked = vscode.workspace.getConfiguration('markdown-checkbox').get('strikeThroughWhenChecked');
 
         let line = getEditor().document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
         let lineText = line.text.trim();
-        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();        
+        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
 
         if (lhc === 0 && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
