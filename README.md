@@ -9,11 +9,11 @@ With this extension for Visual Studio Code it's possible to create your todo lis
 ## Keybindings
 Create a checkbox:
 
-> Press `ctrl+shift+c`
+> `ctrl + shift + c`
 
-Mark it as done:
+Toggle checkbox:
 
-> Press `ctrl+shift+enter`
+> `ctrl + shift + enter`
 
 
 ## Configuration
