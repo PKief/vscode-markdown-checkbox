@@ -85,9 +85,7 @@ function toggleCheckbox() {
                 }
             }
         }
-    }
-    var endLine = editor.document.lineAt(editor.selection.end.line);
-    getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
+    }    
 }
 
 // check if line has a checkbox (-1 = no checkbox, 0 = unmarked, 1 = marked)
