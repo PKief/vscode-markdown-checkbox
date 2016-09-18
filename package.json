@@ -98,7 +98,7 @@
                 },
                 "markdown-checkbox.strikeThroughWhenChecked": {
                     "type": "boolean",                    
-                    "default": true,
+                    "default": false,
                     "description": "Strike through the line of the checkbox after checked."
                 },
                 "markdown-checkbox.italicWhenChecked": {

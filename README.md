@@ -86,6 +86,8 @@ Only one checkbox per line is possible!
 "markdown-checkbox.checkboxPosition": "line"
 ```
 
+* [X] ~~*hallo*~~
+
 ## Latest update
 
 * [X] added bullet points
