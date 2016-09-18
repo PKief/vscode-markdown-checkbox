@@ -73,21 +73,6 @@ Strikethrough the line of the checkbox after the checkbox has been checked (*dis
 Preview:
 * [X] ~~*added bullet points*~~
 
-### Checkbox position
-Create the checkbox always at the beginning of a line (*default*) or at the current cursor position.
-
-**Important:** If you select the "cursor" option, the strikethrough and the italic style will not be available! And it is recommended that you turn the bullet points option to false! This is only if you want your checkbox not at the beginning of the line.
-
-Only one checkbox per line is possible!
-
-    options: "line" | "cursor"
-
-```json
-"markdown-checkbox.checkboxPosition": "line"
-```
-
-* [X] ~~*hallo*~~
-
 ## Latest update
 
 * [X] added bullet points

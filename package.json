@@ -90,15 +90,9 @@
                     "default": "*",
                     "description": "Bullet point character."
                 },
-                "markdown-checkbox.checkboxPosition": {
-                    "type": "string",
-                    "enum": ["line", "cursor"],
-                    "default": "line",
-                    "description": "Create checkbox either at the beginning of the line of the cursor of at the cursor position."
-                },
                 "markdown-checkbox.strikeThroughWhenChecked": {
                     "type": "boolean",                    
-                    "default": false,
+                    "default": true,
                     "description": "Strike through the line of the checkbox after checked."
                 },
                 "markdown-checkbox.italicWhenChecked": {
