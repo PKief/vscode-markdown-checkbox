@@ -49,13 +49,30 @@ function createCheckbox(editor: vscode.TextEditor) {
     let typeOfBulletPoint = vscode.workspace.getConfiguration('markdown-checkbox').get('typeOfBulletPoint');
     const cursorPosition = getCursorPosition();
 
-    if (lineHasCheckbox(editor.document.lineAt(getCursorPosition().line)) < 0) {
+    const line = editor.document.lineAt(getCursorPosition().line);
+    let hasBullet = lineHasBulletPointAlready(line);    
+    if (lineHasCheckbox(line) < 0) {
         editor.edit((editBuilder: vscode.TextEditorEdit) => {
             editBuilder.insert(new vscode.Position(
-                cursorPosition.line,
-                0
-            ), (withBulletPoint ? typeOfBulletPoint + ' ' : '') + '[ ] ');
+                line.lineNumber,
+                hasBullet.pos
+            ), (withBulletPoint && !hasBullet.bullet ? typeOfBulletPoint + ' ' : '') + '[ ] ');
         });
+    }
+}
+
+// give the information if the line has already a bullet point
+function lineHasBulletPointAlready(line: vscode.TextLine): any {
+    let fstChar = line.firstNonWhitespaceCharacterIndex;
+    // console.log('firstChar: ' + line.text[fstChar]);
+
+    switch (line.text[fstChar]) {
+        case '*':
+        case '+':
+        case '-':
+            return { pos: fstChar + 2, bullet: true };
+        default:
+            return { pos: fstChar, bullet: false };
     }
 }
 
