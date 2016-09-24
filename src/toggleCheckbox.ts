@@ -64,8 +64,16 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
 
         let line = editor.document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
-        let lineText = line.text.trim();
-        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + (lhc.position.character > 2 ? 0 : 4), lineText.length).trim();
+        let lineText = line.text;
+        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
+        // console.log(
+        //     `
+        //     textWithoutCheckbox: ${textWithoutCheckbox}
+        //     checkboxPosition.character: ${checkboxPosition.character}
+        //     lhc.position.character: ${lhc.position.character}
+        //     lineText.length: ${lineText.length}
+        //     `
+        // );
 
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
