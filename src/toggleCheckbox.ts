@@ -3,6 +3,7 @@ import { lineHasCheckbox } from './helpers';
 import { getEditor } from './helpers';
 import { getCursorPosition } from './helpers';
 import { getConfig } from './helpers';
+import { Position, Range, TextEditorEdit, TextDocument } from 'vscode';
 
 // mark a checkbox as checked or unchecked
 export const toggleCheckbox = () => {
@@ -39,8 +40,6 @@ export const toggleCheckbox = () => {
 export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
     let lhc = lineHasCheckbox(line);
 
-    console.log(lineHasCheckbox);
-
     if (lhc) {
         if (!lhc.checked) {
             return markField(lhc.position, 'X');
@@ -53,33 +52,33 @@ export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
 };
 
 // marks the field inside the checkbox with a character (returns a promise)
-export const markField = (checkboxPosition: vscode.Position, char: string): Thenable<boolean> => {
-    return getEditor().edit((editBuilder: vscode.TextEditorEdit) => {
-        editBuilder.replace(new vscode.Range(
-            new vscode.Position(checkboxPosition.line, checkboxPosition.character + 1),
-            new vscode.Position(checkboxPosition.line, checkboxPosition.character + 2)
+export const markField = (checkboxPosition: Position, char: string, editor = getEditor()): Thenable<boolean> => {
+    return editor.edit((editBuilder: TextEditorEdit) => {
+        editBuilder.replace(new Range(
+            new Position(checkboxPosition.line, checkboxPosition.character + 1),
+            new Position(checkboxPosition.line, checkboxPosition.character + 2)
         ), char);
 
         let italicWhenChecked = getConfig('italicWhenChecked');
         let strikeThroughWhenChecked = getConfig('strikeThroughWhenChecked');
 
-        let line = getEditor().document.lineAt(checkboxPosition.line);
+        let line = editor.document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
         let lineText = line.text.trim();
         let textWithoutCheckbox = lineText.substr(checkboxPosition.character + (lhc.position.character > 2 ? 0 : 4), lineText.length).trim();
 
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
-            editBuilder.replace(new vscode.Range(
-                new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
-                new vscode.Position(checkboxPosition.line, line.text.length)
+            editBuilder.replace(new Range(
+                new Position(checkboxPosition.line, checkboxPosition.character + 4),
+                new Position(checkboxPosition.line, line.text.length)
             ), newText);
         }
         else if (lhc.checked) {
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
-            editBuilder.replace(new vscode.Range(
-                new vscode.Position(checkboxPosition.line, checkboxPosition.character + 4),
-                new vscode.Position(checkboxPosition.line, line.text.length)
+            editBuilder.replace(new Range(
+                new Position(checkboxPosition.line, checkboxPosition.character + 4),
+                new Position(checkboxPosition.line, line.text.length)
             ), newText);
         }
     });
