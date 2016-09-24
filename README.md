@@ -75,12 +75,10 @@ Preview:
 
 ## Latest update
 
-* [X] added bullet points
-* [X] added workspace settings 
-* [X] strikethrough the "checked" lines
-* [X] show the "checked" line in italic 
+* [X] support for nested lists
+* [X] recognize bullet points before item
 * [X] fixed bugs
-* [X] improved flow
+* [X] improved code
 
 ## License
 MIT
