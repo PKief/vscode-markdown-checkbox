@@ -14,8 +14,7 @@ export const getEditor = (): TextEditor => {
 
 // give the information if the line has already a bullet point
 export const lineHasBulletPointAlready = (line: TextLine): any => {
-    let fstChar = line.firstNonWhitespaceCharacterIndex;
-    // console.log('firstChar: ' + line.text[fstChar]);
+    let fstChar = line.firstNonWhitespaceCharacterIndex;    
 
     switch (line.text[fstChar]) {
         case '*':
