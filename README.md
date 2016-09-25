@@ -71,7 +71,7 @@ Strikethrough the line of the checkbox after the checkbox has been checked:
 "markdown-checkbox.strikeThroughWhenChecked": true
 ```
 Preview:
-* [X] ~~*this line has been crossed*~~
+* [X] ~~*this line has been crossed out*~~
 
 ## Latest update
 
