@@ -60,7 +60,7 @@ Italic font style of line of the checkbox after the checkbox has been checked:
 "markdown-checkbox.italicWhenChecked": true
 ```
 Preview
-* [X] *added bullet points*
+* [X] *this line is italic*
 
 ### Strikethrough
 Strikethrough the line of the checkbox after the checkbox has been checked:
@@ -71,14 +71,13 @@ Strikethrough the line of the checkbox after the checkbox has been checked:
 "markdown-checkbox.strikeThroughWhenChecked": true
 ```
 Preview:
-* [X] ~~*added bullet points*~~
+* [X] ~~*this line has been crossed*~~
 
 ## Latest update
 
-* [X] support for nested lists
-* [X] recognize bullet points before item
+* [X] support nested lists
+* [X] detect bullet points before item
 * [X] fixed bugs
-* [X] improved code
 
 ## License
 MIT
