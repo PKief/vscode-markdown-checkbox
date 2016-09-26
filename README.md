@@ -75,8 +75,8 @@ Preview:
 
 ## Latest update
 
-* [X] support nested lists
-* [X] detect bullet points before item
+* [X] nested lists are supported
+* [X] detect bullet point before item
 * [X] fixed bugs
 
 ## License
