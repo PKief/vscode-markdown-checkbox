@@ -26,7 +26,7 @@ export const lineHasBulletPointAlready = (line: TextLine): any => {
     }
 };
 
-// check if line has a checkbox (-1 = no checkbox, 0 = unmarked, 1 = marked)
+// check if line has a checkbox
 export const lineHasCheckbox = (line: TextLine): Checkbox => {
     var lineText = line.text.toString();
     var cbPosition = lineText.indexOf('[ ]');

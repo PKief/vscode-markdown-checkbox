@@ -10,10 +10,17 @@ import { toggleCheckbox } from './toggleCheckbox';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export const activate = (context: vscode.ExtensionContext) => {
-
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "markdown-checkbox" is now active!');
+    console.log('Congratulations, your extension "markdown-checkbox" is now active!');    
+
+    //item for statusbar
+    let statusBarItem: vscode.StatusBarItem;
+    if (!statusBarItem) {
+        statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+    }
+    statusBarItem.text = `0/10 Checkboxes`;
+    statusBarItem.show();
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
@@ -23,6 +30,7 @@ export const activate = (context: vscode.ExtensionContext) => {
         // vscode.window.showInformationMessage('Create cb!');
         var editor = helpers.getEditor();
         if (!editor) {
+            statusBarItem.hide();
             return;
         }
 
@@ -36,6 +44,7 @@ export const activate = (context: vscode.ExtensionContext) => {
     let extCreateCheckbox = vscode.commands.registerCommand('extension.createCheckbox', () => {
         var editor = helpers.getEditor();
         if (!editor) {
+            statusBarItem.hide();
             return;
         }
         let doc = editor.document;
@@ -49,4 +58,4 @@ export const activate = (context: vscode.ExtensionContext) => {
 
 
 // this method is called when your extension is deactivated
-export const deactivate = () => {}
+export const deactivate = () => { }
