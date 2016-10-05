@@ -14,7 +14,7 @@ export const getEditor = (): TextEditor => {
 
 // give the information if the line has already a bullet point
 export const lineHasBulletPointAlready = (line: TextLine): any => {
-    let fstChar = line.firstNonWhitespaceCharacterIndex;    
+    let fstChar = line.firstNonWhitespaceCharacterIndex;
 
     switch (line.text[fstChar]) {
         case '*':
@@ -40,6 +40,19 @@ export const lineHasCheckbox = (line: TextLine): Checkbox => {
         return null;
     }
 };
+
+// returns a list of all checkboxes
+export const getAllCheckboxes = (doc: vscode.TextDocument): Checkbox[] => {
+    let editor = getEditor();
+    let lineCount = editor.document.lineCount;
+    let result = [];
+    for (var l = 0; l < lineCount; l++) {
+        if (lineHasCheckbox(editor.document.lineAt(l)) !== null) {            
+            result.push(lineHasCheckbox(editor.document.lineAt(l)));            
+        }
+    }
+    return result;
+}
 
 // returns the value of a workspace config property
 export const getConfig = (config: string): any =>
