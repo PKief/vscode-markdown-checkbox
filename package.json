@@ -24,6 +24,7 @@
         "url": "https://github.com/PKief/vscode-extension-markdown-checkbox/issues"
     },
     "activationEvents": [
+        "onLanguage:markdown",
         "onCommand:extension.createCheckbox",
         "onCommand:extension.markCheckbox"
     ],
