@@ -6,7 +6,7 @@ export class CheckboxStatus {
 
     public updateCheckboxStatus() {
         if (!this._statusBarItem) {
-            this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
+            this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right);
         }
 
         let editor = window.activeTextEditor;
