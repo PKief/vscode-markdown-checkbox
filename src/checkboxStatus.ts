@@ -23,7 +23,8 @@ export class CheckboxStatus {
             let checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);            
 
             // update status bar
-            this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + ' checked';
+            this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + '  $(checklist)';
+            this._statusBarItem.tooltip = checkedCheckboxes.length + ' of ' + allCheckboxes.length + ' checked checkboxes';             
             this._statusBarItem.show();
         } else {
             this._statusBarItem.hide();
