@@ -28,7 +28,7 @@
         "onCommand:extension.createCheckbox",
         "onCommand:extension.markCheckbox"
     ],
-    "icon": "images/checkbox.png",
+    "icon": "logo.png",
     "galleryBanner": {
         "color": "#121212",
         "theme": "dark"
