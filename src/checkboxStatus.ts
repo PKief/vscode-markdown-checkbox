@@ -6,7 +6,7 @@ export class CheckboxStatus {
 
     public updateCheckboxStatus() {
         if (!this._statusBarItem) {
-            this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right);
+            this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 200);
         }
 
         let editor = window.activeTextEditor;
@@ -23,7 +23,7 @@ export class CheckboxStatus {
             let checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);            
 
             // update status bar
-            this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + ' checkboxes';
+            this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + ' checked';
             this._statusBarItem.show();
         } else {
             this._statusBarItem.hide();
