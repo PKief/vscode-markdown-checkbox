@@ -75,7 +75,7 @@ Preview:
 
 ## Latest update
 
-* [X] information about checkboxes to the statusbar
+* [X] information about checkboxes in the statusbar
 
 ## License
 MIT
