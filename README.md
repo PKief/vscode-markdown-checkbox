@@ -75,9 +75,7 @@ Preview:
 
 ## Latest update
 
-* [X] nested lists are supported
-* [X] detect bullet point before item
-* [X] fixed bugs
+* [X] information about checkboxes to the statusbar
 
 ## License
 MIT
