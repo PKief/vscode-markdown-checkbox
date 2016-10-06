@@ -1,5 +1,6 @@
 import * as helpers from './helpers';
 import { Disposable, StatusBarItem, StatusBarAlignment, window, workspace } from 'vscode';
+import * as vscode from 'vscode';
 
 export class CheckboxStatus {
     private _statusBarItem: StatusBarItem;
@@ -17,14 +18,19 @@ export class CheckboxStatus {
 
         let doc = editor.document;
 
-        if (doc.languageId === "markdown") {            
+        if (doc.languageId === "markdown") {
             let allCheckboxes = helpers.getAllCheckboxes(doc);
 
-            let checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);            
+            if (allCheckboxes.length === 0) {
+                this._statusBarItem.hide();
+                return;
+            }
+
+            let checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);
 
             // update status bar
             this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + '  $(checklist)';
-            this._statusBarItem.tooltip = checkedCheckboxes.length + ' of ' + allCheckboxes.length + ' checked checkboxes';             
+            this._statusBarItem.tooltip = checkedCheckboxes.length + ' of ' + allCheckboxes.length + ' checked checkboxes';
             this._statusBarItem.show();
         } else {
             this._statusBarItem.hide();

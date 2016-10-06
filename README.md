@@ -6,6 +6,9 @@ With this extension for Visual Studio Code it's possible to create your todo lis
 
 ![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/preview.gif)
 
+## Information in status bar
+
+
 ## Keybindings
 Create a checkbox:
 
