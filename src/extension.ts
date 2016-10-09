@@ -15,10 +15,11 @@ export const activate = (context: vscode.ExtensionContext) => {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "markdown-checkbox" is now active!');
 
-    // status item for the status of the checkboxes
+    // item in the status bar to show checkbox information
     let checkboxStatus = new CheckboxStatus();
     let controller = new CheckboxStatusController(checkboxStatus);
 
+    // subscribe to changes to update the status bar
     context.subscriptions.push(controller);
     context.subscriptions.push(checkboxStatus);
 
