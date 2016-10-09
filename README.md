@@ -8,6 +8,8 @@ With this extension for Visual Studio Code it's possible to create your todo lis
 ## Information in status bar
 ![Preview of status bar information](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/statusbar_preview.png)
 
+You have to create at least one checkbox to see this information.
+
 ## Keybindings
 Create a checkbox:
 
