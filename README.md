@@ -79,7 +79,7 @@ Preview:
 
 ## Latest update
 
-* [X] information about checkboxes in the statusbar
+* [X] added status bar item to show status of all checkboxes
 
 ## License
 MIT
