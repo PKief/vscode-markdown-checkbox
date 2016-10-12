@@ -1,6 +1,10 @@
 # Markdown checkbox
 ## Description
-With this extension for Visual Studio Code it's possible to create your todo list in markdown. The extension provides shortcuts and some workspace configurations so you can create a checkbox and mark it quickly and smoothly.  
+With this extension for Visual Studio Code it's possible to create your todo list in markdown. The extension provides shortcuts and some workspace configurations so you can create a checkbox and mark it quickly and smoothly.
+
+![Version](http://vsmarketplacebadge.apphb.com/version/PKief.markdown-checkbox.svg)
+![Installs](http://vsmarketplacebadge.apphb.com/installs/PKief.markdown-checkbox.svg)
+![Ratings](http://vsmarketplacebadge.apphb.com/rating/PKief.markdown-checkbox.svg)  
 
 ## How to use
 ![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/preview.gif)
