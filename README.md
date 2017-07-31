@@ -81,7 +81,7 @@ Strikethrough the line of the checkbox after the checkbox has been checked:
 Preview:
 * [X] ~~*this line has been crossed out*~~
 
-## Latest update
+## Changelog
 
 * [X] added status bar item to show status of all checkboxes
 

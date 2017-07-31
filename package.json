@@ -88,30 +88,36 @@
                 },
                 "markdown-checkbox.typeOfBulletPoint": {
                     "type": "string",
-					"enum": ["*", "-", "+"],
+                    "enum": [
+                        "*",
+                        "-",
+                        "+"
+                    ],
                     "default": "*",
                     "description": "Bullet point character."
                 },
                 "markdown-checkbox.strikeThroughWhenChecked": {
-                    "type": "boolean",                    
+                    "type": "boolean",
                     "default": true,
                     "description": "Strike through the line of the checkbox after checked."
                 },
                 "markdown-checkbox.italicWhenChecked": {
-                    "type": "boolean",                    
+                    "type": "boolean",
                     "default": true,
                     "description": "Italic font style of line of the checkbox after the checkbox has been checked."
-                }               
+                }
             }
         }
     },
     "scripts": {
-        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "devDependencies": {
-        "typescript": "^1.8.5",
-        "vscode": "^0.11.0"
+        "@types/mocha": "^2.2.41",
+        "@types/node": "^8.0.17",
+        "typescript": "^2.4.2",
+        "vscode": "^1.1.4"
     }
 }
