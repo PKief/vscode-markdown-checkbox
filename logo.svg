@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100mm" height="100mm" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient4542" x1="165.71" x2="406.07" y1="249.82" y2="719.54" gradientTransform="matrix(.13229 0 0 .13229 1.1444e-5 197)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#536265" stop-opacity=".22391" offset="0"/>
+   <stop stop-color="#122122" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g transform="translate(0,-197)">
+  <ellipse cx="50" cy="247" rx="50" ry="50" fill="#7cb342"/>
+  <path d="m79.008 229.38-14.984 5.5934-24.659 24.658-11.253-11.253-6.859 2.5603 15.692 44.213a49.816 50 0 0 0 13.215 1.8472 49.816 50 0 0 0 43.649 -25.916z" fill="url(#linearGradient4542)"/>
+  <path d="m78.954 229.38-39.589 39.589-18.145-18.145 4.6517-4.6517 13.493 13.46 34.937-34.904z" fill="#fff" stroke-width="3.299"/>
+ </g>
+</svg>
