@@ -2,8 +2,8 @@ import * as helpers from './helpers';
 import * as vscode from 'vscode';
 import { Position, TextEditorEdit, TextEditor } from 'vscode';
 
-// create a new checkbox at the current cursor position
-export const createCheckbox = (editor: TextEditor):any => {
+/** create a new checkbox at the current cursor position */
+export const createCheckbox = (editor: TextEditor): any => {
     let withBulletPoint = helpers.getConfig('withBulletPoint');
     let typeOfBulletPoint = helpers.getConfig('typeOfBulletPoint');
     const cursorPosition = helpers.getCursorPosition();

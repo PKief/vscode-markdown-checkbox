@@ -5,20 +5,20 @@ import { getCursorPosition } from './helpers';
 import { getConfig } from './helpers';
 import { Position, Range, TextEditorEdit, TextDocument } from 'vscode';
 
-// mark a checkbox as checked or unchecked
+/** mark a checkbox as checked or unchecked */
 export const toggleCheckbox = () => {
     // the position object gives you the line and character where the cursor is
-    var editor = getEditor();
+    const editor = getEditor();
     if (editor.selection.isEmpty) {
-        var cursorPosition = getCursorPosition();
-        var line = editor.document.lineAt(cursorPosition.line);
+        let cursorPosition = getCursorPosition();
+        let line = editor.document.lineAt(cursorPosition.line);
         toggleCheckboxOfLine(line);
-        var endLine = editor.document.lineAt(editor.selection.end.line);
+        let endLine = editor.document.lineAt(editor.selection.end.line);
         getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
     } else {
         let lines = [];
-        var selection = editor.selection;
-        for (var r = selection.start.line; r <= selection.end.line; r++) {
+        let selection = editor.selection;
+        for (let r = selection.start.line; r <= selection.end.line; r++) {
             lines.push(editor.document.lineAt(r));
         }
         toggleLine(0);
@@ -36,7 +36,7 @@ export const toggleCheckbox = () => {
     }
 };
 
-// mark or unmark the checkbox of a given line in the editor
+/** mark or unmark the checkbox of a given line in the editor */
 export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
     let lhc = lineHasCheckbox(line);
 
@@ -51,7 +51,7 @@ export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
     return null;
 };
 
-// marks the field inside the checkbox with a character (returns a promise)
+/** marks the field inside the checkbox with a character */
 export const markField = (checkboxPosition: Position, char: string, editor = getEditor()): Thenable<boolean> => {
     return editor.edit((editBuilder: TextEditorEdit) => {
         editBuilder.replace(new Range(
