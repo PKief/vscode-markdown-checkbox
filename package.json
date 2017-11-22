@@ -3,7 +3,7 @@
     "displayName": "Markdown Checkbox",
     "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
     "version": "1.0.2",
-    "publisher": "PKief",
+    "publisher": "jcvtieck",
     "engines": {
         "vscode": "^1.4.0"
     },
@@ -16,13 +16,13 @@
         "todo-list",
         "checkbox"
     ],
-    "homepage": "https://github.com/PKief/vscode-extension-markdown-checkbox/blob/master/README.md",
+    "homepage": "https://github.com/jcvtieck/vscode-extension-markdown-checkbox/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/PKief/vscode-extension-markdown-checkbox.git"
+        "url": "https://github.com/jcvtieck/vscode-extension-markdown-checkbox.git"
     },
     "bugs": {
-        "url": "https://github.com/PKief/vscode-extension-markdown-checkbox/issues"
+        "url": "https://github.com/jcvtieck/vscode-extension-markdown-checkbox/issues"
     },
     "activationEvents": [
         "onLanguage:markdown",
