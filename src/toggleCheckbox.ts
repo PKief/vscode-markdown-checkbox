@@ -61,6 +61,8 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
 
         let italicWhenChecked = getConfig('italicWhenChecked');
         let strikeThroughWhenChecked = getConfig('strikeThroughWhenChecked');
+        // JC: load the date setting from config
+        let dateWhenChecked = getConfig('dateWhenChecked');
 
         let line = editor.document.lineAt(checkboxPosition.line);
         let lhc = lineHasCheckbox(line);
@@ -69,6 +71,10 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
 
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
+            // JC: add the date string
+            let date_now = new Date().toISOString().slice(0,10);
+            newText = newText  + (dateWhenChecked ? '[' + date_now + ']' : '');
+            
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
                 new Position(checkboxPosition.line, line.text.length)
@@ -76,6 +82,9 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
         }
         else if (lhc.checked) {
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
+            // JC: remove the date string
+            newText = newText.replace(/\[\d{4}[\-]\d{2}[\-]\d{2}\]$/, '');
+
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
                 new Position(checkboxPosition.line, line.text.length)
