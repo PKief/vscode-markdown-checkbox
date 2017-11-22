@@ -3,7 +3,7 @@
     "displayName": "Markdown Checkbox",
     "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
     "version": "1.0.2",
-    "publisher": "jcvtieck",
+    "publisher": "PKief",
     "engines": {
         "vscode": "^1.4.0"
     },
