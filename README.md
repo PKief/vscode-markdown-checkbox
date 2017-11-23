@@ -80,3 +80,14 @@ Strikethrough the line of the checkbox after the checkbox has been checked:
 ```
 Preview:
 * [X] ~~*this line has been crossed out*~~
+
+### Date when checked
+Add date behind the checkbox item after the checkbox has been checked:
+
+    options: true | false
+  
+```json
+"markdown-checkbox.dateWhenChecked": true
+```
+Preview:
+* [X] ~~*sample with date*~~ [2017-11-23]

@@ -14,7 +14,7 @@ export const getEditor = (): TextEditor => {
 
 /** give the information if the line has already a bullet point */
 export const lineHasBulletPointAlready = (line: TextLine): any => {
-    let fstChar = line.firstNonWhitespaceCharacterIndex;
+    const fstChar = line.firstNonWhitespaceCharacterIndex;
 
     switch (line.text[fstChar]) {
         case '*':
@@ -28,9 +28,9 @@ export const lineHasBulletPointAlready = (line: TextLine): any => {
 
 /** check if line has a checkbox */
 export const lineHasCheckbox = (line: TextLine): Checkbox => {
-    let lineText = line.text.toString();
-    let cbPosition = lineText.indexOf('[ ]');
-    let cbPositionMarked = lineText.indexOf('[X]');
+    const lineText = line.text.toString();
+    const cbPosition = lineText.indexOf('[ ]');
+    const cbPositionMarked = lineText.indexOf('[X]');
 
     if (cbPosition > -1) {
         return { checked: false, position: new Position(line.lineNumber, cbPosition) };
@@ -44,8 +44,8 @@ export const lineHasCheckbox = (line: TextLine): Checkbox => {
 /** returns a list of all checkboxes */
 export const getAllCheckboxes = (doc: vscode.TextDocument): Checkbox[] => {
     const editor = getEditor();
-    let lineCount = editor.document.lineCount;
-    let result = [];
+    const lineCount = editor.document.lineCount;
+    const result = [];
     for (let l = 0; l < lineCount; l++) {
         if (lineHasCheckbox(editor.document.lineAt(l)) !== null) {
             result.push(lineHasCheckbox(editor.document.lineAt(l)));

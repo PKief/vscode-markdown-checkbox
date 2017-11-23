@@ -10,23 +10,23 @@ export class CheckboxStatus {
             this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 200);
         }
 
-        let editor = window.activeTextEditor;
+        const editor = window.activeTextEditor;
         if (!editor) {
             this._statusBarItem.hide();
             return;
         }
 
-        let doc = editor.document;
+        const doc = editor.document;
 
         if (doc.languageId === "markdown") {
-            let allCheckboxes = helpers.getAllCheckboxes(doc);
+            const allCheckboxes = helpers.getAllCheckboxes(doc);
 
             if (allCheckboxes.length === 0) {
                 this._statusBarItem.hide();
                 return;
             }
 
-            let checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);
+            const checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);
 
             // update status bar
             this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + '  $(checklist)';
@@ -50,7 +50,7 @@ export class CheckboxStatusController {
         this._checkboxStatus = checkboxStatus;
         this._checkboxStatus.updateCheckboxStatus();
 
-        let subscriptions: Disposable[] = [];
+        const subscriptions: Disposable[] = [];
         workspace.onDidChangeTextDocument(this._onEvent, this, subscriptions);
         window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
 

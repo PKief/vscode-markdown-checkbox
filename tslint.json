@@ -89,6 +89,7 @@
             true,
             "ban-keywords"
         ],
+        "prefer-const": true,
         "whitespace": [
             true,
             "check-branch",

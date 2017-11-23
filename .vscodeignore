@@ -5,5 +5,8 @@ src/**
 **/*.map
 .gitignore
 tsconfig.json
+tslint.json
+package-lock.json
 vsc-extension-quickstart.md
 images/**
+logo.svg

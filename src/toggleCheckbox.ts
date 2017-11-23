@@ -10,14 +10,14 @@ export const toggleCheckbox = () => {
     // the position object gives you the line and character where the cursor is
     const editor = getEditor();
     if (editor.selection.isEmpty) {
-        let cursorPosition = getCursorPosition();
-        let line = editor.document.lineAt(cursorPosition.line);
+        const cursorPosition = getCursorPosition();
+        const line = editor.document.lineAt(cursorPosition.line);
         toggleCheckboxOfLine(line);
-        let endLine = editor.document.lineAt(editor.selection.end.line);
+        const endLine = editor.document.lineAt(editor.selection.end.line);
         getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
     } else {
-        let lines = [];
-        let selection = editor.selection;
+        const lines = [];
+        const selection = editor.selection;
         for (let r = selection.start.line; r <= selection.end.line; r++) {
             lines.push(editor.document.lineAt(r));
         }
@@ -38,7 +38,7 @@ export const toggleCheckbox = () => {
 
 /** mark or unmark the checkbox of a given line in the editor */
 export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
-    let lhc = lineHasCheckbox(line);
+    const lhc = lineHasCheckbox(line);
 
     if (lhc) {
         if (!lhc.checked) {
@@ -59,16 +59,23 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
             new Position(checkboxPosition.line, checkboxPosition.character + 2)
         ), char);
 
-        let italicWhenChecked = getConfig('italicWhenChecked');
-        let strikeThroughWhenChecked = getConfig('strikeThroughWhenChecked');
+        // get settings from config
+        const italicWhenChecked = getConfig('italicWhenChecked');
+        const strikeThroughWhenChecked = getConfig('strikeThroughWhenChecked');
+        const dateWhenChecked = getConfig('dateWhenChecked');
 
-        let line = editor.document.lineAt(checkboxPosition.line);
-        let lhc = lineHasCheckbox(line);
-        let lineText = line.text;
-        let textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
+        // get line of the checkbox
+        const line = editor.document.lineAt(checkboxPosition.line);
+        const lhc = lineHasCheckbox(line);
+        const lineText = line.text;
+        const textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
 
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
+            // add the date string
+            const dateNow = new Date().toISOString().slice(0, 10);
+            newText = newText + (dateWhenChecked ? ' [' + dateNow + ']' : '');
+
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
                 new Position(checkboxPosition.line, line.text.length)
@@ -76,6 +83,9 @@ export const markField = (checkboxPosition: Position, char: string, editor = get
         }
         else if (lhc.checked) {
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
+            // remove the date string
+            newText = newText.replace(/\s\[\d{4}[\-]\d{2}[\-]\d{2}\]$/, '');
+
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
                 new Position(checkboxPosition.line, line.text.length)
