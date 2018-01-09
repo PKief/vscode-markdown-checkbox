@@ -30,7 +30,7 @@ export const lineHasBulletPointAlready = (line: TextLine): any => {
 export const lineHasCheckbox = (line: TextLine): Checkbox => {
     const lineText = line.text.toString();
     const cbPosition = lineText.indexOf('[ ]');
-    const cbPositionMarked = lineText.indexOf('[X]');
+    const cbPositionMarked = lineText.search(/\[x\]/gi);
 
     if (cbPosition > -1) {
         return { checked: false, position: new Position(line.lineNumber, cbPosition) };
