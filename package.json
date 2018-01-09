@@ -2,7 +2,7 @@
     "name": "markdown-checkbox",
     "displayName": "Markdown Checkbox",
     "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "publisher": "PKief",
     "engines": {
         "vscode": "^1.4.0"
@@ -121,10 +121,10 @@
         "tslint": "tslint ./src/**/*.ts -t stylish"
     },
     "devDependencies": {
-        "@types/mocha": "^2.2.44",
-        "@types/node": "^8.0.53",
+        "@types/mocha": "^2.2.46",
+        "@types/node": "^9.3.0",
         "tslint": "^5.8.0",
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.8"
+        "typescript": "^2.6.2",
+        "vscode": "^1.1.10"
     }
 }

@@ -1,7 +1,14 @@
 # Change Log
 
+## 1.1.1 (2018-01-09)
+### Bug Fixes
+- **status bar**: Status bar updates completed tasks if a lowercase 'x' is used ([515407e](https://github.com/PKief/vscode-markdown-checkbox/commit/515407e)), closes [#7](https://github.com/PKief/vscode-markdown-checkbox/issues/7)
+
 ## 1.1.0 (2017-11-23)
-- added date support [[@jcvtieck](https://github.com/jcvtieck) in [#6](https://github.com/PKief/vscode-markdown-checkbox/pull/6)]
+### Features
+- **checkbox**: added date support [[@jcvtieck](https://github.com/jcvtieck) in [#6](https://github.com/PKief/vscode-markdown-checkbox/pull/6)]
+
+### Refactoring
 - code refactoring
 - reduced extension size
 
