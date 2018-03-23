@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.0 (2018-03-23)
+### Features
+- **status bar**: Added configuration to control the visibility of the status bar item ([6067ec9](https://github.com/PKief/vscode-markdown-checkbox/commit/6067ec9)), closes [#8](https://github.com/PKief/vscode-markdown-checkbox/issues/8)
+
 ## 1.1.1 (2018-01-09)
 ### Bug Fixes
 - **status bar**: Status bar updates completed tasks if a lowercase 'x' is used ([515407e](https://github.com/PKief/vscode-markdown-checkbox/commit/515407e)), closes [#7](https://github.com/PKief/vscode-markdown-checkbox/issues/7)
