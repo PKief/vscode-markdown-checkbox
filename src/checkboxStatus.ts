@@ -18,7 +18,9 @@ export class CheckboxStatus {
 
         const doc = editor.document;
 
-        if (doc.languageId === "markdown") {
+        const showStatusBarItem = vscode.workspace.getConfiguration('markdown-checkbox').get('showStatusBarItem', true);
+
+        if (doc.languageId === "markdown" && showStatusBarItem) {
             const allCheckboxes = helpers.getAllCheckboxes(doc);
 
             if (allCheckboxes.length === 0) {

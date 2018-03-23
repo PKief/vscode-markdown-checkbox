@@ -110,6 +110,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Add date behind the checkbox item after the checkbox has been checked."
+                },
+                "markdown-checkbox.showStatusBarItem": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show the amount of selected checkboxes in the status bar."
                 }
             }
         }
