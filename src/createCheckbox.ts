@@ -1,6 +1,5 @@
+import { Position, TextEditor, TextEditorEdit } from 'vscode';
 import * as helpers from './helpers';
-import * as vscode from 'vscode';
-import { Position, TextEditorEdit, TextEditor } from 'vscode';
 
 /** create a new checkbox at the current cursor position */
 export const createCheckbox = (editor: TextEditor): any => {
@@ -10,7 +9,7 @@ export const createCheckbox = (editor: TextEditor): any => {
 
     const line = editor.document.lineAt(helpers.getCursorPosition().line);
     const hasBullet = helpers.lineHasBulletPointAlready(line);
-    if (helpers.lineHasCheckbox(line) === null) {
+    if (!helpers.lineHasCheckbox(line)) {
         return editor.edit((editBuilder: TextEditorEdit) => {
             editBuilder.insert(new Position(
                 line.lineNumber,
@@ -18,5 +17,5 @@ export const createCheckbox = (editor: TextEditor): any => {
             ), (withBulletPoint && !hasBullet.bullet ? typeOfBulletPoint + ' ' : '') + '[ ] ');
         });
     }
-    return null;
+    return undefined;
 };

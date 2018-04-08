@@ -1,6 +1,6 @@
-import * as helpers from './helpers';
-import { Disposable, StatusBarItem, StatusBarAlignment, window, workspace } from 'vscode';
 import * as vscode from 'vscode';
+import { Disposable, StatusBarAlignment, StatusBarItem, window, workspace } from 'vscode';
+import * as helpers from './helpers';
 
 export class CheckboxStatus {
     private _statusBarItem: StatusBarItem;
@@ -8,6 +8,7 @@ export class CheckboxStatus {
     public updateCheckboxStatus() {
         if (!this._statusBarItem) {
             this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 200);
+            this._statusBarItem.command = 'markdown-checkbox.showQuickPick';
         }
 
         const editor = window.activeTextEditor;
@@ -17,11 +18,10 @@ export class CheckboxStatus {
         }
 
         const doc = editor.document;
-
         const showStatusBarItem = vscode.workspace.getConfiguration('markdown-checkbox').get('showStatusBarItem', true);
 
-        if (doc.languageId === "markdown" && showStatusBarItem) {
-            const allCheckboxes = helpers.getAllCheckboxes(doc);
+        if (doc.languageId === 'markdown' && showStatusBarItem) {
+            const allCheckboxes = helpers.getAllCheckboxes();
 
             if (allCheckboxes.length === 0) {
                 this._statusBarItem.hide();

@@ -1,58 +1,49 @@
 import * as vscode from 'vscode';
-import { lineHasCheckbox } from './helpers';
-import { getEditor } from './helpers';
-import { getCursorPosition } from './helpers';
-import { getConfig } from './helpers';
-import { Position, Range, TextEditorEdit, TextDocument } from 'vscode';
+import { Position, Range, TextEditorEdit } from 'vscode';
+import { getConfig, getCursorPosition, getEditor, lineHasCheckbox } from './helpers';
 
-/** mark a checkbox as checked or unchecked */
-export const toggleCheckbox = () => {
+/** Mark a checkbox as checked or unchecked */
+export const toggleCheckbox = async () => {
     // the position object gives you the line and character where the cursor is
     const editor = getEditor();
     if (editor.selection.isEmpty) {
         const cursorPosition = getCursorPosition();
         const line = editor.document.lineAt(cursorPosition.line);
-        toggleCheckboxOfLine(line);
+        await toggleCheckboxOfLine(line);
         const endLine = editor.document.lineAt(editor.selection.end.line);
         getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
     } else {
-        const lines = [];
         const selection = editor.selection;
+
+        // get all line numbers of the selection
         for (let r = selection.start.line; r <= selection.end.line; r++) {
-            lines.push(editor.document.lineAt(r));
-        }
-        toggleLine(0);
-        function toggleLine(index) {
-            if (lines.length > index) {
-                if (toggleCheckboxOfLine(lines[index])) {
-                    toggleCheckboxOfLine(lines[index]).then(() => {
-                        toggleLine(++index);
-                    });
-                } else {
-                    toggleLine(++index);
-                }
-            }
+            const line = editor.document.lineAt(r);
+            await toggleCheckboxOfLine(line);
         }
     }
 };
 
 /** mark or unmark the checkbox of a given line in the editor */
-export const toggleCheckboxOfLine = (line: vscode.TextLine): any => {
+export const toggleCheckboxOfLine = (line: vscode.TextLine, checkIt?: boolean) => {
     const lhc = lineHasCheckbox(line);
 
-    if (lhc) {
-        if (!lhc.checked) {
-            return markField(lhc.position, 'X');
-        } else {
-            return markField(lhc.position, ' ');
-        }
+    // no edit action required
+    if (!lhc || !lhc.checked && checkIt === false || lhc.checked === true && checkIt === true) {
+        return Promise.resolve(undefined);
     }
 
-    return null;
+    let value = ' ';
+
+    // if the checkbox is not checked or it must be checked
+    if (checkIt === true || checkIt === undefined && !lhc.checked) {
+        value = 'X';
+    }
+
+    return markField(lhc.position, value);
 };
 
-/** marks the field inside the checkbox with a character */
-export const markField = (checkboxPosition: Position, char: string, editor = getEditor()): Thenable<boolean> => {
+/** Marks the field inside the checkbox with a character */
+const markField = (checkboxPosition: Position, char: string, editor = getEditor()): Thenable<boolean> => {
     return editor.edit((editBuilder: TextEditorEdit) => {
         editBuilder.replace(new Range(
             new Position(checkboxPosition.line, checkboxPosition.character + 1),

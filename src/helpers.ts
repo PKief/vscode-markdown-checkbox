@@ -1,18 +1,18 @@
 import * as vscode from 'vscode';
-import Checkbox from './checkbox';
 import { Position, TextEditor, TextLine } from 'vscode';
+import Checkbox from './checkbox';
 
-/** returns the current cursor position */
+/** Get the current cursor position */
 export const getCursorPosition = (): Position => {
     return getEditor().selection.active;
 };
 
-/** returns the active editor of vs code */
+/** Get the active editor of VS Code */
 export const getEditor = (): TextEditor => {
     return vscode.window.activeTextEditor;
 };
 
-/** give the information if the line has already a bullet point */
+/** Give the information if the line has already a bullet point */
 export const lineHasBulletPointAlready = (line: TextLine): any => {
     const fstChar = line.firstNonWhitespaceCharacterIndex;
 
@@ -26,34 +26,41 @@ export const lineHasBulletPointAlready = (line: TextLine): any => {
     }
 };
 
-/** check if line has a checkbox */
+/** Check if a line has a checkbox */
 export const lineHasCheckbox = (line: TextLine): Checkbox => {
     const lineText = line.text.toString();
     const cbPosition = lineText.indexOf('[ ]');
     const cbPositionMarked = lineText.search(/\[x\]/gi);
+    const plainText = getPlainLineText(lineText);
 
     if (cbPosition > -1) {
-        return { checked: false, position: new Position(line.lineNumber, cbPosition) };
+        return { checked: false, position: new Position(line.lineNumber, cbPosition), text: plainText, lineNumber: line.lineNumber };
     } else if (cbPositionMarked > -1) {
-        return { checked: true, position: new Position(line.lineNumber, cbPositionMarked) };
+        return { checked: true, position: new Position(line.lineNumber, cbPositionMarked), text: plainText, lineNumber: line.lineNumber };
     } else {
-        return null;
+        return undefined;
     }
 };
 
-/** returns a list of all checkboxes */
-export const getAllCheckboxes = (doc: vscode.TextDocument): Checkbox[] => {
+/** Get a list of all checkboxes in a document */
+export const getAllCheckboxes = (): Checkbox[] => {
     const editor = getEditor();
+    const doc = editor.document;
     const lineCount = editor.document.lineCount;
     const result = [];
     for (let l = 0; l < lineCount; l++) {
-        if (lineHasCheckbox(editor.document.lineAt(l)) !== null) {
+        if (lineHasCheckbox(editor.document.lineAt(l))) {
             result.push(lineHasCheckbox(editor.document.lineAt(l)));
         }
     }
     return result;
 };
 
-/** returns the value of a workspace config property */
+/** Get the plain text of a line without the checkbox. */
+const getPlainLineText = (text: string) => {
+    return text.replace(/(\*|-|\+)\s\[(\s|x)]\s/gi, '');
+};
+
+/** Get the value of a workspace config property */
 export const getConfig = (config: string): any =>
     vscode.workspace.getConfiguration('markdown-checkbox').get(config);
