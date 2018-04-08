@@ -30,6 +30,7 @@
             true,
             "allow-null-check"
         ],
+        "no-null-keyword": true,
         "variable-name": [
             true,
             "ban-keywords"
@@ -64,8 +65,8 @@
             "check-whitespace"
         ],
         "quotemark": [
-            false,
-            "double"
+            true,
+            "single"
         ],
         "semicolon": [
             true,
@@ -75,6 +76,7 @@
             true,
             "allow-null-check"
         ],
+        "no-null-keyword": true,
         "typedef-whitespace": [
             true,
             {
@@ -89,7 +91,6 @@
             true,
             "ban-keywords"
         ],
-        "prefer-const": true,
         "whitespace": [
             true,
             "check-branch",
@@ -97,6 +98,7 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "eofline": true
     }
 }
