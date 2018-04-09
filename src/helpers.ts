@@ -13,16 +13,13 @@ export const getEditor = (): TextEditor => {
 };
 
 /** Give the information if the line has already a bullet point */
-export const lineHasBulletPointAlready = (line: TextLine): any => {
+export const lineHasBulletPointAlready = (line: TextLine): { pos: number, bullet: boolean } => {
     const fstChar = line.firstNonWhitespaceCharacterIndex;
 
-    switch (line.text[fstChar]) {
-        case '*':
-        case '+':
-        case '-':
-            return { pos: fstChar + 2, bullet: true };
-        default:
-            return { pos: fstChar, bullet: false };
+    if (line.text[fstChar].match(/[+*-]/)) {
+        return { pos: fstChar + 2, bullet: true };
+    } else {
+        return { pos: fstChar, bullet: false };
     }
 };
 
@@ -48,6 +45,7 @@ export const getAllCheckboxes = (): Checkbox[] => {
     const doc = editor.document;
     const lineCount = editor.document.lineCount;
     const result = [];
+
     for (let l = 0; l < lineCount; l++) {
         if (lineHasCheckbox(editor.document.lineAt(l))) {
             result.push(lineHasCheckbox(editor.document.lineAt(l)));
@@ -57,7 +55,7 @@ export const getAllCheckboxes = (): Checkbox[] => {
 };
 
 /** Get the plain text of a line without the checkbox. */
-const getPlainLineText = (text: string) => {
+export const getPlainLineText = (text: string) => {
     return text.replace(/(\*|-|\+)\s\[(\s|x)]\s/gi, '');
 };
 
