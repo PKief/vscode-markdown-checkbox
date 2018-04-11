@@ -11,7 +11,8 @@ export const toggleCheckbox = async () => {
         const line = editor.document.lineAt(cursorPosition.line);
         await toggleCheckboxOfLine(line);
         const endLine = editor.document.lineAt(editor.selection.end.line);
-        getEditor().selection = new vscode.Selection(new vscode.Position(endLine.lineNumber, 20000), new vscode.Position(endLine.lineNumber, 20000));
+        const selectionPosition = new vscode.Position(endLine.lineNumber, 20000);
+        getEditor().selection = new vscode.Selection(selectionPosition, selectionPosition);
     } else {
         const selection = editor.selection;
 
