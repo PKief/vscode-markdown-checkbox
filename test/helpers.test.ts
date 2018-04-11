@@ -70,13 +70,14 @@ suite('helpers', () => {
     });
 
     test('should get all checkboxes in a document', async () => {
+        // create new document
         const editor = getEditor();
-        await editor.edit((editBuilder: vscode.TextEditorEdit) => {
-            editBuilder.insert(new vscode.Position(
-                0,
-                0
-            ), '* [ ] this is the text\n* [X] this is another text');
+        const newDocument = await vscode.workspace.openTextDocument({
+            content: '* [ ] this is the text\n* [X] this is another text',
+            language: 'markdown'
         });
+        await vscode.window.showTextDocument(newDocument);
+
         const allCheckboxes = getAllCheckboxes();
         const expectedResult: Checkbox[] = [{
             checked: false,

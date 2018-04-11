@@ -47,8 +47,10 @@ export const getAllCheckboxes = (): Checkbox[] => {
     const result = [];
 
     for (let l = 0; l < lineCount; l++) {
-        if (lineHasCheckbox(editor.document.lineAt(l))) {
-            result.push(lineHasCheckbox(editor.document.lineAt(l)));
+        const line = editor.document.lineAt(l);
+        const lhc = lineHasCheckbox(line);
+        if (lhc) {
+            result.push(lhc);
         }
     }
     return result;
