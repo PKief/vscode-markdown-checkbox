@@ -64,7 +64,7 @@ suite('checkboxes', () => {
 
         const content = editor.document.getText();
         const dateNow = new Date().toISOString().slice(0, 10);
-        const expectedResult = `[X] *this is a text* [${dateNow}]\n[X] *this is another text* [${dateNow}]\n[X] *another new line* [${dateNow}]`;
+        const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[X] ~~*this is another text*~~ [${dateNow}]\n[X] ~~*another new line*~~ [${dateNow}]`;
 
         assert.equal(content, expectedResult);
     });
@@ -88,7 +88,7 @@ suite('checkboxes', () => {
 
         const content = editor.document.getText();
         const dateNow = new Date().toISOString().slice(0, 10);
-        const expectedResult = `[X] *this is a text* [${dateNow}]\n[ ] this is another text\n[ ] another new line`;
+        const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[ ] this is another text\n[ ] another new line`;
 
         assert.equal(content, expectedResult);
     });
