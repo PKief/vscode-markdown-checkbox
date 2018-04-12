@@ -7,6 +7,10 @@ src/**
 tsconfig.json
 tslint.json
 package-lock.json
+yarn.lock
 vsc-extension-quickstart.md
 images/**
 logo.svg
+.travis.yml
+appveyor.yml
+.bithoundrc
