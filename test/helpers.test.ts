@@ -42,7 +42,7 @@ suite('helpers', () => {
     });
 
     test('should check if the line has a bullet point already', () => {
-        const line: vscode.TextLine = {
+        const lineWithDefaultBulletPoint: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
             isEmptyOrWhitespace: false,
             lineNumber: 1,
@@ -51,8 +51,22 @@ suite('helpers', () => {
             text: '* this is the text'
         };
 
-        assert.equal(lineHasBulletPointAlready(line).bullet, true);
-        assert.equal(lineHasBulletPointAlready(line).pos, 2);
+        // default bullet point
+        assert.equal(lineHasBulletPointAlready(lineWithDefaultBulletPoint).bullet, true);
+        assert.equal(lineHasBulletPointAlready(lineWithDefaultBulletPoint).pos, 2);
+
+        const lineWithoutBulletPoint: vscode.TextLine = {
+            firstNonWhitespaceCharacterIndex: 0,
+            isEmptyOrWhitespace: false,
+            lineNumber: 1,
+            range: new vscode.Range(new vscode.Position(1, 10), new vscode.Position(1, 20)),
+            rangeIncludingLineBreak: new vscode.Range(new vscode.Position(1, 10), new vscode.Position(1, 20)),
+            text: 'this is the text'
+        };
+
+        // no bullet point at all
+        assert.equal(lineHasBulletPointAlready(lineWithoutBulletPoint).bullet, false);
+        assert.equal(lineHasBulletPointAlready(lineWithoutBulletPoint).pos, 0);
     });
 
     test('should check if the line has no bullet points', () => {
