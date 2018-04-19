@@ -11,6 +11,10 @@ export const createCheckboxCommand = vscode.commands.registerCommand('markdown-c
 
     const doc = editor.document;
     if (doc.languageId === 'markdown') {
-        createCheckbox(editor);
+        try {
+            createCheckbox(editor);
+        } catch (error) {
+            console.log(error);
+        }
     }
 });

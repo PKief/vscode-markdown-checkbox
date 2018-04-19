@@ -16,10 +16,13 @@ export const getEditor = (): TextEditor => {
 export const lineHasBulletPointAlready = (line: TextLine): { pos: number, bullet: boolean } => {
     const fstChar = line.firstNonWhitespaceCharacterIndex;
 
-    if (line.text[fstChar].match(/[+*-]/)) {
-        return { pos: fstChar + 2, bullet: true };
-    } else {
-        return { pos: fstChar, bullet: false };
+    switch (line.text.charAt(fstChar)) {
+        case '*':
+        case '+':
+        case '-':
+            return { pos: fstChar + 2, bullet: true };
+        default:
+            return { pos: fstChar, bullet: false };
     }
 };
 

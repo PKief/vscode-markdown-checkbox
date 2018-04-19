@@ -12,6 +12,10 @@ export const markCheckboxCommand = vscode.commands.registerCommand('markdown-che
     const doc = editor.document;
 
     if (doc.languageId === 'markdown') {
-        toggleCheckbox();
+        try {
+            toggleCheckbox();
+        } catch (error) {
+            console.log(error);
+        }
     }
 });
