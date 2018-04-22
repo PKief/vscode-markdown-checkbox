@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.3.0 (2018-04-22)
+### Features
+- Toggle all checkboxes in the document with the [Multi-Select QuickPick](https://github.com/PKief/vscode-markdown-checkbox/blob/master/README.md#pick-checkboxes)
+- Rearranged context menu entries
+
+### Other improvements
+- Added tests
+- Added CI tools
+
 ## 1.2.0 (2018-03-23)
 ### Features
 - **status bar**: Added configuration to control the visibility of the status bar item ([6067ec9](https://github.com/PKief/vscode-markdown-checkbox/commit/6067ec9)), closes [#8](https://github.com/PKief/vscode-markdown-checkbox/issues/8)
