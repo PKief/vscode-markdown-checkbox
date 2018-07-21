@@ -91,7 +91,7 @@
         },
         "configuration": {
             "type": "object",
-            "title": "Markdown Checkbox configuration",
+            "title": "Markdown Checkbox",
             "properties": {
                 "markdown-checkbox.withBulletPoint": {
                     "type": "boolean",
@@ -132,10 +132,10 @@
         }
     },
     "devDependencies": {
-        "@types/mocha": "^5.2.0",
-        "@types/node": "^10.0.8",
-        "tslint": "^5.10.0",
-        "typescript": "^2.8.3",
-        "vscode": "^1.1.17"
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^10.5.2",
+        "tslint": "^5.11.0",
+        "typescript": "^2.9.2",
+        "vscode": "^1.1.18"
     }
 }
