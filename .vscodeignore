@@ -13,4 +13,3 @@ images/**
 logo.svg
 .travis.yml
 appveyor.yml
-.bithoundrc
