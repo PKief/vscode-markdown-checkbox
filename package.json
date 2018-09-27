@@ -93,6 +93,11 @@
             "type": "object",
             "title": "Markdown Checkbox",
             "properties": {
+                "markdown-checkbox.languages": {
+                    "type": "array",
+                    "default": [ "markdown" ],
+                    "description": "The language modes that this package will activate within"
+                },
                 "markdown-checkbox.withBulletPoint": {
                     "type": "boolean",
                     "default": true,

@@ -3,19 +3,13 @@ import * as helpers from '../helpers';
 import { toggleCheckbox } from '../toggleCheckbox';
 
 export const markCheckboxCommand = vscode.commands.registerCommand('markdown-checkbox.markCheckbox', () => {
-    const editor = helpers.getEditor();
-
-    if (!editor) {
+    if (! helpers.shouldActivate()) {
         return;
     }
 
-    const doc = editor.document;
-
-    if (doc.languageId === 'markdown') {
-        try {
-            toggleCheckbox();
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+        toggleCheckbox();
+    } catch (error) {
+        console.log(error);
     }
 });

@@ -1,20 +1,15 @@
 import * as vscode from 'vscode';
 import { createCheckbox } from '../createCheckbox';
-import { getEditor } from '../helpers';
+import * as helpers from '../helpers';
 
 export const createCheckboxCommand = vscode.commands.registerCommand('markdown-checkbox.createCheckbox', () => {
-    const editor = getEditor();
-
-    if (!editor) {
+    if (! helpers.shouldActivate()) {
         return;
     }
 
-    const doc = editor.document;
-    if (doc.languageId === 'markdown') {
-        try {
-            createCheckbox(editor);
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+        createCheckbox(helpers.getEditor());
+    } catch (error) {
+        console.log(error);
     }
 });
