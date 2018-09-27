@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { CheckboxStatus, CheckboxStatusController } from './checkboxStatus';
 import { createCheckboxCommand } from './commands/createCheckbox';
 import { markCheckboxCommand } from './commands/markCheckbox';
-import { showQuickPickCommand } from './commands/quickpick';
+import { showQuickPickCommand } from './commands/quickPick';
 
 export const activate = (context: vscode.ExtensionContext) => {
     // item in the status bar to show checkbox information
