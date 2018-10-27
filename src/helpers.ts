@@ -65,12 +65,12 @@ export const getPlainLineText = (text: string) => {
 };
 
 /** Get the value of a workspace config property */
-export const getConfig = (config: string): any =>
-    vscode.workspace.getConfiguration('markdown-checkbox').get(config);
+export const getConfig = <T>(config: string): T =>
+    vscode.workspace.getConfiguration('markdown-checkbox').get<T>(config);
 
 /** Determine whether a given language ID of the configuration is valid to activate this extension. */
 export const isActivationLanguageId = (languageId: string): boolean => {
-    const config: string | string[] = getConfig('languages');
+    const config = getConfig<string | string[]>('languages');
 
     if (!config) {
         return languageId === 'markdown';

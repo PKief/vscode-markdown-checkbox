@@ -52,9 +52,9 @@ const markField = (checkboxPosition: Position, char: string, editor = getEditor(
         ), char);
 
         // get settings from config
-        const italicWhenChecked = getConfig('italicWhenChecked');
-        const strikeThroughWhenChecked = getConfig('strikeThroughWhenChecked');
-        const dateWhenChecked = getConfig('dateWhenChecked');
+        const italicWhenChecked = getConfig<boolean>('italicWhenChecked');
+        const strikeThroughWhenChecked = getConfig<boolean>('strikeThroughWhenChecked');
+        const dateWhenChecked = getConfig<boolean>('dateWhenChecked');
 
         // get line of the checkbox
         const line = editor.document.lineAt(checkboxPosition.line);
