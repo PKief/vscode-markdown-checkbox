@@ -1,16 +1,14 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
-import { getPlainLineText, lineHasCheckbox, lineHasBulletPointAlready, getEditor, getAllCheckboxes } from '../src/helpers';
 import Checkbox from '../src/checkbox';
+import * as helpers from '../src/helpers';
 
 suite('helpers', () => {
     test('should return plain checkbox text', () => {
         const checkboxText = '* [ ] this is the text';
         const expectedText = 'this is the text';
-        const result = getPlainLineText(checkboxText);
-        assert.equal(result, expectedText);
+        const result = helpers.getPlainLineText(checkboxText);
+        assert.strictEqual(result, expectedText);
     });
 
     test('should check if the line has an unchecked checkbox', () => {
@@ -24,7 +22,7 @@ suite('helpers', () => {
         };
 
         const expectedResult: Checkbox = { checked: false, position: new vscode.Position(1, 2), text: 'this is the text', lineNumber: 1 };
-        assert.deepEqual(lineHasCheckbox(line), expectedResult);
+        assert.deepStrictEqual(helpers.lineHasCheckbox(line), expectedResult);
     });
 
     test('should check if the line has a checked checkbox', () => {
@@ -38,7 +36,7 @@ suite('helpers', () => {
         };
 
         const expectedResult: Checkbox = { checked: true, position: new vscode.Position(1, 2), text: 'this is the text', lineNumber: 1 };
-        assert.deepEqual(lineHasCheckbox(line), expectedResult);
+        assert.deepStrictEqual(helpers.lineHasCheckbox(line), expectedResult);
     });
 
     test('should check if the line has a bullet point already', () => {
@@ -52,8 +50,8 @@ suite('helpers', () => {
         };
 
         // default bullet point
-        assert.equal(lineHasBulletPointAlready(lineWithDefaultBulletPoint).bullet, true);
-        assert.equal(lineHasBulletPointAlready(lineWithDefaultBulletPoint).pos, 2);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(lineWithDefaultBulletPoint).bullet, true);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(lineWithDefaultBulletPoint).pos, 2);
 
         const lineWithoutBulletPoint: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
@@ -65,8 +63,8 @@ suite('helpers', () => {
         };
 
         // no bullet point at all
-        assert.equal(lineHasBulletPointAlready(lineWithoutBulletPoint).bullet, false);
-        assert.equal(lineHasBulletPointAlready(lineWithoutBulletPoint).pos, 0);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(lineWithoutBulletPoint).bullet, false);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(lineWithoutBulletPoint).pos, 0);
     });
 
     test('should check if the line has no bullet points', () => {
@@ -79,20 +77,19 @@ suite('helpers', () => {
             text: 'this is the text'
         };
 
-        assert.equal(lineHasBulletPointAlready(line).bullet, false);
-        assert.equal(lineHasBulletPointAlready(line).pos, 0);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(line).bullet, false);
+        assert.strictEqual(helpers.lineHasBulletPointAlready(line).pos, 0);
     });
 
     test('should get all checkboxes in a document', async () => {
         // create new document
-        const editor = getEditor();
         const newDocument = await vscode.workspace.openTextDocument({
             content: '* [ ] this is the text\n* [X] this is another text',
             language: 'markdown'
         });
         await vscode.window.showTextDocument(newDocument);
 
-        const allCheckboxes = getAllCheckboxes();
+        const allCheckboxes = helpers.getAllCheckboxes();
         const expectedResult: Checkbox[] = [{
             checked: false,
             position: new vscode.Position(0, 2),
@@ -105,6 +102,6 @@ suite('helpers', () => {
             lineNumber: 1,
         }];
 
-        assert.deepEqual(allCheckboxes, expectedResult);
+        assert.deepStrictEqual(allCheckboxes, expectedResult);
     });
 });
