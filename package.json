@@ -93,6 +93,13 @@
             "type": "object",
             "title": "Markdown Checkbox",
             "properties": {
+                "markdown-checkbox.languages": {
+                    "type": "array",
+                    "default": [
+                        "markdown"
+                    ],
+                    "description": "The language identifiers for which this extension is activated."
+                },
                 "markdown-checkbox.withBulletPoint": {
                     "type": "boolean",
                     "default": true,
