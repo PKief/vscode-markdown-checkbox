@@ -104,4 +104,18 @@ suite('helpers', () => {
 
         assert.deepStrictEqual(allCheckboxes, expectedResult);
     });
+
+    test('should be activated for specific language IDs', async () => {
+        // create new document
+        const newDocument = await vscode.workspace.openTextDocument({
+            content: 'Check language IDs of extension config...',
+            language: 'xml',
+        });
+        await vscode.window.showTextDocument(newDocument);
+
+        // specify language IDs in the configuration
+        await vscode.workspace.getConfiguration('markdown-checkbox').update('languages', ['markdown', 'xml']);
+
+        assert.deepStrictEqual(helpers.shouldActivate(), true);
+    });
 });
