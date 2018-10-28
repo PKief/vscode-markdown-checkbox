@@ -17,10 +17,9 @@ export class CheckboxStatus {
             return;
         }
 
-        const doc = editor.document;
-        const showStatusBarItem = helpers.getConfig<boolean>('showStatusBarItem') || true;
+        const showStatusBarItem = helpers.getConfig<boolean>('showStatusBarItem');
 
-        if (doc.languageId === 'markdown' && showStatusBarItem) {
+        if (helpers.shouldActivate() && showStatusBarItem) {
             const allCheckboxes = helpers.getAllCheckboxes();
 
             if (allCheckboxes.length === 0) {
