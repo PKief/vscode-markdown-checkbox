@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.4.0 (2018-10-28)
+### Features
+- Specify multiple language IDs for which the extension is activated ([@reedspool](https://github.com/reedspool) in [#9](https://github.com/PKief/vscode-markdown-checkbox/pull/9))
+
+### Refactoring
+- Improved code quality ([275d66d](https://github.com/PKief/vscode-markdown-checkbox/commit/275d66d))
+- Updated tests ([6292b4a](https://github.com/PKief/vscode-markdown-checkbox/commit/6292b4a))
+- Changed configuration title ([1c21b7f](https://github.com/PKief/vscode-markdown-checkbox/commit/1c21b7f))
+
 ## 1.3.0 (2018-04-22)
 ### Features
 - Toggle all checkboxes in the document with the [Multi-Select QuickPick](https://github.com/PKief/vscode-markdown-checkbox/blob/master/README.md#pick-checkboxes)
@@ -19,7 +28,7 @@
 
 ## 1.1.0 (2017-11-23)
 ### Features
-- **checkbox**: added date support [[@jcvtieck](https://github.com/jcvtieck) in [#6](https://github.com/PKief/vscode-markdown-checkbox/pull/6)]
+- **checkbox**: added date support ([@jcvtieck](https://github.com/jcvtieck) in [#6](https://github.com/PKief/vscode-markdown-checkbox/pull/6))
 
 ### Refactoring
 - code refactoring
@@ -27,7 +36,7 @@
 
 ## 1.0.3 (2017-07-31)
 - updated description
-    - keybindings for Mac [[@mark-anders](https://github.com/mark-anders) in [#5](https://github.com/PKief/vscode-markdown-checkbox/pull/5)]
+    - keybindings for Mac ([@mark-anders](https://github.com/mark-anders) in [#5](https://github.com/PKief/vscode-markdown-checkbox/pull/5))
 - updated dependencies
 - added tslint
 - updated logo
