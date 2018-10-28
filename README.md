@@ -100,3 +100,13 @@ Add date behind the checkbox item after the checkbox has been checked:
 ```
 Preview:
 * [X] ~~*sample with date*~~ [2017-11-23]
+
+### Specify language IDs
+Besides markdown, this extension can also be used for other languages in VS Code. You can specify the language IDs in the user settings like this:
+
+```json
+"markdown-checkbox.languages": [
+    "markdown",
+    "plaintext"
+]
+```
