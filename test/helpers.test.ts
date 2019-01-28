@@ -118,4 +118,10 @@ suite('helpers', () => {
 
         assert.deepStrictEqual(helpers.shouldActivate(), true);
     });
+
+    test('should print a date as string', async () => {
+        const date = new Date('Mon Jan 28 2019');
+        const result = helpers.getDateString(date);
+        assert.deepStrictEqual(result, '2019-01-28');
+    });
 });

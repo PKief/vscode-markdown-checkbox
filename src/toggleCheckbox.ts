@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Position, Range, TextEditorEdit } from 'vscode';
-import { getConfig, getCursorPosition, getEditor, lineHasCheckbox } from './helpers';
+import { getConfig, getCursorPosition, getDateString, getEditor, lineHasCheckbox } from './helpers';
 
 /** Mark a checkbox as checked or unchecked */
 export const toggleCheckbox = async () => {
@@ -65,8 +65,7 @@ const markField = (checkboxPosition: Position, char: string, editor = getEditor(
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             // add the date string
-            const dateNow = new Date().toISOString().slice(0, 10);
-            newText = newText + (dateWhenChecked ? ' [' + dateNow + ']' : '');
+            newText = newText + (dateWhenChecked ? ' [' + getDateString(new Date()) + ']' : '');
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),

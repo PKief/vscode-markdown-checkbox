@@ -45,7 +45,6 @@ export const lineHasCheckbox = (line: TextLine): Checkbox => {
 /** Get a list of all checkboxes in a document */
 export const getAllCheckboxes = (): Checkbox[] => {
     const editor = getEditor();
-    const doc = editor.document;
     const lineCount = editor.document.lineCount;
     const result = [];
 
@@ -94,3 +93,11 @@ export const shouldActivate = (): boolean => {
     return isActivationLanguageId(editor.document.languageId);
 };
 
+/** Get the current date as string. */
+export const getDateString = (now: Date) => {
+    const leadingZero = (n: number) => n < 10 ? '0' + n : n;
+    const year = now.getFullYear().toString();
+    const month = leadingZero(now.getMonth() + 1);
+    const date = leadingZero(now.getDate());
+    return `${year}-${month}-${date}`;
+};

@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { getEditor } from '../src/helpers';
 import { createCheckbox } from '../src/createCheckbox';
+import { getDateString, getEditor } from '../src/helpers';
 import { toggleCheckbox } from '../src/toggleCheckbox';
 
 suite('checkboxes', () => {
@@ -63,7 +63,7 @@ suite('checkboxes', () => {
         await toggleCheckbox();
 
         const content = editor.document.getText();
-        const dateNow = new Date().toISOString().slice(0, 10);
+        const dateNow = getDateString(new Date());
         const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[X] ~~*this is another text*~~ [${dateNow}]\n[X] ~~*another new line*~~ [${dateNow}]`;
 
         assert.equal(content, expectedResult);
@@ -87,7 +87,7 @@ suite('checkboxes', () => {
         await toggleCheckbox();
 
         const content = editor.document.getText();
-        const dateNow = new Date().toISOString().slice(0, 10);
+        const dateNow = getDateString(new Date());
         const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[ ] this is another text\n[ ] another new line`;
 
         assert.equal(content, expectedResult);
