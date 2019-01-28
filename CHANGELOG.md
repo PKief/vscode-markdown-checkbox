@@ -1,4 +1,8 @@
 # Change Log
+## 1.4.2 (2019-01-28)
+### Bug Fixes
+- Fixed date timezone ([issue #10](https://github.com/PKief/vscode-markdown-checkbox/issues/10))
+
 ## 1.4.1 (2018-11-27)
 ### Bug Fixes
 - Fixed security [issue](https://github.com/dominictarr/event-stream/issues/116) with event-stream dependency ([4e83234](https://github.com/PKief/vscode-markdown-checkbox/commit/4e83234))
