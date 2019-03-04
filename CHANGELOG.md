@@ -1,4 +1,8 @@
 # Change Log
+## 1.4.3 (2019-03-04)
+### Bug Fixes
+- Respect trailing whitespace on toggle ([issue #11](https://github.com/PKief/vscode-markdown-checkbox/issues/11))
+
 ## 1.4.2 (2019-01-28)
 ### Bug Fixes
 - Fixed date timezone ([issue #10](https://github.com/PKief/vscode-markdown-checkbox/issues/10))
