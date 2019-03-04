@@ -51,4 +51,28 @@ suite('toggle checkboxes', () => {
 
         assert.equal(content, expectedResult);
     });
+
+    test('should be toggled with trailing whitespace', async () => {
+        // create new document
+        const newDocument = await vscode.workspace.openTextDocument({
+            content: '[ ] this is a text    ',
+            language: 'markdown'
+        });
+        await vscode.window.showTextDocument(newDocument);
+
+        // create a selection over the text to toggle all lines
+        const editor = getEditor();
+        const startPosition = new vscode.Position(0, 0);
+        const endPosition = new vscode.Position(0, 0);
+        const newSelection = new vscode.Selection(startPosition, endPosition);
+        editor.selection = newSelection;
+
+        await toggleCheckbox();
+
+        const content = editor.document.getText();
+        const dateNow = getDateString(new Date());
+        const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]    `;
+
+        assert.equal(content, expectedResult);
+    });
 });

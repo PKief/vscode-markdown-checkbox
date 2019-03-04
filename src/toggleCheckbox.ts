@@ -62,10 +62,14 @@ const markField = (checkboxPosition: Position, char: string, editor = getEditor(
         const lineText = line.text;
         const textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
 
+        // respect trailing whitespace
+        const foundTrailingWhitespace = lineText.substr(checkboxPosition.character + 4, lineText.length).match(/[\s\n\r]*$/);
+        const whitespace = foundTrailingWhitespace ? foundTrailingWhitespace.join('') : '';
+
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             // add the date string
-            newText = newText + (dateWhenChecked ? ' [' + getDateString(new Date()) + ']' : '');
+            newText = newText + (dateWhenChecked ? ' [' + getDateString(new Date()) + ']' : '') + whitespace;
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
@@ -75,7 +79,7 @@ const markField = (checkboxPosition: Position, char: string, editor = getEditor(
         else if (lhc.checked) {
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
             // remove the date string
-            newText = newText.replace(/\s\[\d{4}[\-]\d{2}[\-]\d{2}\]$/, '');
+            newText = newText.replace(/\s+\[\d{4}[\-]\d{2}[\-]\d{2}\]\s*/, '') + whitespace;
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
