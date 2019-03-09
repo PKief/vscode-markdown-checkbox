@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { getDateString, getEditor } from '../src/helpers';
-import { toggleCheckbox } from '../src/toggleCheckbox';
+import { getDateString, getEditor } from '../helpers';
+import { toggleCheckbox } from '../toggleCheckbox';
 
 suite('toggle checkboxes', () => {
     test('should be toggled with selection', async () => {
