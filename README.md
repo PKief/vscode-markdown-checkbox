@@ -2,7 +2,7 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/PKief.markdown-checkbox.svg)](https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox)
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-short/PKief.markdown-checkbox.svg)](https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/PKief.markdown-checkbox.svg)](https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox)
-[![Build Status](https://travis-ci.org/PKief/vscode-markdown-checkbox.svg?branch=master)](https://travis-ci.org/PKief/vscode-markdown-checkbox)
+[![Build Status](https://travis-ci.com/PKief/vscode-markdown-checkbox.svg?branch=master)](https://travis-ci.com/PKief/vscode-markdown-checkbox)
 [![Build status](https://ci.appveyor.com/api/projects/status/n7ot0okpi5fdrm1y?svg=true)](https://ci.appveyor.com/project/PKief/vscode-markdown-checkbox)
   
 ## Description
