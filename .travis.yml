@@ -14,7 +14,9 @@ cache:
     - "node_modules"
 
 script:
+  - npm run vscode:prepublish
   - npm test
+  - npm run lint
 
 notifications:
   email: false

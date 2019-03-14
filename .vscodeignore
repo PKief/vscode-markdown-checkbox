@@ -1,6 +1,5 @@
 .vscode/**
-out/test/**
-test/**
+out/**
 src/**
 **/*.map
 .gitignore
@@ -13,3 +12,4 @@ images/**
 logo.svg
 .travis.yml
 appveyor.yml
+webpack.config.js

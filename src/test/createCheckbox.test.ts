@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { createCheckbox } from '../src/createCheckbox';
-import { getEditor } from '../src/helpers';
+import { createCheckbox } from '../createCheckbox';
+import { getEditor } from '../helpers';
 
 suite('create checkboxes', () => {
     test('should be created with new bullet point', async () => {

@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import Checkbox from '../src/checkbox';
-import * as helpers from '../src/helpers';
+import Checkbox from '../checkbox';
+import * as helpers from '../helpers';
 
 suite('helpers', () => {
     test('should return plain checkbox text', () => {

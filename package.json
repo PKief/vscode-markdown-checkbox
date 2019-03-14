@@ -8,12 +8,16 @@
         "vscode": "^1.22.1"
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
+        "build": "npm run compile:dev",
+        "compile": "webpack --mode production",
+        "compile:dev": "webpack --mode none",
+        "compile:watch": "webpack --mode none --watch",
+        "lint": "tslint ./src/**/*.ts -t stylish",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test",
-        "lint": "tslint ./src/**/*.ts -t stylish"
+        "pretest": "npm run test-compile",
+        "test": "node ./node_modules/vscode/bin/test",
+        "test-compile": "tsc -p ./",
+        "vscode:prepublish": "npm run lint && npm run compile"
     },
     "categories": [
         "Other"
@@ -42,7 +46,7 @@
         "color": "#37474f",
         "theme": "dark"
     },
-    "main": "./out/src/extension",
+    "main": "./dist/extension",
     "license": "SEE LICENSE IN LICENSE.md",
     "contributes": {
         "commands": [
@@ -141,8 +145,12 @@
     "devDependencies": {
         "@types/mocha": "^5.2.6",
         "@types/node": "^11.10.4",
+        "clean-webpack-plugin": "^2.0.1",
+        "ts-loader": "^5.3.3",
         "tslint": "^5.13.1",
         "typescript": "^3.3.3333",
-        "vscode": "^1.1.30"
+        "vscode": "^1.1.30",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3"
     }
 }

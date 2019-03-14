@@ -6,23 +6,23 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Extension",
             "type": "extensionHost",
             "request": "launch",
-            "name": "Launch Extension",
             "runtimeExecutable": "${execPath}",
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}"
             ],
             "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
+                "${workspaceFolder}/dist/**/*.js"
             ],
             "smartStep": true,
             "preLaunchTask": "npm: compile"
         },
         {
+            "name": "Launch Tests",
             "type": "extensionHost",
             "request": "launch",
-            "name": "Launch Tests",
             "runtimeExecutable": "${execPath}",
             "args": [
                 "${workspaceRoot}/out/test",
@@ -32,7 +32,7 @@
             "outFiles": [
                 "${workspaceFolder}/out/test/**/*.js"
             ],
-            "preLaunchTask": "npm: compile"
+            "preLaunchTask": "npm: test-compile"
         }
     ]
 }
