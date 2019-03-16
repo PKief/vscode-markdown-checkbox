@@ -1,4 +1,11 @@
 # Change Log
+## 1.5.0 (2019-03-16)
+### Refactoring
+- Bundle extension with webpack ([@PKief](https://github.com/PKief) in [#12](https://github.com/PKief/vscode-markdown-checkbox/pull/12))
+  - Reduces extension size by 35 %
+  - Faster extension startup activation
+- CI Improvements
+
 ## 1.4.3 (2019-03-04)
 ### Bug Fixes
 - Respect trailing whitespace on toggle ([issue #11](https://github.com/PKief/vscode-markdown-checkbox/issues/11))
