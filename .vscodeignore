@@ -5,6 +5,7 @@ src/**
 .gitignore
 tsconfig.json
 tslint.json
+node_modules
 package-lock.json
 yarn.lock
 vsc-extension-quickstart.md
