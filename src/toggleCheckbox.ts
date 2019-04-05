@@ -37,7 +37,7 @@ export const toggleCheckboxOfLine = (line: vscode.TextLine, checkIt?: boolean) =
 
     // if the checkbox is not checked or it must be checked
     if (checkIt === true || checkIt === undefined && !lhc.checked) {
-        value = 'X';
+        value = getConfig<string>('checkmark');
     }
 
     return markField(lhc.position, value);

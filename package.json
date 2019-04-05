@@ -138,6 +138,15 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Show the amount of selected checkboxes in the status bar."
+                },
+                "markdown-checkbox.checkmark": {
+                    "type": "string",
+                    "enum": [
+                        "X",
+                        "x"
+                    ],
+                    "default": "X",
+                    "description": "Checkmark of the checkbox."
                 }
             }
         }
