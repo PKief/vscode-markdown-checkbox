@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import Checkbox from '../checkbox';
+import Checkbox from '../models/checkbox';
 import * as helpers from '../helpers';
 
 suite('helpers', () => {

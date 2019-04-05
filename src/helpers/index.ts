@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Position, TextEditor, TextLine } from 'vscode';
-import Checkbox from './checkbox';
+import Checkbox from '../models/checkbox';
 
 /** Get the current cursor position */
 export const getCursorPosition = (): Position => {

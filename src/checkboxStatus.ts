@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import { Disposable, StatusBarAlignment, StatusBarItem, window, workspace } from 'vscode';
 import * as helpers from './helpers';
 

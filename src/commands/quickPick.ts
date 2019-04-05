@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import Checkbox from '../checkbox';
+import Checkbox from '../models/checkbox';
 import { getAllCheckboxes, getEditor } from '../helpers';
 import { toggleCheckboxOfLine } from '../toggleCheckbox';
 
