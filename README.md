@@ -69,7 +69,7 @@ Example
 ```
 
 ### Type of checkmark
-Select a type of bullet point:
+Select a type of checkmark:
 
     options: "X" | "x"
   
