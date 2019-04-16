@@ -22,7 +22,7 @@ suite('helpers', () => {
         };
 
         const expectedResult: Checkbox = { checked: false, position: new vscode.Position(1, 2), text: 'this is the text', lineNumber: 1 };
-        assert.deepStrictEqual(helpers.lineHasCheckbox(line), expectedResult);
+        assert.deepStrictEqual(helpers.getCheckboxOfLine(line), expectedResult);
     });
 
     test('should check if the line has a checked checkbox', () => {
@@ -36,7 +36,7 @@ suite('helpers', () => {
         };
 
         const expectedResult: Checkbox = { checked: true, position: new vscode.Position(1, 2), text: 'this is the text', lineNumber: 1 };
-        assert.deepStrictEqual(helpers.lineHasCheckbox(line), expectedResult);
+        assert.deepStrictEqual(helpers.getCheckboxOfLine(line), expectedResult);
     });
 
     test('should check if the line has a bullet point already', () => {

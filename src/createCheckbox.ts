@@ -10,7 +10,7 @@ export const createCheckbox = (editor: TextEditor): any => {
     const line = editor.document.lineAt(cursorPosition.line);
     const hasBullet = helpers.lineHasBulletPointAlready(line);
 
-    if (!helpers.lineHasCheckbox(line)) {
+    if (!helpers.getCheckboxOfLine(line)) {
         return editor.edit((editBuilder: TextEditorEdit) => {
             editBuilder.insert(new Position(
                 line.lineNumber,

@@ -26,17 +26,21 @@ export const lineHasBulletPointAlready = (line: TextLine): { pos: number, bullet
     }
 };
 
-/** Check if a line has a checkbox */
-export const lineHasCheckbox = (line: TextLine): Checkbox => {
+/** Get the checkbox of a specific line */
+export const getCheckboxOfLine = (line: TextLine): Checkbox => {
     const lineText = line.text.toString();
     const cbPosition = lineText.indexOf('[ ]');
-    const cbPositionMarked = lineText.search(/\[x\]/gi);
+    const checkmark = getConfig<string>('checkmark');
+    const cbPositionMarked = lineText.indexOf(`[${checkmark}]`);
     const plainText = getPlainLineText(lineText);
 
-    if (cbPosition > -1) {
-        return { checked: false, position: new Position(line.lineNumber, cbPosition), text: plainText, lineNumber: line.lineNumber };
-    } else if (cbPositionMarked > -1) {
-        return { checked: true, position: new Position(line.lineNumber, cbPositionMarked), text: plainText, lineNumber: line.lineNumber };
+    if (cbPosition > -1 || cbPositionMarked > -1) {
+        return {
+            checked: cbPosition > -1 ? false : true,
+            position: new Position(line.lineNumber, cbPosition > -1 ? cbPosition : cbPositionMarked),
+            text: plainText,
+            lineNumber: line.lineNumber
+        };
     } else {
         return undefined;
     }
@@ -50,7 +54,7 @@ export const getAllCheckboxes = (): Checkbox[] => {
 
     for (let l = 0; l < lineCount; l++) {
         const line = editor.document.lineAt(l);
-        const lhc = lineHasCheckbox(line);
+        const lhc = getCheckboxOfLine(line);
         if (lhc) {
             result.push(lhc);
         }
