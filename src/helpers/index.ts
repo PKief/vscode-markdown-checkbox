@@ -30,8 +30,7 @@ export const lineHasBulletPointAlready = (line: TextLine): { pos: number, bullet
 export const getCheckboxOfLine = (line: TextLine): Checkbox => {
     const lineText = line.text.toString();
     const cbPosition = lineText.indexOf('[ ]');
-    const checkmark = getConfig<string>('checkmark');
-    const cbPositionMarked = lineText.indexOf(`[${checkmark}]`);
+    const cbPositionMarked = lineText.search(new RegExp(/\[.\]/));
     const plainText = getPlainLineText(lineText);
 
     if (cbPosition > -1 || cbPositionMarked > -1) {
