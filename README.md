@@ -68,6 +68,21 @@ Example
 + [ ] plus
 ```
 
+### Type of checkmark
+Select a type of checkmark:
+
+    options: "X" | "x"
+  
+```json
+"markdown-checkbox.checkmark": "X"
+```
+
+Example
+```
+- [X] uppercase checkmark
+- [x] lowercase checkmark
+```
+
 ### Italic
 Italic font style of line of the checkbox after the checkbox has been checked:
 

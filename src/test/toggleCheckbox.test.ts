@@ -75,4 +75,32 @@ suite('toggle checkboxes', () => {
 
         assert.equal(content, expectedResult);
     });
+
+    test('should be toggled with configured checkmark', async () => {
+        // create new document
+        const newDocument = await vscode.workspace.openTextDocument({
+            content: '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
+            language: 'markdown'
+        });
+        await vscode.window.showTextDocument(newDocument);
+
+        // create a selection over the text to toggle all lines
+        const editor = getEditor();
+        const startPosition = new vscode.Position(0, 0);
+        const endPosition = new vscode.Position(2, 100);
+        const newSelection = new vscode.Selection(startPosition, endPosition);
+        editor.selection = newSelection;
+
+        // update config to use configured checkmark
+        await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'x');
+        await toggleCheckbox();
+        // revert checkmark to default
+        await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'X');
+
+        const content = editor.document.getText();
+        const dateNow = getDateString(new Date());
+        const expectedResult = `[x] ~~*this is a text*~~ [${dateNow}]\n[x] ~~*this is another text*~~ [${dateNow}]\n[x] ~~*another new line*~~ [${dateNow}]`;
+
+        assert.equal(content, expectedResult);
+    });
 });

@@ -1,18 +1,18 @@
 import * as vscode from 'vscode';
 import { Position, Range, TextEditorEdit } from 'vscode';
-import { getConfig, getCursorPosition, getDateString, getEditor, lineHasCheckbox } from './helpers';
+import * as helpers from './helpers';
 
 /** Mark a checkbox as checked or unchecked */
 export const toggleCheckbox = async () => {
     // the position object gives you the line and character where the cursor is
-    const editor = getEditor();
+    const editor = helpers.getEditor();
     if (editor.selection.isEmpty) {
-        const cursorPosition = getCursorPosition();
+        const cursorPosition = helpers.getCursorPosition();
         const line = editor.document.lineAt(cursorPosition.line);
         await toggleCheckboxOfLine(line);
         const endLine = editor.document.lineAt(editor.selection.end.line);
         const selectionPosition = new vscode.Position(endLine.lineNumber, 20000);
-        getEditor().selection = new vscode.Selection(selectionPosition, selectionPosition);
+        helpers.getEditor().selection = new vscode.Selection(selectionPosition, selectionPosition);
     } else {
         const selection = editor.selection;
 
@@ -26,7 +26,7 @@ export const toggleCheckbox = async () => {
 
 /** mark or unmark the checkbox of a given line in the editor */
 export const toggleCheckboxOfLine = (line: vscode.TextLine, checkIt?: boolean) => {
-    const lhc = lineHasCheckbox(line);
+    const lhc = helpers.getCheckboxOfLine(line);
 
     // no edit action required
     if (!lhc || !lhc.checked && checkIt === false || lhc.checked === true && checkIt === true) {
@@ -37,28 +37,31 @@ export const toggleCheckboxOfLine = (line: vscode.TextLine, checkIt?: boolean) =
 
     // if the checkbox is not checked or it must be checked
     if (checkIt === true || checkIt === undefined && !lhc.checked) {
-        value = 'X';
+        value = helpers.getConfig<string>('checkmark');
     }
 
     return markField(lhc.position, value);
 };
 
 /** Marks the field inside the checkbox with a character */
-const markField = (checkboxPosition: Position, char: string, editor = getEditor()): Thenable<boolean> => {
+const markField = (checkboxPosition: Position, replacement: string): Thenable<boolean> => {
+    const editor = helpers.getEditor();
+    const checkmark = helpers.getConfig<string>('checkmark');
+
     return editor.edit((editBuilder: TextEditorEdit) => {
         editBuilder.replace(new Range(
             new Position(checkboxPosition.line, checkboxPosition.character + 1),
-            new Position(checkboxPosition.line, checkboxPosition.character + 2)
-        ), char);
+            new Position(checkboxPosition.line, checkboxPosition.character + (replacement !== ' ' ? 2 : checkmark.length + 1))
+        ), replacement);
 
         // get settings from config
-        const italicWhenChecked = getConfig<boolean>('italicWhenChecked');
-        const strikeThroughWhenChecked = getConfig<boolean>('strikeThroughWhenChecked');
-        const dateWhenChecked = getConfig<boolean>('dateWhenChecked');
+        const italicWhenChecked = helpers.getConfig<boolean>('italicWhenChecked');
+        const strikeThroughWhenChecked = helpers.getConfig<boolean>('strikeThroughWhenChecked');
+        const dateWhenChecked = helpers.getConfig<boolean>('dateWhenChecked');
 
         // get line of the checkbox
         const line = editor.document.lineAt(checkboxPosition.line);
-        const lhc = lineHasCheckbox(line);
+        const lhc = helpers.getCheckboxOfLine(line);
         const lineText = line.text;
         const textWithoutCheckbox = lineText.substr(checkboxPosition.character + 4, lineText.length).trim();
 
@@ -69,7 +72,7 @@ const markField = (checkboxPosition: Position, char: string, editor = getEditor(
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             // add the date string
-            newText = newText + (dateWhenChecked ? ' [' + getDateString(new Date()) + ']' : '') + whitespace;
+            newText = newText + (dateWhenChecked ? ' [' + helpers.getDateString(new Date()) + ']' : '') + whitespace;
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
