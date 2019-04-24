@@ -1,4 +1,8 @@
 # Change Log
+## 1.6.0 (2019-04-24)
+### Features
+- Configurable checkmark ([@PKief](https://github.com/PKief) in [#14](https://github.com/PKief/vscode-markdown-checkbox/pull/14))
+
 ## 1.5.0 (2019-03-16)
 ### Refactoring
 - Bundle extension with webpack ([@PKief](https://github.com/PKief) in [#12](https://github.com/PKief/vscode-markdown-checkbox/pull/12))
