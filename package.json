@@ -147,12 +147,18 @@
                     ],
                     "default": "X",
                     "description": "Checkmark of the checkbox."
+                },
+                "markdown-checkbox.dateFormat": {
+                    "type": "string",
+                    "default": "YYYY-MM-DD",
+                    "description": "Format date"
                 }
             }
         }
     },
     "devDependencies": {
         "@types/mocha": "^5.2.6",
+        "@types/moment": "^2.13.0",
         "@types/node": "^11.13.7",
         "clean-webpack-plugin": "^2.0.1",
         "ts-loader": "^5.4.3",
@@ -161,5 +167,8 @@
         "vscode": "^1.1.33",
         "webpack": "^4.30.0",
         "webpack-cli": "^3.3.1"
+    },
+    "dependencies": {
+        "moment": "^2.24.0"
     }
 }
