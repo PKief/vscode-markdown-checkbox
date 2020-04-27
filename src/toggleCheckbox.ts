@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { Position, Range, TextEditorEdit } from 'vscode';
 import * as helpers from './helpers';
+const moment = require('moment');
 
 /** Mark a checkbox as checked or unchecked */
 export const toggleCheckbox = async () => {
