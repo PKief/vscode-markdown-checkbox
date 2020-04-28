@@ -116,6 +116,15 @@ Add date behind the checkbox item after the checkbox has been checked:
 Preview:
 * [X] ~~*sample with date*~~ [2017-11-23]
 
+### Format date
+If dates are enabled for the checkboxes, you can format the dates with the following user setting:
+
+```json
+"markdown-checkbox.dateFormat": "YYYY-MM-DD"
+```
+
+It makes use of the JavaScript library [moment.js](https://momentjs.com/docs/#/parsing/string-format/) which means that you can find the date format patterns on its documentation.
+
 ### Specify language IDs
 Besides markdown, this extension can also be used for other languages in VS Code. You can specify the language IDs in the user settings like this:
 
