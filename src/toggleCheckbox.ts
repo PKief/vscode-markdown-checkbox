@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { Position, Range, TextEditorEdit } from 'vscode';
 import * as helpers from './helpers';
+const moment = require('moment');
 
 /** Mark a checkbox as checked or unchecked */
 export const toggleCheckbox = async () => {
@@ -69,10 +70,12 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
         const foundTrailingWhitespace = lineText.substr(checkboxPosition.character + 4, lineText.length).match(/[\s\n\r]*$/);
         const whitespace = foundTrailingWhitespace ? foundTrailingWhitespace.join('') : '';
 
+        const dateFormat = helpers.getConfig<string>('dateFormat');
+
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
             // add the date string
-            newText = newText + (dateWhenChecked ? ' [' + helpers.getDateString(new Date()) + ']' : '') + whitespace;
+            newText = newText + (dateWhenChecked ? ' [' + moment(new Date()).format(dateFormat) + ']' : '') + whitespace;
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
@@ -82,7 +85,9 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
         else if (lhc.checked) {
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
             // remove the date string
-            newText = newText.replace(/\s+\[\d{4}[\-]\d{2}[\-]\d{2}\]\s*/, '') + whitespace;
+            if (dateWhenChecked) {
+                newText = newText.replace(/\s+\[[\s\S]+\]$/, '') + whitespace;
+            }
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
