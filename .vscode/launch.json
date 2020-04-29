@@ -17,7 +17,7 @@
                 "${workspaceFolder}/dist/**/*.js"
             ],
             "smartStep": true,
-            "preLaunchTask": "npm: compile"
+            "preLaunchTask": "npm: compile:dev"
         },
         {
             "name": "Launch Tests",
