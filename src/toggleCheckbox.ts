@@ -69,7 +69,7 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
 
         // respect trailing whitespace
         const foundTrailingWhitespace = lineText.substr(checkboxPosition.character + 4, lineText.length).match(/[\s\n\r]*$/);
-        const whitespace = foundTrailingWhitespace ? foundTrailingWhitespace.join('') : '';
+        const whitespace = foundTrailingWhitespace?.join('') || '';
 
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
             let newText = textWithoutCheckbox;

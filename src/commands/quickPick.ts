@@ -24,12 +24,14 @@ const showQuickPickItems = (checkboxes: Checkbox[]) => {
         } as vscode.QuickPickItem;
     });
     return vscode.window.showQuickPick(
-        pickItems, {
+        pickItems,
+        {
             placeHolder: 'Toggle checkboxes',
             ignoreFocusOut: false,
             matchOnDescription: true,
             canPickMany: true,
-        });
+        }
+    );
 };
 
 /** Handle the actions from the QuickPick. */
@@ -37,10 +39,13 @@ const handleQuickPickActions = async (items: vscode.QuickPickItem[]) => {
     const allCheckboxes: Checkbox[] = getAllCheckboxes();
 
     // get all line numbers that must be checked
-    const linesToCheck: number[] = items.map(i => parseInt(getLineNumberOfLabel(i.label)));
+    const linesToCheck: number[] = items
+        .map(i => parseInt(getLineNumberOfLabel(i.label)));
 
     // get all line numbers that must be unchecked
-    const linesToUncheck = allCheckboxes.filter(c => !linesToCheck.some(l => l === c.lineNumber)).map(c => c.lineNumber);
+    const linesToUncheck = allCheckboxes
+        .filter(c => !linesToCheck.some(l => l === c.lineNumber))
+        .map(c => c.lineNumber);
 
     const editor = getEditor();
 
