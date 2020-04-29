@@ -6,7 +6,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/n7ot0okpi5fdrm1y?svg=true)](https://ci.appveyor.com/project/PKief/vscode-markdown-checkbox)
   
 ## Description
-With this extension for Visual Studio Code it's possible to create your todo list in markdown. The extension provides shortcuts and some workspace configurations so you can create a checkbox and mark it quickly and smoothly.
+With this extension for Visual Studio Code it's possible to create todo lists in markdown. The extension provides shortcuts and some workspace configurations to create checkboxes and mark them with a shortcut.
 
 ## How to use
 ![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/preview.gif)
@@ -14,7 +14,7 @@ With this extension for Visual Studio Code it's possible to create your todo lis
 ## Information in status bar
 ![Preview of status bar information](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/statusbar_preview.png)
 
-*You have to create at least one checkbox to see this information.*
+*At least one checkbox must exist in a file to see this information.*
 
 ## Pick Checkboxes
 Toggle all checkboxes in the current document with the Multi-Select QuickPick:
@@ -24,23 +24,19 @@ Toggle all checkboxes in the current document with the Multi-Select QuickPick:
 The QuickPick can be opened either from the command palette or by clicking on the status bar item.
 
 ## Keybindings
-Create a checkbox:
 
-> `ctrl`+`shift`+`c` or `⌘⇧c` (Mac)
+| Command           | Windows                                               | Mac                                             |
+| ----------------- | ----------------------------------------------------- | ----------------------------------------------- |
+| Create a checkbox | <kbd>CTRL</kbd> + <kbd>Shift</kbd> + <kbd>c</kbd>     | <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>c</kbd>     |
+| Toggle checkbox   | <kbd>CTRL</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> | <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>Enter</kbd> |
 
-Toggle checkbox:
-
-> `ctrl`+`shift`+`enter` or `⇧Enter` (Mac)
-
+These are the initial keyboard shortcuts, which can be customized by the [Keyboard Shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings) settings in VS Code.
 
 ## Configuration
-You can customize this extension with the following options.
+This extension can be customized with the following options.
 
-> *File -> Preferences -> Workspace Settings*
-
-
-### Need a bullet point?
-Do you need a bullet point before the created checkbox? Select true (*default*) for this:
+### Bullet points
+If bullet points before the checkboxes are required, then they can be enabled with the following setting:
 
     options: true | false
 
@@ -117,16 +113,16 @@ Preview:
 * [X] ~~*sample with date*~~ [2017-11-23]
 
 ### Format date
-If dates are enabled for the checkboxes, you can format the dates with the following user setting:
+If dates are enabled, they can be formatted with the following user setting:
 
 ```json
 "markdown-checkbox.dateFormat": "YYYY-MM-DD"
 ```
 
-It makes use of the JavaScript library [moment.js](https://momentjs.com/docs/#/parsing/string-format/) which means that you can find the date format patterns on its documentation.
+It makes use of the JavaScript library [moment.js](https://momentjs.com/docs/#/parsing/string-format/) which means that the date format patterns can be found there.
 
 ### Specify language IDs
-Besides markdown, this extension can also be used for other languages in VS Code. You can specify the language IDs in the user settings like this:
+Besides markdown, this extension can also be used for other languages in VS Code. The language IDs can be specified in the user settings like this:
 
 ```json
 "markdown-checkbox.languages": [

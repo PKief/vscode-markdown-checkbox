@@ -1,4 +1,12 @@
 # Change Log
+## 1.7.0 (2020-04-29)
+### Features
+- Configurable date format ([@PKief](https://github.com/PKief) in [#19](https://github.com/PKief/vscode-markdown-checkbox/pull/19))
+
+### Refactoring
+- Improve code quality ([f8086fc](https://github.com/PKief/vscode-markdown-checkbox/commit/f8086fce5bc99f0a2a4d06ea9758282d2efd5674))
+- Fix launch configuration to run npm script compile:dev ([a45ad01](https://github.com/PKief/vscode-markdown-checkbox/commit/a45ad01c7718bd08770f85997260ab3ea1f83710))
+
 ## 1.6.0 (2019-04-24)
 ### Features
 - Configurable checkmark ([@PKief](https://github.com/PKief) in [#14](https://github.com/PKief/vscode-markdown-checkbox/pull/14))
