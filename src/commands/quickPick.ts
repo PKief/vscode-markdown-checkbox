@@ -14,7 +14,7 @@ const showQuickPick = () => {
     showQuickPickItems(allCheckboxes).then(handleQuickPickActions);
 };
 
-/** Show QuickPick items to select prefered configuration for the folder icons. */
+/** Show QuickPick items to select preferred configuration for the folder icons. */
 const showQuickPickItems = (checkboxes: Checkbox[]) => {
     const pickItems: vscode.QuickPickItem[] = checkboxes.map(checkbox => {
         return {

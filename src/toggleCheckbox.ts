@@ -27,21 +27,21 @@ export const toggleCheckbox = async () => {
 
 /** mark or unmark the checkbox of a given line in the editor */
 export const toggleCheckboxOfLine = (line: vscode.TextLine, checkIt?: boolean) => {
-    const lhc = helpers.getCheckboxOfLine(line);
+    const checkbox = helpers.getCheckboxOfLine(line);
 
-    // no edit action required
-    if (!lhc || !lhc.checked && checkIt === false || lhc.checked === true && checkIt === true) {
+    // no action required
+    if (!checkbox || !checkbox.checked && checkIt === false || checkbox.checked === true && checkIt === true) {
         return Promise.resolve(undefined);
     }
 
     let value = ' ';
 
     // if the checkbox is not checked or it must be checked
-    if (checkIt === true || checkIt === undefined && !lhc.checked) {
+    if (checkIt === true || checkIt === undefined && !checkbox.checked) {
         value = helpers.getConfig<string>('checkmark');
     }
 
-    return markField(lhc.position, value);
+    return markField(checkbox.position, value);
 };
 
 /** Marks the field inside the checkbox with a character */
@@ -59,6 +59,7 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
         const italicWhenChecked = helpers.getConfig<boolean>('italicWhenChecked');
         const strikeThroughWhenChecked = helpers.getConfig<boolean>('strikeThroughWhenChecked');
         const dateWhenChecked = helpers.getConfig<boolean>('dateWhenChecked');
+        const dateFormat = helpers.getConfig<string>('dateFormat');
 
         // get line of the checkbox
         const line = editor.document.lineAt(checkboxPosition.line);
@@ -70,12 +71,19 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
         const foundTrailingWhitespace = lineText.substr(checkboxPosition.character + 4, lineText.length).match(/[\s\n\r]*$/);
         const whitespace = foundTrailingWhitespace ? foundTrailingWhitespace.join('') : '';
 
-        const dateFormat = helpers.getConfig<string>('dateFormat');
-
         if (!lhc.checked && textWithoutCheckbox.length > 0) {
-            let newText = (strikeThroughWhenChecked ? '~~' : '') + (italicWhenChecked ? '*' : '') + textWithoutCheckbox + (italicWhenChecked ? '*' : '') + (strikeThroughWhenChecked ? '~~' : '');
-            // add the date string
-            newText = newText + (dateWhenChecked ? ' [' + moment(new Date()).format(dateFormat) + ']' : '') + whitespace;
+            let newText = textWithoutCheckbox;
+
+            // apply different formats to highlight checked status
+            if (italicWhenChecked) {
+                newText = `*${newText}*`;
+            }
+            if (strikeThroughWhenChecked) {
+                newText = `~~${newText}~~`;
+            }
+            if (dateWhenChecked) {
+                newText = `${newText} [${moment(new Date()).format(dateFormat)}]${whitespace}`;
+            }
 
             editBuilder.replace(new Range(
                 new Position(checkboxPosition.line, checkboxPosition.character + 4),
