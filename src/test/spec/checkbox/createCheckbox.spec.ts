@@ -1,10 +1,10 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { createCheckbox } from '../createCheckbox';
-import { getEditor } from '../helpers';
+import { createCheckbox } from '../../../createCheckbox';
+import { getEditor } from '../../../helpers';
 
-suite('create checkboxes', () => {
-    test('should be created with new bullet point', async () => {
+describe('create checkboxes', () => {
+    it('should be created with new bullet point', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: 'this is a text',
@@ -24,7 +24,7 @@ suite('create checkboxes', () => {
         assert.equal(result, true);
     });
 
-    test('should be created without new bullet point', async () => {
+    it('should be created without new bullet point', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: '- this is a text',

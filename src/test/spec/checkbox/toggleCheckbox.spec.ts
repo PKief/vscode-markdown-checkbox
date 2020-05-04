@@ -1,17 +1,20 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { getDateString, getEditor } from '../helpers';
-import { toggleCheckbox } from '../toggleCheckbox';
+import { getDateString, getEditor } from '../../../helpers';
+import { toggleCheckbox } from '../../../toggleCheckbox';
 
-suite('toggle checkboxes', () => {
-    test('should be toggled with selection', async () => {
-        // create new document
+describe('toggle checkboxes', () => {
+    beforeEach(async () => {
         const newDocument = await vscode.workspace.openTextDocument({
             content: '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
             language: 'markdown'
         });
         await vscode.window.showTextDocument(newDocument);
 
+        // use default settings
+        await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'X');
+    });
+    it('should be toggled with selection', async () => {
         // create a selection over the text to toggle all lines
         const editor = getEditor();
         const startPosition = new vscode.Position(0, 0);
@@ -28,14 +31,7 @@ suite('toggle checkboxes', () => {
         assert.equal(content, expectedResult);
     });
 
-    test('should be toggled without selection', async () => {
-        // create new document
-        const newDocument = await vscode.workspace.openTextDocument({
-            content: '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
-            language: 'markdown'
-        });
-        await vscode.window.showTextDocument(newDocument);
-
+    it('should be toggled without selection', async () => {
         // create a selection over the text to toggle all lines
         const editor = getEditor();
         const startPosition = new vscode.Position(0, 0);
@@ -52,7 +48,7 @@ suite('toggle checkboxes', () => {
         assert.equal(content, expectedResult);
     });
 
-    test('should be toggled with trailing whitespace', async () => {
+    it('should be toggled with trailing whitespace', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: '[ ] this is a text    ',
@@ -76,7 +72,7 @@ suite('toggle checkboxes', () => {
         assert.equal(content, expectedResult);
     });
 
-    test('should be toggled with configured checkmark', async () => {
+    it('should be toggled with configured checkmark', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
@@ -94,8 +90,6 @@ suite('toggle checkboxes', () => {
         // update config to use configured checkmark
         await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'x');
         await toggleCheckbox();
-        // revert checkmark to default
-        await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'X');
 
         const content = editor.document.getText();
         const dateNow = getDateString(new Date());

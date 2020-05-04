@@ -1,13 +1,18 @@
 'use strict';
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
-/**@type {import('webpack').Configuration}*/
 const config = {
     target: 'node',
-
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
     entry: './src/extension.ts',
+    plugins: [
+        new CleanWebpackPlugin(),
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'extension.js',
@@ -26,20 +31,10 @@ const config = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'ts-loader',
-                    options: {
-                        compilerOptions: {
-                            "module": "es6" // override `tsconfig.json` so that TypeScript emits native JavaScript modules.
-                        }
-                    }
-                }]
+                use: 'ts-loader'
             }
         ]
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-    ]
+    }
 };
 
 module.exports = config;

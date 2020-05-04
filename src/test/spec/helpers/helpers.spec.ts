@@ -1,17 +1,17 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import Checkbox from '../models/checkbox';
-import * as helpers from '../helpers';
+import Checkbox from '../../../models/checkbox';
+import * as helpers from '../../../helpers';
 
-suite('helpers', () => {
-    test('should return plain checkbox text', () => {
+describe('helpers', () => {
+    it('should return plain checkbox text', () => {
         const checkboxText = '* [ ] this is the text';
         const expectedText = 'this is the text';
         const result = helpers.getPlainLineText(checkboxText);
         assert.strictEqual(result, expectedText);
     });
 
-    test('should check if the line has an unchecked checkbox', () => {
+    it('should check if the line has an unchecked checkbox', () => {
         const line: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
             isEmptyOrWhitespace: false,
@@ -25,7 +25,7 @@ suite('helpers', () => {
         assert.deepStrictEqual(helpers.getCheckboxOfLine(line), expectedResult);
     });
 
-    test('should check if the line has a checked checkbox', () => {
+    it('should check if the line has a checked checkbox', () => {
         const line: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
             isEmptyOrWhitespace: false,
@@ -39,7 +39,7 @@ suite('helpers', () => {
         assert.deepStrictEqual(helpers.getCheckboxOfLine(line), expectedResult);
     });
 
-    test('should check if the line has a bullet point already', () => {
+    it('should check if the line has a bullet point already', () => {
         const lineWithDefaultBulletPoint: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
             isEmptyOrWhitespace: false,
@@ -67,7 +67,7 @@ suite('helpers', () => {
         assert.strictEqual(helpers.lineHasBulletPointAlready(lineWithoutBulletPoint).pos, 0);
     });
 
-    test('should check if the line has no bullet points', () => {
+    it('should check if the line has no bullet points', () => {
         const line: vscode.TextLine = {
             firstNonWhitespaceCharacterIndex: 0,
             isEmptyOrWhitespace: false,
@@ -81,7 +81,7 @@ suite('helpers', () => {
         assert.strictEqual(helpers.lineHasBulletPointAlready(line).pos, 0);
     });
 
-    test('should get all checkboxes in a document', async () => {
+    it('should get all checkboxes in a document', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: '* [ ] this is the text\n* [X] this is another text',
@@ -105,7 +105,7 @@ suite('helpers', () => {
         assert.deepStrictEqual(allCheckboxes, expectedResult);
     });
 
-    test('should be activated for specific language IDs', async () => {
+    it('should be activated for specific language IDs', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({
             content: 'Check language IDs of extension config...',
@@ -119,7 +119,7 @@ suite('helpers', () => {
         assert.deepStrictEqual(helpers.shouldActivate(), true);
     });
 
-    test('should print a date as string', async () => {
+    it('should print a date as string', async () => {
         const date = new Date('Mon Jan 28 2019');
         const result = helpers.getDateString(date);
         assert.deepStrictEqual(result, '2019-01-28');
