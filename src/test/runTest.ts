@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import { runTests } from 'vscode-test';
 
 const main = async () => {
@@ -11,8 +12,15 @@ const main = async () => {
         // Passed to --extensionTestsPath
         const extensionTestsPath = path.resolve(__dirname, './spec/index');
 
+        // The folder that is used as workspace in the tests
+        const testWorkspace = path.resolve(__dirname, './workspace');
+
         // Download VS Code, unzip it and run the integration test
-        await runTests({ extensionDevelopmentPath, extensionTestsPath });
+        await runTests({
+            extensionDevelopmentPath,
+            extensionTestsPath,
+            launchArgs: [testWorkspace, '--disable-extensions'],
+        });
     } catch (err) {
         console.error('Failed to run tests');
         process.exit(1);

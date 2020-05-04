@@ -2,8 +2,13 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import Checkbox from '../../../models/checkbox';
 import * as helpers from '../../../helpers';
+import { useDefaultSettings } from '..';
 
 describe('helpers', () => {
+    beforeEach(async () => {
+        await useDefaultSettings();
+    });
+
     it('should return plain checkbox text', () => {
         const checkboxText = '* [ ] this is the text';
         const expectedText = 'this is the text';

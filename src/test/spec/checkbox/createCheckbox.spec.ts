@@ -2,8 +2,13 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { createCheckbox } from '../../../createCheckbox';
 import { getEditor } from '../../../helpers';
+import { useDefaultSettings } from '..';
 
 describe('create checkboxes', () => {
+    beforeEach(async () => {
+        await useDefaultSettings();
+    });
+
     it('should be created with new bullet point', async () => {
         // create new document
         const newDocument = await vscode.workspace.openTextDocument({

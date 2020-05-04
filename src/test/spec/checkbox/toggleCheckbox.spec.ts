@@ -2,17 +2,16 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { getDateString, getEditor } from '../../../helpers';
 import { toggleCheckbox } from '../../../toggleCheckbox';
+import { useDefaultSettings } from '..';
 
 describe('toggle checkboxes', () => {
     beforeEach(async () => {
+        await useDefaultSettings();
         const newDocument = await vscode.workspace.openTextDocument({
             content: '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
             language: 'markdown'
         });
         await vscode.window.showTextDocument(newDocument);
-
-        // use default settings
-        await vscode.workspace.getConfiguration('markdown-checkbox').update('checkmark', 'X');
     });
     it('should be toggled with selection', async () => {
         // create a selection over the text to toggle all lines

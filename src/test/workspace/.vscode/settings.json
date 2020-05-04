@@ -1,0 +1,13 @@
+{
+    "markdown-checkbox.checkmark": "X",
+    "markdown-checkbox.languages": [
+        "markdown"
+    ],
+    "markdown-checkbox.withBulletPoint": true,
+    "markdown-checkbox.typeOfBulletPoint": "*",
+    "markdown-checkbox.strikeThroughWhenChecked": true,
+    "markdown-checkbox.italicWhenChecked": true,
+    "markdown-checkbox.dateWhenChecked": true,
+    "markdown-checkbox.showStatusBarItem": true,
+    "markdown-checkbox.dateFormat": "YYYY-MM-DD"
+}

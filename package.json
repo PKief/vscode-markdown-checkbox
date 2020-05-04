@@ -13,7 +13,7 @@
         "compile:dev": "webpack --mode none",
         "compile:watch": "webpack --mode none --watch",
         "lint": "tslint ./src/**/*.ts -t stylish",
-        "pretest": "npm run build && tsc -p ./",
+        "pretest": "npm run build && tsc -p ./ && ncp src/test/workspace out/test/workspace",
         "test": "node ./out/test/runTest.js",
         "vscode:prepublish": "npm run lint && npm run compile"
     },
@@ -162,6 +162,7 @@
         "clean-webpack-plugin": "^3.0.0",
         "glob": "^7.1.6",
         "mocha": "^7.1.2",
+        "ncp": "^2.0.0",
         "ts-loader": "^7.0.2",
         "tslint": "^6.1.2",
         "typescript": "^3.8.3",
