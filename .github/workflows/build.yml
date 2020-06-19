@@ -35,6 +35,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Lint and Test
       - run: |
           npm run lint
           npm test
