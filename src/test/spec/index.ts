@@ -7,8 +7,8 @@ export const run = (): Promise<void> => {
     // Create the mocha test
     const mocha = new Mocha({
         ui: 'bdd',
+        color: true,
     });
-    mocha.useColors(true);
 
     const testsRoot = path.resolve(__dirname, '..');
 
