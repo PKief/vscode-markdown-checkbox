@@ -94,7 +94,7 @@ const markField = (checkboxPosition: Position, replacement: string): Thenable<bo
             let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
             // remove the date string
             if (dateWhenChecked) {
-                newText = newText.replace(/\s+\[[\s\S]+\]$/, '') + whitespace;
+                newText = newText.replace(/\s+\[[^[]+?\]$/, '') + whitespace;
             }
 
             editBuilder.replace(new Range(
