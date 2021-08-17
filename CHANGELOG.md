@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.7.2 (2021-08-17)
+
+### Refactoring
+
+- Enable extension for GitHub Codespaces ([0b26388](https://github.com/PKief/vscode-markdown-checkbox/commit/0b26388cdc57874224ce5c76911fcadfa6870b56))
+
 ## 1.7.1 (2021-02-14)
 
 ### Bug Fixes
