@@ -45,6 +45,7 @@
         "theme": "dark"
     },
     "main": "./dist/extension",
+    "browser": "./dist/extension",
     "license": "SEE LICENSE IN LICENSE.md",
     "contributes": {
         "commands": [
