@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { createCheckbox } from '../../../createCheckbox';
-import { getEditor } from '../../../helpers';
+import { getEditor, getConfig } from '../../../helpers';
 import { useDefaultSettings } from '..';
 
 describe('create checkboxes', () => {
@@ -24,9 +24,13 @@ describe('create checkboxes', () => {
         const newSelection = new vscode.Selection(newCursorPosition, newCursorPosition);
         editor.selection = newSelection;
 
-        const result = await createCheckbox(editor);
+        await createCheckbox(editor);
 
-        assert.equal(result, true);
+        const content = editor.document.getText();
+        const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
+        const expectedResult = `${typeOfBulletPoint} [ ] this is a text`;
+
+        assert.equal(content, expectedResult);
     });
 
     it('should be created without new bullet point', async () => {
@@ -44,8 +48,11 @@ describe('create checkboxes', () => {
         const newSelection = new vscode.Selection(newCursorPosition, newCursorPosition);
         editor.selection = newSelection;
 
-        const result = await createCheckbox(editor);
+        await createCheckbox(editor);
 
-        assert.equal(result, true);
+        const content = editor.document.getText();
+        const expectedResult = `- [ ] this is a text`;
+
+        assert.equal(content, expectedResult);
     });
 });
