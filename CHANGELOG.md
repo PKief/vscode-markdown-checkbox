@@ -72,7 +72,7 @@
 
 ### Features
 
-- Toggle all checkboxes in the document with the [Multi-Select QuickPick](https://github.com/PKief/vscode-markdown-checkbox/blob/master/README.md#pick-checkboxes)
+- Toggle all checkboxes in the document with the [Multi-Select QuickPick](https://github.com/PKief/vscode-markdown-checkbox/blob/main/README.md#pick-checkboxes)
 - Rearranged context menu entries
 
 ### Other improvements

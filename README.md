@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/master/logo.png" alt="logo" width="200">
+    <img src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/main/logo.png" alt="logo" width="200">
   <br><br>
   Markdown Checkbox
   <br>
@@ -22,11 +22,11 @@ With this extension for Visual Studio Code it's possible to create todo lists in
 
 ## How to use
 
-![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/preview.gif)
+![Preview](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/main/images/preview.gif)
 
 ## Information in status bar
 
-![Preview of status bar information](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/master/images/statusbar_preview.png)
+![Preview of status bar information](https://raw.githubusercontent.com/PKief/vscode-extension-markdown-checkbox/main/images/statusbar_preview.png)
 
 _At least one checkbox must exist in a file to see this information._
 
