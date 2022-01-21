@@ -1,5 +1,5 @@
-import { Position, Range, TextEditor, TextEditorEdit, TextLine } from "vscode";
-import * as helpers from "./helpers";
+import { Position, Range, TextEditor, TextEditorEdit, TextLine } from 'vscode';
+import * as helpers from './helpers';
 
 /** Create a new checkbox at selected lines or the current cursor position */
 export const createCheckbox = async (editor: TextEditor) => {
@@ -15,18 +15,18 @@ const createCheckboxOfLine = (
   editor: TextEditor,
   line: TextLine
 ): Thenable<boolean> => {
-  const withBulletPoint = helpers.getConfig<boolean>("withBulletPoint");
-  const typeOfBulletPoint = helpers.getConfig<string>("typeOfBulletPoint");
+  const withBulletPoint = helpers.getConfig<boolean>('withBulletPoint');
+  const typeOfBulletPoint = helpers.getConfig<string>('typeOfBulletPoint');
   const hasBullet = helpers.lineHasBulletPointAlready(line);
 
   const checkboxOfLine = helpers.getCheckboxOfLine(line);
-  const checkboxCharacters = "[ ] ";
+  const checkboxCharacters = '[ ] ';
 
   return editor.edit((editBuilder: TextEditorEdit) => {
     if (!checkboxOfLine) {
       editBuilder.insert(
         new Position(line.lineNumber, hasBullet.pos),
-        (withBulletPoint && hasBullet.bullet ? "" : typeOfBulletPoint + " ") +
+        (withBulletPoint && hasBullet.bullet ? '' : typeOfBulletPoint + ' ') +
           checkboxCharacters
       );
     } else {

@@ -75,7 +75,7 @@ describe('create checkboxes', () => {
 
         const content = editor.document.getText();
         const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
-        const expectedResult = `${typeOfBulletPoint} [ ] this is a text\n${typeOfBulletPoint} [ ] this is a second text\n- [ ] this is a third text`
+        const expectedResult = `${typeOfBulletPoint} [ ] this is a text\n${typeOfBulletPoint} [ ] this is a second text\n- [ ] this is a third text`;
 
         assert.equal(content, expectedResult);
     });
