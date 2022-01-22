@@ -1,67 +1,84 @@
-import { Disposable, StatusBarAlignment, StatusBarItem, window, workspace } from 'vscode';
+import {
+  Disposable,
+  StatusBarAlignment,
+  StatusBarItem,
+  window,
+  workspace,
+} from 'vscode';
 import * as helpers from './helpers';
 
 export class CheckboxStatus {
-    private _statusBarItem: StatusBarItem;
+  private statusBarItem: StatusBarItem;
 
-    public updateCheckboxStatus() {
-        if (!this._statusBarItem) {
-            this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 200);
-            this._statusBarItem.command = 'markdown-checkbox.showQuickPick';
-        }
-
-        const editor = window.activeTextEditor;
-        if (!editor) {
-            this._statusBarItem.hide();
-            return;
-        }
-
-        const showStatusBarItem = helpers.getConfig<boolean>('showStatusBarItem');
-
-        if (helpers.shouldActivate() && showStatusBarItem) {
-            const allCheckboxes = helpers.getAllCheckboxes();
-
-            if (allCheckboxes.length === 0) {
-                this._statusBarItem.hide();
-                return;
-            }
-
-            const checkedCheckboxes = allCheckboxes.filter(cb => cb.checked);
-
-            // update status bar
-            this._statusBarItem.text = checkedCheckboxes.length + '/' + allCheckboxes.length + '  $(checklist)';
-            this._statusBarItem.tooltip = checkedCheckboxes.length + ' of ' + allCheckboxes.length + ' checked checkboxes';
-            this._statusBarItem.show();
-        } else {
-            this._statusBarItem.hide();
-        }
+  public updateCheckboxStatus() {
+    if (!this.statusBarItem) {
+      this.statusBarItem = window.createStatusBarItem(
+        StatusBarAlignment.Right,
+        200
+      );
+      this.statusBarItem.command = 'markdown-checkbox.showQuickPick';
     }
 
-    public dispose() {
-        this._statusBarItem.dispose();
+    const editor = window.activeTextEditor;
+    if (!editor) {
+      this.statusBarItem.hide();
+      return;
     }
+
+    const showStatusBarItem = helpers.getConfig<boolean>('showStatusBarItem');
+
+    if (helpers.shouldActivate() && showStatusBarItem) {
+      const allCheckboxes = helpers.getAllCheckboxes();
+
+      if (allCheckboxes.length === 0) {
+        this.statusBarItem.hide();
+        return;
+      }
+
+      const checkedCheckboxes = allCheckboxes.filter((cb) => cb.checked);
+
+      // update status bar
+      this.statusBarItem.text =
+        checkedCheckboxes.length +
+        '/' +
+        allCheckboxes.length +
+        '  $(checklist)';
+      this.statusBarItem.tooltip =
+        checkedCheckboxes.length +
+        ' of ' +
+        allCheckboxes.length +
+        ' checked checkboxes';
+      this.statusBarItem.show();
+    } else {
+      this.statusBarItem.hide();
+    }
+  }
+
+  public dispose() {
+    this.statusBarItem.dispose();
+  }
 }
 
 export class CheckboxStatusController {
-    private _checkboxStatus: CheckboxStatus;
-    private _disposable: Disposable;
+  private checkboxStatus: CheckboxStatus;
+  private disposable: Disposable;
 
-    constructor(checkboxStatus: CheckboxStatus) {
-        this._checkboxStatus = checkboxStatus;
-        this._checkboxStatus.updateCheckboxStatus();
+  constructor(checkboxStatus: CheckboxStatus) {
+    this.checkboxStatus = checkboxStatus;
+    this.checkboxStatus.updateCheckboxStatus();
 
-        const subscriptions: Disposable[] = [];
-        workspace.onDidChangeTextDocument(this._onEvent, this, subscriptions);
-        window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
+    const subscriptions: Disposable[] = [];
+    workspace.onDidChangeTextDocument(this.onEvent, this, subscriptions);
+    window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
 
-        this._disposable = Disposable.from(...subscriptions);
-    }
+    this.disposable = Disposable.from(...subscriptions);
+  }
 
-    private _onEvent() {
-        this._checkboxStatus.updateCheckboxStatus();
-    }
+  private onEvent() {
+    this.checkboxStatus.updateCheckboxStatus();
+  }
 
-    public dispose() {
-        this._disposable.dispose();
-    }
+  public dispose() {
+    this.disposable.dispose();
+  }
 }
