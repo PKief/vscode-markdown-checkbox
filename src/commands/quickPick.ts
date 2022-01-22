@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import Checkbox from '../models/checkbox';
 import { getAllCheckboxes, getEditor } from '../helpers';
+import Checkbox from '../models/checkbox';
 import { toggleCheckboxOfLine } from '../toggleCheckbox';
 
 /** Register command */
@@ -51,13 +51,13 @@ const handleQuickPickActions = async (items: vscode.QuickPickItem[]) => {
   const editor = getEditor();
 
   // check the checked items by the quickpick
-  for (let lineNumber of linesToCheck) {
+  for (const lineNumber of linesToCheck) {
     const line = editor.document.lineAt(lineNumber);
     await toggleCheckboxOfLine(line, true);
   }
 
   // uncheck the items that are not returned by the quick pick
-  for (let lineNumber of linesToUncheck) {
+  for (const lineNumber of linesToUncheck) {
     const line = editor.document.lineAt(lineNumber);
     await toggleCheckboxOfLine(line, false);
   }
