@@ -1,4 +1,4 @@
-import { Position, TextEditor, TextEditorEdit, TextLine } from 'vscode';
+import { Position, Range, TextEditor, TextEditorEdit, TextLine } from 'vscode';
 import * as helpers from './helpers';
 
 /** Create a new checkbox at selected lines or the current cursor position */
@@ -19,15 +19,26 @@ const createCheckboxOfLine = (
   const typeOfBulletPoint = helpers.getConfig<string>('typeOfBulletPoint');
   const hasBullet = helpers.lineHasBulletPointAlready(line);
 
-  if (!helpers.getCheckboxOfLine(line)) {
-    return editor.edit((editBuilder: TextEditorEdit) => {
+  const checkboxOfLine = helpers.getCheckboxOfLine(line);
+  const checkboxCharacters = '[ ] ';
+
+  return editor.edit((editBuilder: TextEditorEdit) => {
+    if (!checkboxOfLine) {
       editBuilder.insert(
         new Position(line.lineNumber, hasBullet.pos),
-        (withBulletPoint && !hasBullet.bullet ? typeOfBulletPoint + ' ' : '') +
-          '[ ] '
+        (withBulletPoint && hasBullet.bullet ? '' : typeOfBulletPoint + ' ') +
+          checkboxCharacters
       );
-    });
-  } else {
-    return Promise.resolve(undefined);
-  }
+    } else {
+      editBuilder.delete(
+        new Range(
+          new Position(line.lineNumber, hasBullet.pos),
+          new Position(
+            line.lineNumber,
+            hasBullet.pos + checkboxCharacters.length
+          )
+        )
+      );
+    }
+  });
 };
