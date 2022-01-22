@@ -1,17 +1,19 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "outDir": "out",
-        "lib": [
-            "es6"
-        ],
-        "sourceMap": true,
-        "rootDir": "src"
-    },
-    "include": [
-        "src/**/*.ts",
-        "./node_modules/vscode/vscode.d.ts",
-        "./node_modules/vscode/lib/*",
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "out",
+    "lib": ["es6"],
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "rootDir": "src"
+  },
+  "include": [
+    "src/**/*.ts",
+    "./node_modules/vscode/vscode.d.ts",
+    "./node_modules/vscode/lib/*"
+  ]
 }

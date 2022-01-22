@@ -33,7 +33,7 @@ describe('create checkboxes', () => {
     const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
     const expectedResult = `${typeOfBulletPoint} [ ] this is a text`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 
   it('should be created without new bullet point', async () => {
@@ -59,7 +59,7 @@ describe('create checkboxes', () => {
     const content = editor.document.getText();
     const expectedResult = `- [ ] this is a text`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 
   it('should be created with new bullet points', async () => {
@@ -83,6 +83,6 @@ describe('create checkboxes', () => {
     const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
     const expectedResult = `${typeOfBulletPoint} [ ] this is a text\n${typeOfBulletPoint} [ ] this is a second text\n- [ ] this is a third text`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 });

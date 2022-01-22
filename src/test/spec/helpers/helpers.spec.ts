@@ -1,8 +1,8 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import Checkbox from '../../../models/checkbox';
-import * as helpers from '../../../helpers';
 import { useDefaultSettings } from '..';
+import * as helpers from '../../../helpers';
+import { Checkbox } from '../../../models/checkbox';
 
 describe('helpers', () => {
   beforeEach(async () => {

@@ -8,7 +8,7 @@ import {
 import * as helpers from './helpers';
 
 export class CheckboxStatus {
-  private statusBarItem: StatusBarItem;
+  private statusBarItem!: StatusBarItem;
 
   public updateCheckboxStatus() {
     if (!this.statusBarItem) {

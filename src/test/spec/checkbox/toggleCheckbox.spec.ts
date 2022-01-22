@@ -28,7 +28,7 @@ describe('toggle checkboxes', () => {
     const dateNow = getDateString(new Date());
     const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[X] ~~*this is another text*~~ [${dateNow}]\n[X] ~~*another new line*~~ [${dateNow}]`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 
   it('should be toggled without selection', async () => {
@@ -45,7 +45,7 @@ describe('toggle checkboxes', () => {
     const dateNow = getDateString(new Date());
     const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]\n[ ] this is another text\n[ ] another new line`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 
   it('should be toggled with trailing whitespace', async () => {
@@ -69,7 +69,7 @@ describe('toggle checkboxes', () => {
     const dateNow = getDateString(new Date());
     const expectedResult = `[X] ~~*this is a text*~~ [${dateNow}]    `;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 
   it('should be toggled with configured checkmark', async () => {
@@ -98,6 +98,6 @@ describe('toggle checkboxes', () => {
     const dateNow = getDateString(new Date());
     const expectedResult = `[x] ~~*this is a text*~~ [${dateNow}]\n[x] ~~*this is another text*~~ [${dateNow}]\n[x] ~~*another new line*~~ [${dateNow}]`;
 
-    assert.equal(content, expectedResult);
+    assert.strictEqual(content, expectedResult);
   });
 });
