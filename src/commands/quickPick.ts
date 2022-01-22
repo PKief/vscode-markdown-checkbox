@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { getAllCheckboxes, getEditor } from '../helpers';
-import Checkbox from '../models/checkbox';
+import { Checkbox } from '../models/checkbox';
 import { toggleCheckboxOfLine } from '../toggleCheckbox';
 
 /** Register command */
@@ -35,13 +35,14 @@ const showQuickPickItems = (checkboxes: Checkbox[]) => {
 };
 
 /** Handle the actions from the QuickPick. */
-const handleQuickPickActions = async (items: vscode.QuickPickItem[]) => {
+const handleQuickPickActions = async (
+  items: vscode.QuickPickItem[] | undefined
+) => {
   const allCheckboxes: Checkbox[] = getAllCheckboxes();
 
   // get all line numbers that must be checked
-  const linesToCheck: number[] = items.map((i) =>
-    parseInt(getLineNumberOfLabel(i.label))
-  );
+  const linesToCheck: number[] =
+    items?.map((i) => parseInt(getLineNumberOfLabel(i.label) ?? '0')) ?? [];
 
   // get all line numbers that must be unchecked
   const linesToUncheck = allCheckboxes
@@ -64,4 +65,4 @@ const handleQuickPickActions = async (items: vscode.QuickPickItem[]) => {
 };
 
 // Get the line number out of the label of a quick pick item
-const getLineNumberOfLabel = (label: string) => label.match(/\d+/)[0];
+const getLineNumberOfLabel = (label: string) => label.match(/\d+/)?.[0];

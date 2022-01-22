@@ -97,7 +97,7 @@ const markField = (
       .match(/[\s\n\r]*$/);
     const whitespace = foundTrailingWhitespace?.join('') || '';
 
-    if (!lhc.checked && textWithoutCheckbox.length > 0) {
+    if (lhc && !lhc.checked && textWithoutCheckbox.length > 0) {
       let newText = textWithoutCheckbox;
 
       // apply different formats to highlight checked status
@@ -120,7 +120,7 @@ const markField = (
         ),
         newText
       );
-    } else if (lhc.checked) {
+    } else if (lhc && lhc.checked) {
       let newText = textWithoutCheckbox.replace(/~~/g, '').replace(/\*/g, '');
       // remove the date string
       if (dateWhenChecked) {

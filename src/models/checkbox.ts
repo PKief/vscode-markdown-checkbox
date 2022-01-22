@@ -1,6 +1,6 @@
 import { Position } from 'vscode';
 
-export default class Checkbox {
+export interface Checkbox {
   checked: boolean;
   position: Position;
   text: string;

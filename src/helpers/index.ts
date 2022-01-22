@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Position, TextEditor, TextLine } from 'vscode';
-import Checkbox from '../models/checkbox';
+import { Checkbox } from '../models/checkbox';
 
 /** Get the current cursor position */
 export const getCursorPosition = (): Position => {
@@ -9,7 +9,12 @@ export const getCursorPosition = (): Position => {
 
 /** Get the active editor of VS Code */
 export const getEditor = (): TextEditor => {
-  return vscode.window.activeTextEditor;
+  const editor = vscode.window.activeTextEditor;
+  if (editor) {
+    return editor;
+  } else {
+    throw new Error('Could not load the VS Code editor instance.');
+  }
 };
 
 /** Give the information if the line has already a bullet point */
@@ -29,7 +34,7 @@ export const lineHasBulletPointAlready = (
 };
 
 /** Get the checkbox of a specific line */
-export const getCheckboxOfLine = (line: TextLine): Checkbox => {
+export const getCheckboxOfLine = (line: TextLine): Checkbox | undefined => {
   const lineText = line.text.toString();
   const cbPosition = lineText.indexOf('[ ]');
   const cbPositionMarked = lineText.search(new RegExp(/\[.\]/));
@@ -73,7 +78,7 @@ export const getPlainLineText = (text: string) => {
 
 /** Get the value of a workspace config property */
 export const getConfig = <T>(config: string): T =>
-  vscode.workspace.getConfiguration('markdown-checkbox').get<T>(config);
+  vscode.workspace.getConfiguration('markdown-checkbox').get<T>(config) as T;
 
 /** Determine whether a given language ID of the configuration is valid to activate this extension. */
 export const isActivationLanguageId = (languageId: string): boolean => {
