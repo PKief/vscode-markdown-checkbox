@@ -15,7 +15,7 @@
     "lint": "eslint -c .eslintrc.json --ext .ts ./src/**/*.ts",
     "pretest": "npm run build && tsc -p ./ && ncp src/test/workspace out/test/workspace",
     "test": "node ./out/test/runTest.js",
-    "version": "auto-changelog --config auto-changelog.json",
+    "version": "auto-changelog -p --config auto-changelog.json && git add CHANGELOG.md",
     "vscode:prepublish": "npm run lint && npm run compile"
   },
   "categories": [
