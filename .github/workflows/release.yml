@@ -28,7 +28,7 @@ jobs:
           node-version: 'lts/*'
       - name: Install node_modules 📦
         run: |
-          npm install
+          npm ci
           npm install --global vsce
       - name: Update version ↗
         run: |
