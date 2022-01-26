@@ -35,8 +35,6 @@ jobs:
           git config --global user.name 'Philipp Kief'
           git config --global user.email 'PKief@users.noreply.github.com'
           git config --global push.followTags true
-          git add .
-          git commit -m "Trigger ${{ env.VERSION_CHANGE }} release"
           npm version ${{ env.VERSION_CHANGE }}
       - name: Get meta data 🔍
         run: |
