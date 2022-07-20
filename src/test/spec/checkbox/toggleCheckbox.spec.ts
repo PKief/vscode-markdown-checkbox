@@ -2,11 +2,11 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { getDateString, getEditor } from '../../../helpers';
 import { toggleCheckbox } from '../../../toggleCheckbox';
-import { useDefaultSettings } from '..';
+import { setSettingsToDefault } from '../defaultSettings';
 
 describe('toggle checkboxes', () => {
   beforeEach(async () => {
-    await useDefaultSettings();
+    await setSettingsToDefault();
     const newDocument = await vscode.workspace.openTextDocument({
       content:
         '[ ] this is a text\n[ ] this is another text\n[ ] another new line',
@@ -14,6 +14,7 @@ describe('toggle checkboxes', () => {
     });
     await vscode.window.showTextDocument(newDocument);
   });
+
   it('should be toggled with selection', async () => {
     // create a selection over the text to toggle all lines
     const editor = getEditor();
