@@ -26,7 +26,7 @@ const createCheckboxOfLine = (
     if (!checkboxOfLine) {
       editBuilder.insert(
         new Position(line.lineNumber, hasBullet.pos),
-        (withBulletPoint && hasBullet.bullet ? '' : typeOfBulletPoint + ' ') +
+        (withBulletPoint && !hasBullet.bullet ? typeOfBulletPoint + ' ' : '') +
           checkboxCharacters
       );
     } else {
