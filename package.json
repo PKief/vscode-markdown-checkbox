@@ -4,6 +4,11 @@
   "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
   "version": "1.8.0",
   "publisher": "PKief",
+  "author": {
+    "name": "Philipp Kief",
+    "email": "philipp.kief@gmx.de",
+    "url": "https://pkief.github.io"
+  },
   "engines": {
     "vscode": "^1.22.1"
   },
@@ -27,6 +32,10 @@
     "todo-list",
     "checkbox"
   ],
+  "funding": "https://github.com/sponsors/PKief",
+  "sponsor": {
+    "url": "https://github.com/sponsors/PKief"
+  },
   "homepage": "https://github.com/PKief/vscode-extension-markdown-checkbox/blob/main/README.md",
   "repository": {
     "type": "git",
