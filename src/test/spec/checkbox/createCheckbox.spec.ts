@@ -36,7 +36,7 @@ describe('create checkboxes', () => {
     assert.strictEqual(content, expectedResult);
   });
 
-  it('should be created without new bullet point', async () => {
+  it('should be created without new bullet point (already has bullet point)', async () => {
     // create new document
     const newDocument = await vscode.workspace.openTextDocument({
       content: '- this is a text',
@@ -58,6 +58,37 @@ describe('create checkboxes', () => {
 
     const content = editor.document.getText();
     const expectedResult = `- [ ] this is a text`;
+
+    assert.strictEqual(content, expectedResult);
+  });
+
+  it('should be created without new bullet point (withBulletPoint false)', async () => {
+    // create new document
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: 'this is a text',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // update config to use configured checkmark
+    await vscode.workspace
+      .getConfiguration('markdown-checkbox')
+      .update('withBulletPoint', false);
+
+    // set the cursor to the current line
+    const editor = getEditor();
+    const position = editor.selection.active;
+    const newCursorPosition = position.with(0, 0);
+    const newSelection = new vscode.Selection(
+      newCursorPosition,
+      newCursorPosition
+    );
+    editor.selection = newSelection;
+
+    await createCheckbox(editor);
+
+    const content = editor.document.getText();
+    const expectedResult = `[ ] this is a text`;
 
     assert.strictEqual(content, expectedResult);
   });
