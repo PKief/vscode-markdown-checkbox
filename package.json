@@ -14,13 +14,14 @@
   },
   "scripts": {
     "build": "npm run compile:dev",
+    "changelog": "changelog-machine --config changelog.config.json",
     "compile": "webpack --mode production",
     "compile:dev": "webpack --mode none",
     "compile:watch": "webpack --mode none --watch",
     "lint": "eslint -c .eslintrc.json --ext .ts ./src/**/*.ts",
     "pretest": "npm run build && tsc -p ./ && ncp src/test/workspace out/test/workspace",
     "test": "node ./out/test/runTest.js",
-    "version": "auto-changelog -p --config auto-changelog.json && git add CHANGELOG.md",
+    "version": "npm run changelog && git add CHANGELOG.md",
     "vscode:prepublish": "npm run lint && npm run compile"
   },
   "categories": [
@@ -172,7 +173,7 @@
     "@types/vscode": "~1.22.0",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
-    "auto-changelog": "^2.3.0",
+    "changelog-machine": "^1.0.2",
     "clean-webpack-plugin": "^4.0.0",
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
