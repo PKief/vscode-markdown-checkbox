@@ -179,6 +179,6 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "moment": "2.29.1"
+    "moment": "2.29.4"
   }
 }
