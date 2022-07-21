@@ -4,18 +4,24 @@
   "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
   "version": "1.8.0",
   "publisher": "PKief",
+  "author": {
+    "name": "Philipp Kief",
+    "email": "philipp.kief@gmx.de",
+    "url": "https://pkief.github.io"
+  },
   "engines": {
     "vscode": "^1.22.1"
   },
   "scripts": {
     "build": "npm run compile:dev",
+    "changelog": "changelog-machine --config changelog.config.json",
     "compile": "webpack --mode production",
     "compile:dev": "webpack --mode none",
     "compile:watch": "webpack --mode none --watch",
     "lint": "eslint -c .eslintrc.json --ext .ts ./src/**/*.ts",
     "pretest": "npm run build && tsc -p ./ && ncp src/test/workspace out/test/workspace",
     "test": "node ./out/test/runTest.js",
-    "version": "auto-changelog -p --config auto-changelog.json && git add CHANGELOG.md",
+    "version": "npm run changelog && git add CHANGELOG.md",
     "vscode:prepublish": "npm run lint && npm run compile"
   },
   "categories": [
@@ -27,6 +33,10 @@
     "todo-list",
     "checkbox"
   ],
+  "funding": "https://github.com/sponsors/PKief",
+  "sponsor": {
+    "url": "https://github.com/sponsors/PKief"
+  },
   "homepage": "https://github.com/PKief/vscode-extension-markdown-checkbox/blob/main/README.md",
   "repository": {
     "type": "git",
@@ -157,28 +167,34 @@
     }
   },
   "devDependencies": {
-    "@types/mocha": "^9.1.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
     "@types/moment": "^2.13.0",
-    "@types/node": "^14.14.27",
+    "@types/node": "^18.0.6",
     "@types/vscode": "~1.22.0",
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
-    "auto-changelog": "^2.3.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "eslint": "^8.7.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "glob": "^7.2.0",
-    "mocha": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "changelog-machine": "^1.0.2",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
     "ncp": "^2.0.0",
-    "prettier": "^2.5.1",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.5.5",
+    "prettier": "^2.7.1",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
     "vscode-test": "^1.6.1",
-    "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.1"
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "moment": "2.29.1"
+    "moment": "2.29.4"
+  },
+  "__metadata": {
+    "id": "f0b7de7d-8e14-44df-998a-630ffdb32cf8",
+    "publisherDisplayName": "Philipp Kief",
+    "publisherId": "f9e5bc2f-fea1-4075-917f-d83e01e69f56",
+    "isPreReleaseVersion": false
   }
 }

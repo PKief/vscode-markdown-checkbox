@@ -1,12 +1,12 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { useDefaultSettings } from '..';
 import * as helpers from '../../../helpers';
 import { Checkbox } from '../../../models/checkbox';
+import { setSettingsToDefault } from '../defaultSettings';
 
 describe('helpers', () => {
   beforeEach(async () => {
-    await useDefaultSettings();
+    await setSettingsToDefault();
   });
 
   it('should return plain checkbox text', () => {

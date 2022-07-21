@@ -1,12 +1,12 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { useDefaultSettings } from '..';
 import { createCheckbox } from '../../../createCheckbox';
 import { getConfig, getEditor } from '../../../helpers';
+import { setSettingsToDefault } from '../defaultSettings';
 
 describe('create checkboxes', () => {
   beforeEach(async () => {
-    await useDefaultSettings();
+    await setSettingsToDefault();
   });
 
   it('should create checkbox with new bullet point', async () => {

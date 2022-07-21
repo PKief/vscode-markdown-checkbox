@@ -1,7 +1,6 @@
 import * as glob from 'glob';
 import * as Mocha from 'mocha';
 import * as path from 'path';
-import * as vscode from 'vscode';
 
 export const run = (): Promise<void> => {
   // Create the mocha test
@@ -35,37 +34,4 @@ export const run = (): Promise<void> => {
       }
     });
   });
-};
-
-/**
- * Helper function to set all settings to default values before each test
- */
-export const useDefaultSettings = async () => {
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('checkmark', 'X');
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('languages', ['markdown']);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('withBulletPoint', true);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('typeOfBulletPoint', '*');
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('strikeThroughWhenChecked', true);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('italicWhenChecked', true);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('dateWhenChecked', true);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('showStatusBarItem', true);
-  await vscode.workspace
-    .getConfiguration('markdown-checkbox')
-    .update('dateFormat', 'YYYY-MM-DD');
 };

@@ -1,8 +1,0 @@
-{
-  "output": "CHANGELOG.md",
-  "template": "changelog-template.hbs",
-  "unreleased": true,
-  "commitLimit": false,
-  "startingVersion": "v1.3.0",
-  "ignoreCommitPattern": "Release"
-}
