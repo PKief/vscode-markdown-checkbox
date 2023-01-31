@@ -10,10 +10,10 @@
 <h4 align="center">Create and toggle checkboxes in Markdown documents</h4>
 
 <p align="center">
-    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadge.apphb.com/version/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=VERSION" alt="Version"></a>&nbsp;
-    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadge.apphb.com/rating-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Rating" alt="Rating"></a>&nbsp;
-    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadge.apphb.com/installs-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Installs" alt="Installs"></a>&nbsp;
-    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadge.apphb.com/downloads-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Downloads" alt="Downloads"></a>
+    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadges.dev/version/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=VERSION" alt="Version"></a>&nbsp;
+    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadges.dev/rating-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Rating" alt="Rating"></a>&nbsp;
+    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadges.dev/installs-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Installs" alt="Installs"></a>&nbsp;
+    <a href="https://marketplace.visualstudio.com/items?itemName=PKief.markdown-checkbox"><img src="https://vsmarketplacebadges.dev/downloads-short/PKief.markdown-checkbox.svg?style=for-the-badge&colorA=252526&colorB=43A047&label=Downloads" alt="Downloads"></a>
 </p>
 
 ## Description
