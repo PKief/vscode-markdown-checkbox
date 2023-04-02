@@ -3,6 +3,15 @@
  All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
  
+#### [v1.9.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.1...v1.9.0) 
+
+> April 2, 2023 
+
+- Update vsce installation [`723e1f4`](https://github.com/PKief/vscode-markdown-checkbox/commit/723e1f4)
+- Bump webpack from 5.73.0 to 5.76.0 [`#49`](https://github.com/PKief/vscode-markdown-checkbox/pull/49)
+- Allow users to define the date template [`#50`](https://github.com/PKief/vscode-markdown-checkbox/pull/50)
+- Fix badges [`edbead1`](https://github.com/PKief/vscode-markdown-checkbox/commit/edbead1)
+ 
 #### [v1.8.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.0...v1.8.1) 
 
 > July 22, 2022 
