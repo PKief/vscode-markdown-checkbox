@@ -154,6 +154,16 @@ If dates are enabled, they can be formatted with the following user setting:
 
 It makes use of the JavaScript library [moment.js](https://momentjs.com/docs/#/parsing/string-format/) which means that the date format patterns can be found there.
 
+In addition the syntax around in which the date is placed can be defined via template. `{date}` will be replaced by the actual date value:
+
+```json
+"markdown-checkbox.dateTemplate": "({date})"
+```
+
+Preview:
+
+- [x] ~~_sample with date_~~ (2017-11-23)
+
 ### Specify language IDs
 
 Besides markdown, this extension can also be used for other languages in VS Code. The language IDs can be specified in the user settings like this:
