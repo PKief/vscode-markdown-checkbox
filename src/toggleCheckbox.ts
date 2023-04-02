@@ -108,9 +108,11 @@ const markField = (
         newText = `~~${newText}~~`;
       }
       if (dateWhenChecked) {
-        newText = `${newText} [${moment(new Date()).format(
-          dateFormat
-        )}]${whitespace}`;
+        const date = moment(new Date()).format(dateFormat);
+        const decoratedDate = helpers
+          .getConfig<string>('dateTemplate')
+          .replace('{date}', date);
+        newText = `${newText} ${decoratedDate}${whitespace}`;
       }
 
       editBuilder.replace(

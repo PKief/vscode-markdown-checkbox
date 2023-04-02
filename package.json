@@ -162,6 +162,11 @@
           "type": "string",
           "default": "YYYY-MM-DD",
           "description": "Format date"
+        },
+        "markdown-checkbox.dateTemplate": {
+          "type": "string",
+          "default": "[{date}]",
+          "markdownDescription": "The date template `{date}` is replaced by the actual date."
         }
       }
     }
