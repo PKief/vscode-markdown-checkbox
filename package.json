@@ -166,7 +166,7 @@
         "markdown-checkbox.dateTemplate": {
           "type": "string",
           "default": "[{date}]",
-          "markdownDescription": "The date template: `${date}` is replaced by the actual date."
+          "markdownDescription": "The date template `{date}` is replaced by the actual date."
         }
       }
     }
