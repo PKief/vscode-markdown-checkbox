@@ -22,7 +22,11 @@ const createCheckboxOfLine = (
 
   const dateNow = helpers.getDateString(new Date());
   const checkboxOfLine = helpers.getCheckboxOfLine(line);
-  const checkboxCharacters = dateWhenCreated ? `[ ] ${dateNow} ` : '[ ] ';
+  const hasDate = helpers
+    .getPlainLineText(line.text)
+    .match(/^\d{4}-\d{2}-\d{2} /);
+  const checkboxCharacters =
+    dateWhenCreated && !hasDate ? `[ ] ${dateNow} ` : '[ ] ';
 
   return editor.edit((editBuilder: TextEditorEdit) => {
     if (!checkboxOfLine) {
