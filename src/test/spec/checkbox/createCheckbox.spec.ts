@@ -141,13 +141,18 @@ describe('create checkboxes', () => {
     assert.strictEqual(content, expectedResult);
   });
 
-  it('should create checkbox with begin date', async () => {
+  it('should create checkbox with current date added', async () => {
     // create new document
     const newDocument = await vscode.workspace.openTextDocument({
       content: 'this is a text',
       language: 'markdown',
     });
     await vscode.window.showTextDocument(newDocument);
+
+    // update config to insert creation date if configured
+    await vscode.workspace
+      .getConfiguration('markdown-checkbox')
+      .update('dateWhenCreated', true);
 
     // set the cursor to the current line
     const editor = getEditor();

@@ -18,9 +18,11 @@ const createCheckboxOfLine = (
   const withBulletPoint = helpers.getConfig<boolean>('withBulletPoint');
   const typeOfBulletPoint = helpers.getConfig<string>('typeOfBulletPoint');
   const hasBullet = helpers.lineHasBulletPointAlready(line);
+  const dateWhenCreated = helpers.getConfig<boolean>('dateWhenCreated');
 
+  const dateNow = helpers.getDateString(new Date());
   const checkboxOfLine = helpers.getCheckboxOfLine(line);
-  const checkboxCharacters = '[ ] ';
+  const checkboxCharacters = dateWhenCreated ? `[ ] ${dateNow} ` : '[ ] ';
 
   return editor.edit((editBuilder: TextEditorEdit) => {
     if (!checkboxOfLine) {
