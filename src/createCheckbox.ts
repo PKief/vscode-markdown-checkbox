@@ -24,7 +24,7 @@ const createCheckboxOfLine = (
   const checkboxOfLine = helpers.getCheckboxOfLine(line);
   const hasDate = helpers
     .getPlainLineText(line.text)
-    .match(/^\d{4}-\d{2}-\d{2} /);
+    .match(/^(?:[+*-]\s)?\d{4}-\d{2}-\d{2} /);
   const checkboxCharacters =
     dateWhenCreated && !hasDate ? `[ ] ${dateNow} ` : '[ ] ';
 
