@@ -78,13 +78,13 @@
         "command": "markdown-checkbox.createCheckbox",
         "key": "ctrl+shift+c",
         "mac": "cmd+shift+c",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == markdown"
       },
       {
         "command": "markdown-checkbox.markCheckbox",
         "key": "ctrl+shift+enter",
         "mac": "cmd+shift+enter",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == markdown"
       }
     ],
     "menus": {
