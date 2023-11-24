@@ -3,6 +3,13 @@
  All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
  
+#### [v1.9.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.0...v1.9.1) 
+
+> November 24, 2023 
+
+- narrow scope for keybindings [`#56`](https://github.com/PKief/vscode-markdown-checkbox/pull/56)
+- Bump word-wrap from 1.2.3 to 1.2.4 [`#55`](https://github.com/PKief/vscode-markdown-checkbox/pull/55)
+ 
 #### [v1.9.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.1...v1.9.0) 
 
 > April 2, 2023 
