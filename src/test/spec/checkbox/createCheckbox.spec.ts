@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { createCheckbox } from '../../../createCheckbox';
-import { getConfig, getEditor } from '../../../helpers';
+import { getConfig, getDateString, getEditor } from '../../../helpers';
 import { setSettingsToDefault } from '../defaultSettings';
 
 describe('create checkboxes', () => {
@@ -137,6 +137,102 @@ describe('create checkboxes', () => {
 
     const content = editor.document.getText();
     const expectedResult = `this is a text\nthis is a second text\n- this is a third text`;
+
+    assert.strictEqual(content, expectedResult);
+  });
+
+  it('should create checkbox with current date added', async () => {
+    // create new document
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: 'this is a text',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // update config to insert creation date if configured
+    await vscode.workspace
+      .getConfiguration('markdown-checkbox')
+      .update('dateWhenCreated', true);
+
+    // set the cursor to the current line
+    const editor = getEditor();
+    const position = editor.selection.active;
+    const newCursorPosition = position.with(0, 0);
+    const newSelection = new vscode.Selection(
+      newCursorPosition,
+      newCursorPosition
+    );
+    editor.selection = newSelection;
+
+    await createCheckbox(editor);
+
+    const dateNow = getDateString(new Date());
+    const content = editor.document.getText();
+    const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
+    const expectedResult = `${typeOfBulletPoint} [ ] ${dateNow} this is a text`;
+
+    assert.strictEqual(content, expectedResult);
+  });
+
+  it('should not insert another creation date', async () => {
+    // create new document
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: '9999-99-99 this is a text',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // update config to insert creation date if configured
+    await vscode.workspace
+      .getConfiguration('markdown-checkbox')
+      .update('dateWhenCreated', true);
+
+    // set the cursor to the current line
+    const editor = getEditor();
+    const position = editor.selection.active;
+    const newCursorPosition = position.with(0, 0);
+    const newSelection = new vscode.Selection(
+      newCursorPosition,
+      newCursorPosition
+    );
+    editor.selection = newSelection;
+
+    await createCheckbox(editor);
+
+    const content = editor.document.getText();
+    const typeOfBulletPoint = getConfig<string>('typeOfBulletPoint');
+    const expectedResult = `${typeOfBulletPoint} [ ] 9999-99-99 this is a text`;
+
+    assert.strictEqual(content, expectedResult);
+  });
+
+  it('should not insert another creation date with existing bullet', async () => {
+    // create new document
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: '- 9999-99-99 this is a text',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // update config to insert creation date if configured
+    await vscode.workspace
+      .getConfiguration('markdown-checkbox')
+      .update('dateWhenCreated', true);
+
+    // set the cursor to the current line
+    const editor = getEditor();
+    const position = editor.selection.active;
+    const newCursorPosition = position.with(0, 0);
+    const newSelection = new vscode.Selection(
+      newCursorPosition,
+      newCursorPosition
+    );
+    editor.selection = newSelection;
+
+    await createCheckbox(editor);
+
+    const content = editor.document.getText();
+    const expectedResult = `- [ ] 9999-99-99 this is a text`;
 
     assert.strictEqual(content, expectedResult);
   });
