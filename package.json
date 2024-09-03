@@ -167,6 +167,11 @@
           "type": "string",
           "default": "[{date}]",
           "markdownDescription": "The date template `{date}` is replaced by the actual date."
+        },
+        "markdown-checkbox.dateWhenCreated": {
+          "type": "boolean",
+          "default": true,
+          "description": "Insert the current date along with the created checkbox."
         }
       }
     }
