@@ -184,7 +184,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "glob": "^8.0.3",
-    "mocha": "^10.0.0",
+    "mocha": "^10.8.2",
     "ncp": "^2.0.0",
     "prettier": "^2.7.1",
     "ts-loader": "^9.3.1",
