@@ -167,6 +167,15 @@
           "type": "string",
           "default": "[{date}]",
           "markdownDescription": "The date template `{date}` is replaced by the actual date."
+        },
+        "markdown-checkbox.quickPickEscBehavior": {
+          "type": "string",
+          "enum": [
+            "doNothing",
+            "uncheckAll"
+          ],
+          "default": "doNothing",
+          "description": "Behavior when pressing Esc in the QuickPick panel. 'doNothing' preserves current state, 'uncheckAll' unchecks all checkboxes."
         }
       }
     }
