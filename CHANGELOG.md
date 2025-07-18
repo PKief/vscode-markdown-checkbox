@@ -3,6 +3,17 @@
  All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
  
+#### [v1.10.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.1...v1.10.0) 
+
+> July 18, 2025 
+
+- feat: Add configuration option to control QuickPick Esc behavior [`#63`](https://github.com/PKief/vscode-markdown-checkbox/pull/63)
+- chore: update GitHub Actions workflows for build and release processes [`48d81ba`](https://github.com/PKief/vscode-markdown-checkbox/commit/48d81ba)
+- fix: update author URL in package.json [`9759492`](https://github.com/PKief/vscode-markdown-checkbox/commit/9759492)
+- Bump braces from 3.0.2 to 3.0.3 [`#59`](https://github.com/PKief/vscode-markdown-checkbox/pull/59)
+- Bump serialize-javascript and mocha [`#61`](https://github.com/PKief/vscode-markdown-checkbox/pull/61)
+- Bump webpack from 5.76.0 to 5.94.0 [`#60`](https://github.com/PKief/vscode-markdown-checkbox/pull/60)
+ 
 #### [v1.9.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.0...v1.9.1) 
 
 > November 24, 2023 
