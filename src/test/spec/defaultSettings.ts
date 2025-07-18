@@ -15,6 +15,8 @@ export const setSettingsToDefault = async () => {
     dateWhenChecked: true,
     showStatusBarItem: true,
     dateFormat: 'YYYY-MM-DD',
+    dateTemplate: '[{date}]',
+    quickPickEscBehavior: 'doNothing',
     dateWhenCreated: false,
   };
   await Promise.all(

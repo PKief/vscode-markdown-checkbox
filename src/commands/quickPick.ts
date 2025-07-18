@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getAllCheckboxes, getEditor } from '../helpers';
+import { getAllCheckboxes, getEditor, getConfig } from '../helpers';
 import { Checkbox } from '../models/checkbox';
 import { toggleCheckboxOfLine } from '../toggleCheckbox';
 
@@ -38,6 +38,15 @@ const showQuickPickItems = (checkboxes: Checkbox[]) => {
 const handleQuickPickActions = async (
   items: vscode.QuickPickItem[] | undefined
 ) => {
+  // Check if user pressed Esc (items is undefined) and handle based on configuration
+  if (items === undefined) {
+    const escBehavior = getConfig<string>('quickPickEscBehavior');
+    if (escBehavior === 'doNothing') {
+      return; // Do nothing when Esc is pressed
+    }
+    // If escBehavior is 'uncheckAll', continue with the existing logic
+  }
+
   const allCheckboxes: Checkbox[] = getAllCheckboxes();
 
   // get all line numbers that must be checked

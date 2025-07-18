@@ -2,12 +2,12 @@
   "name": "markdown-checkbox",
   "displayName": "Markdown Checkbox",
   "description": "With this extension you can create checkboxes in markdown and mark them quickly.",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "publisher": "PKief",
   "author": {
     "name": "Philipp Kief",
     "email": "philipp.kief@gmx.de",
-    "url": "https://pkief.github.io"
+    "url": "https://pkief.com"
   },
   "engines": {
     "vscode": "^1.22.1"
@@ -78,13 +78,13 @@
         "command": "markdown-checkbox.createCheckbox",
         "key": "ctrl+shift+c",
         "mac": "cmd+shift+c",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == markdown"
       },
       {
         "command": "markdown-checkbox.markCheckbox",
         "key": "ctrl+shift+enter",
         "mac": "cmd+shift+enter",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == markdown"
       }
     ],
     "menus": {
@@ -172,6 +172,15 @@
           "type": "boolean",
           "default": true,
           "description": "Insert the current date along with the created checkbox."
+        },
+        "markdown-checkbox.quickPickEscBehavior": {
+          "type": "string",
+          "enum": [
+            "doNothing",
+            "uncheckAll"
+          ],
+          "default": "doNothing",
+          "description": "Behavior when pressing Esc in the QuickPick panel. 'doNothing' preserves current state, 'uncheckAll' unchecks all checkboxes."
         }
       }
     }
@@ -189,13 +198,13 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "glob": "^8.0.3",
-    "mocha": "^10.0.0",
+    "mocha": "^10.8.2",
     "ncp": "^2.0.0",
     "prettier": "^2.7.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
     "vscode-test": "^1.6.1",
-    "webpack": "^5.76.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {

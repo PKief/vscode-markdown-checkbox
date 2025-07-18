@@ -174,3 +174,16 @@ Besides markdown, this extension can also be used for other languages in VS Code
     "plaintext"
 ]
 ```
+
+### Change the Quick Pick ESC behavior
+
+The Quick Pick can be closed with the ESC key. The behavior can be configured with the following setting:
+
+```json
+"markdown-checkbox.quickPickEscBehavior": "doNothing"
+```
+
+Possible values are:
+
+- `doNothing`: Do nothing when ESC is pressed
+- `uncheckAll`: Uncheck all checkboxes when ESC is pressed
