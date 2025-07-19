@@ -124,7 +124,7 @@ const markField = (
       );
     } else if (lhc && lhc.checked) {
       let newText = textWithoutCheckbox;
-      
+
       // Remove strikethrough formatting (outermost ~~ pairs) if present
       if (strikeThroughWhenChecked && newText.startsWith('~~')) {
         // Remove the date first to avoid interfering with strikethrough detection
@@ -137,15 +137,15 @@ const markField = (
             tempText = tempText.substring(0, tempText.length - datePart.length);
           }
         }
-        
+
         // Now remove strikethrough from the main text
         if (tempText.startsWith('~~') && tempText.endsWith('~~')) {
           tempText = tempText.substring(2, tempText.length - 2);
         }
-        
+
         newText = tempText + datePart;
       }
-      
+
       // Remove italic formatting (outermost * pairs) if present
       if (italicWhenChecked) {
         // Remove the date first to avoid interfering with italic detection
@@ -158,9 +158,13 @@ const markField = (
             tempText = tempText.substring(0, tempText.length - datePart.length);
           }
         }
-        
+
         // Now remove italic from the main text only if it wraps the entire content
-        if (tempText.startsWith('*') && tempText.endsWith('*') && tempText.length > 2) {
+        if (
+          tempText.startsWith('*') &&
+          tempText.endsWith('*') &&
+          tempText.length > 2
+        ) {
           // Check if these are the outermost asterisks (not part of **bold**)
           const inner = tempText.substring(1, tempText.length - 1);
           // Only remove if the inner content doesn't start/end with * (avoiding **bold** cases)
@@ -168,10 +172,10 @@ const markField = (
             tempText = inner;
           }
         }
-        
+
         newText = tempText + datePart;
       }
-      
+
       // remove the date string
       if (dateWhenChecked) {
         newText = newText.replace(/\s+\[[^[]+?\]$/, '') + whitespace;
