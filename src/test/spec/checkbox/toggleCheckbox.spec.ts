@@ -101,4 +101,60 @@ describe('toggle checkboxes', () => {
 
     assert.strictEqual(content, expectedResult);
   });
+
+  it('should preserve bold formatting when unchecking', async () => {
+    // create new document with bold formatting
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: '[x] ~~*this is a **bold** action*~~ [2023-12-01]',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // position cursor on the checkbox line
+    const editor = getEditor();
+    const startPosition = new vscode.Position(0, 0);
+    const endPosition = new vscode.Position(0, 0);
+    const newSelection = new vscode.Selection(startPosition, endPosition);
+    editor.selection = newSelection;
+
+    await toggleCheckbox();
+
+    const content = editor.document.getText();
+    const expectedResult = '[ ] this is a **bold** action';
+
+    assert.strictEqual(content, expectedResult);
+  });
+
+  it('should preserve bold formatting when toggling checkbox', async () => {
+    // create new document with bold formatting
+    const newDocument = await vscode.workspace.openTextDocument({
+      content: '[ ] this is a **bold** action',
+      language: 'markdown',
+    });
+    await vscode.window.showTextDocument(newDocument);
+
+    // position cursor on the checkbox line
+    const editor = getEditor();
+    const startPosition = new vscode.Position(0, 0);
+    const endPosition = new vscode.Position(0, 0);
+    const newSelection = new vscode.Selection(startPosition, endPosition);
+    editor.selection = newSelection;
+
+    // check the checkbox
+    await toggleCheckbox();
+
+    let content = editor.document.getText();
+    const dateNow = getDateString(new Date());
+    let expectedResult = `[X] ~~*this is a **bold** action*~~ [${dateNow}]`;
+
+    assert.strictEqual(content, expectedResult);
+
+    // now uncheck it - this should preserve the bold formatting
+    await toggleCheckbox();
+
+    content = editor.document.getText();
+    expectedResult = '[ ] this is a **bold** action';
+
+    assert.strictEqual(content, expectedResult);
+  });
 });
