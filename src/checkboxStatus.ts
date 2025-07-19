@@ -5,6 +5,7 @@ import {
   window,
   workspace,
 } from 'vscode';
+import * as vscode from 'vscode';
 import * as helpers from './helpers';
 
 export class CheckboxStatus {
@@ -62,23 +63,62 @@ export class CheckboxStatus {
 export class CheckboxStatusController {
   private checkboxStatus: CheckboxStatus;
   private disposable: Disposable;
+  private updateTimeout: NodeJS.Timeout | undefined;
 
   constructor(checkboxStatus: CheckboxStatus) {
     this.checkboxStatus = checkboxStatus;
     this.checkboxStatus.updateCheckboxStatus();
 
     const subscriptions: Disposable[] = [];
-    workspace.onDidChangeTextDocument(this.onEvent, this, subscriptions);
+    workspace.onDidChangeTextDocument(
+      this.onTextDocumentChange,
+      this,
+      subscriptions
+    );
     window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
 
     this.disposable = Disposable.from(...subscriptions);
   }
 
+  private onTextDocumentChange(event: vscode.TextDocumentChangeEvent) {
+    // Only clear cache if the changes might affect checkboxes
+    const hasCheckboxRelatedChanges = event.contentChanges.some((change) => {
+      const text = change.text;
+      const rangeText = event.document.getText(change.range);
+
+      // Check if the change involves checkbox-related content
+      return (
+        text.includes('[') ||
+        text.includes(']') ||
+        rangeText.includes('[') ||
+        rangeText.includes(']')
+      );
+    });
+
+    if (hasCheckboxRelatedChanges) {
+      helpers.clearCheckboxCache();
+    }
+
+    // Debounce status bar updates to avoid excessive calls during rapid typing
+    if (this.updateTimeout) {
+      clearTimeout(this.updateTimeout);
+    }
+
+    this.updateTimeout = setTimeout(() => {
+      this.checkboxStatus.updateCheckboxStatus();
+    }, 300); // 300ms debounce
+  }
+
   private onEvent() {
+    // Clear cache when switching documents
+    helpers.clearCheckboxCache();
     this.checkboxStatus.updateCheckboxStatus();
   }
 
   public dispose() {
+    if (this.updateTimeout) {
+      clearTimeout(this.updateTimeout);
+    }
     this.disposable.dispose();
   }
 }

@@ -2,6 +2,15 @@ import * as vscode from 'vscode';
 import { Position, TextEditor, TextLine } from 'vscode';
 import { Checkbox } from '../models/checkbox';
 
+// Cache for checkbox scanning results
+interface CheckboxCache {
+  documentUri: string;
+  documentVersion: number;
+  checkboxes: Checkbox[];
+}
+
+let checkboxCache: CheckboxCache | null = null;
+
 /** Get the current cursor position */
 export const getCursorPosition = (): Position => {
   return getEditor().selection.active;
@@ -35,45 +44,78 @@ export const lineHasBulletPointAlready = (
 
 /** Get the checkbox of a specific line */
 export const getCheckboxOfLine = (line: TextLine): Checkbox | undefined => {
-  const lineText = line.text.toString();
-  const cbPosition = lineText.indexOf('[ ]');
-  const cbPositionMarked = lineText.search(new RegExp(/\[.\]/));
-  const plainText = getPlainLineText(lineText);
+  const lineText = line.text;
 
-  if (cbPosition > -1 || cbPositionMarked > -1) {
-    return {
-      checked: cbPosition > -1 ? false : true,
-      position: new Position(
-        line.lineNumber,
-        cbPosition > -1 ? cbPosition : cbPositionMarked
-      ),
-      text: plainText,
-      lineNumber: line.lineNumber,
-    };
-  } else {
+  // Use a single regex to find checkbox patterns more efficiently
+  const checkboxMatch = lineText.match(/\[(.?)\]/);
+  if (!checkboxMatch) {
     return undefined;
   }
+
+  const checkboxChar = checkboxMatch[1];
+  const isChecked = checkboxChar !== ' ' && checkboxChar !== '';
+  const position = checkboxMatch.index!;
+  const plainText = getPlainLineText(lineText);
+
+  return {
+    checked: isChecked,
+    position: new Position(line.lineNumber, position),
+    text: plainText,
+    lineNumber: line.lineNumber,
+  };
 };
 
 /** Get a list of all checkboxes in a document */
 export const getAllCheckboxes = (): Checkbox[] => {
   const editor = getEditor();
-  const lineCount = editor.document.lineCount;
-  const result = [];
+  const document = editor.document;
 
+  // Check if we can use cached results
+  if (
+    checkboxCache &&
+    checkboxCache.documentUri === document.uri.toString() &&
+    checkboxCache.documentVersion === document.version
+  ) {
+    return checkboxCache.checkboxes;
+  }
+
+  // Scan document for checkboxes
+  const result: Checkbox[] = [];
+  const lineCount = document.lineCount;
+
+  // Optimize by processing lines in batches and using more efficient scanning
   for (let l = 0; l < lineCount; l++) {
-    const line = editor.document.lineAt(l);
-    const lhc = getCheckboxOfLine(line);
-    if (lhc) {
-      result.push(lhc);
+    const line = document.lineAt(l);
+
+    // Quick check: skip lines that definitely don't contain checkboxes
+    if (!line.text.includes('[')) {
+      continue;
+    }
+
+    const checkbox = getCheckboxOfLine(line);
+    if (checkbox) {
+      result.push(checkbox);
     }
   }
+
+  // Update cache
+  checkboxCache = {
+    documentUri: document.uri.toString(),
+    documentVersion: document.version,
+    checkboxes: result,
+  };
+
   return result;
+};
+
+/** Clear the checkbox cache (useful when document changes significantly) */
+export const clearCheckboxCache = (): void => {
+  checkboxCache = null;
 };
 
 /** Get the plain text of a line without the checkbox. */
 export const getPlainLineText = (text: string) => {
-  return text.replace(/(\*|-|\+)\s\[(\s|x)]\s/gi, '');
+  return text.replace(/(\*|-|\+)\s*\[.?\]\s*/gi, '');
 };
 
 /** Get the value of a workspace config property */

@@ -51,7 +51,11 @@ export const toggleCheckboxOfLine = (
     value = helpers.getConfig<string>('checkmark');
   }
 
-  return markField(checkbox.position, value);
+  return markField(checkbox.position, value).then((result) => {
+    // Clear cache after modifying checkboxes to ensure fresh data
+    helpers.clearCheckboxCache();
+    return result;
+  });
 };
 
 /** Marks the field inside the checkbox with a character */
