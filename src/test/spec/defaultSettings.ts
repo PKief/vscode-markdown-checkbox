@@ -17,6 +17,7 @@ export const setSettingsToDefault = async () => {
     dateFormat: 'YYYY-MM-DD',
     dateTemplate: '[{date}]',
     quickPickEscBehavior: 'doNothing',
+    dateWhenCreated: false,
   };
   await Promise.all(
     Object.entries(defaultSettings).map(async ([key, value]) => {
