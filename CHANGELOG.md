@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+## v1.11.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.10.0...v1.11.0)
+
+### Enhancements
+
+- Fix bold formatting removal when unchecking checkboxes ([#65](https://github.com/PKief/vscode-markdown-checkbox/pull/65))
+- **release:** Automate versioning and publishing from conventional commits ([81ade160](https://github.com/PKief/vscode-markdown-checkbox/commit/81ade16022d1fb23458952566150c1bdd65f1fd2))
+
+### Fixes
+
+- Change eslint code actions on save to explicit configuration ([9fc5ff1a](https://github.com/PKief/vscode-markdown-checkbox/commit/9fc5ff1a961d7fbb42e67cdd2691f12e3ad1a9f5))
+- Add missing argument to launch configuration for extension development ([d190787b](https://github.com/PKief/vscode-markdown-checkbox/commit/d190787bc7b2d5c2d0f0aa98ae91cbdf305b882c))
+- Update package.json ([d4e41f7a](https://github.com/PKief/vscode-markdown-checkbox/commit/d4e41f7ad4944c65495d3568070d891222058bf8))
+- Use built-in token for releases ([dc80eabe](https://github.com/PKief/vscode-markdown-checkbox/commit/dc80eabebdad60cba24769d84e7ae15ef2da49d4))
+
+### Chores
+
+- Clean up formatting in various files and add .prettierignore ([f4c1a2f6](https://github.com/PKief/vscode-markdown-checkbox/commit/f4c1a2f6b9547a042c6c9d8a78111e65f18a316f))
+- **tooling:** Migrate builds to esbuild and tests to Vitest ([b28ec956](https://github.com/PKief/vscode-markdown-checkbox/commit/b28ec95652be32461b499f3c5cc2ecef3a15639e))
+- **assets:** Refresh extension logo ([a3504c06](https://github.com/PKief/vscode-markdown-checkbox/commit/a3504c06f5aa6ca546c082fba9da0fd30a1c6f82))
+
+### Contributors
+
+- Copilot
+- Philipp Kief
+
 ## v1.10.0
 
 [compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.1...v1.10.0)
