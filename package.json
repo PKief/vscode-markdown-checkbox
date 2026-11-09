@@ -194,5 +194,8 @@
   },
   "dependencies": {
     "moment": "2.31.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }
