@@ -1,70 +1,134 @@
 name: Release + Publish
 
-on:
-  workflow_dispatch:
-    inputs:
-      versionChange:
-        type: choice
-        description: Select the version change
-        required: true
-        options:
-          - major
-          - minor
-          - patch
+on: [workflow_dispatch]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      VERSION_CHANGE: ${{ github.event.inputs.versionChange }}
+    permissions:
+      contents: write
+    outputs:
+      released: ${{ steps.metadata.outputs.released }}
+      version: ${{ steps.metadata.outputs.version }}
+      extension-file: ${{ steps.metadata.outputs.extension-file }}
+
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+      - name: Create release bot token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
-      - name: Install node_modules 📦
-        run: |
-          npm ci
-          npm install --global @vscode/vsce
-
-      - name: Update version ↗
-        run: |
-          git config --global user.name 'Philipp Kief'
-          git config --global user.email 'PKief@users.noreply.github.com'
-          git config --global push.followTags true
-          npm version ${{ env.VERSION_CHANGE }} -m "Release %s"
-
-      - name: Get meta data 🔍
-        run: |
-          NODE_VERSION=$(node -p -e "require('./package.json').version")
-          echo VERSION=$NODE_VERSION >> $GITHUB_ENV
-          NODE_NAME=$(node -p -e "require('./package.json').name")
-          echo NAME=$NODE_NAME >> $GITHUB_ENV
-          NODE_DISPLAY_NAME=$(node -p -e "require('./package.json').displayName")
-          echo DISPLAY_NAME=$NODE_DISPLAY_NAME >> $GITHUB_ENV
-
-      - name: Build ⚒️
-        run: vsce package
-
-      - name: Push tags 📌
-        run: git push
-
-      - name: Release ${{ env.VERSION }} 🔆
-        uses: softprops/action-gh-release@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          files: ${{ env.NAME }}-${{ env.VERSION }}.vsix
-          tag_name: v${{ env.VERSION }}
-          name: ${{ env.DISPLAY_NAME }} v${{ env.VERSION }}
-          generate_release_notes: true
-      - name: Publish to Open VSX Registry 🌐
-        uses: HaaLeo/publish-vscode-extension@v2
+          node-version-file: '.node-version'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Generate changelog and bump version
+        id: metadata
+        run: |
+          previous_version=$(node -p "require('./package.json').version")
+          npm run changelog -- --bump
+          version=$(node -p "require('./package.json').version")
+          if [ "$version" = "$previous_version" ]; then
+            echo 'No release-worthy commits.'
+            echo 'released=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo 'released=true' >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          name=$(node -p "require('./package.json').name")
+          echo "extension-file=$name-$version.vsix" >> "$GITHUB_OUTPUT"
+          awk -v heading="## v$version" '
+            $0 == heading { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+
+      - name: Package extension
+        if: steps.metadata.outputs.released == 'true'
+        run: npm run package
+
+      - name: Commit and tag release
+        if: steps.metadata.outputs.released == 'true'
+        env:
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add package.json package-lock.json CHANGELOG.md
+          git commit -m "chore(release): v$VERSION"
+          git tag -a "v$VERSION" -m "v$VERSION"
+          git push --atomic origin "HEAD:${{ github.event.repository.default_branch }}" "refs/tags/v$VERSION"
+
+      - name: Upload extension artifact
+        if: steps.metadata.outputs.released == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: vsix
+          path: ${{ steps.metadata.outputs.extension-file }}
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        if: steps.metadata.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+          EXTENSION_FILE: ${{ steps.metadata.outputs.extension-file }}
+        run: |
+          display_name=$(node -p "require('./package.json').displayName")
+          gh release create "v$VERSION" "$EXTENSION_FILE" --verify-tag --title "$display_name v$VERSION" --notes-file release-notes.md
+
+  publish-openvsx:
+    needs: release
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download extension artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: vsix
+
+      - name: Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@ca5561daa085dee804bf9f37fe0165785a9b14db # v2.0.0
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}
-          extensionFile: ${{ env.NAME }}-${{ env.VERSION }}.vsix
-      - name: Publish to Visual Studio Marketplace 🌐
-        uses: HaaLeo/publish-vscode-extension@v2
+          extensionFile: ${{ needs.release.outputs.extension-file }}
+
+  publish-vscode-marketplace:
+    needs: release
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download extension artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: vsix
+
+      - name: Publish to Visual Studio Marketplace
+        uses: HaaLeo/publish-vscode-extension@ca5561daa085dee804bf9f37fe0165785a9b14db # v2.0.0
         with:
           pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
-          extensionFile: ${{ env.NAME }}-${{ env.VERSION }}.vsix
+          extensionFile: ${{ needs.release.outputs.extension-file }}

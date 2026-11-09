@@ -1,8 +1,10 @@
-### Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v1.10.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.1...v1.10.0)
+## v1.10.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.1...v1.10.0)
 
 > July 18, 2025
 
@@ -13,14 +15,18 @@ All notable changes to this project will be documented in this file. Dates are d
 - Bump serialize-javascript and mocha [`#61`](https://github.com/PKief/vscode-markdown-checkbox/pull/61)
 - Bump webpack from 5.76.0 to 5.94.0 [`#60`](https://github.com/PKief/vscode-markdown-checkbox/pull/60)
 
-#### [v1.9.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.0...v1.9.1)
+## v1.9.1
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.9.0...v1.9.1)
 
 > November 24, 2023
 
 - narrow scope for keybindings [`#56`](https://github.com/PKief/vscode-markdown-checkbox/pull/56)
 - Bump word-wrap from 1.2.3 to 1.2.4 [`#55`](https://github.com/PKief/vscode-markdown-checkbox/pull/55)
 
-#### [v1.9.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.1...v1.9.0)
+## v1.9.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.1...v1.9.0)
 
 > April 2, 2023
 
@@ -29,7 +35,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Allow users to define the date template [`#50`](https://github.com/PKief/vscode-markdown-checkbox/pull/50)
 - Fix badges [`edbead1`](https://github.com/PKief/vscode-markdown-checkbox/commit/edbead1)
 
-#### [v1.8.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.0...v1.8.1)
+## v1.8.1
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.8.0...v1.8.1)
 
 > July 22, 2022
 
@@ -37,7 +45,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Fix: Bullet is added when with Bullet Point is not selected [`#39`](https://github.com/PKief/vscode-markdown-checkbox/pull/39)
 - Bump minimist from 1.2.5 to 1.2.6 [`#40`](https://github.com/PKief/vscode-markdown-checkbox/pull/40)
 
-#### [v1.8.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.2...v1.8.0)
+## v1.8.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.2...v1.8.0)
 
 > January 26, 2022
 
@@ -54,7 +64,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Add support for creating checkboxes on selected lines [`#31`](https://github.com/PKief/vscode-markdown-checkbox/pull/31)
 - Bump path-parse from 1.0.6 to 1.0.7 [`dc49a86`](https://github.com/PKief/vscode-markdown-checkbox/commit/dc49a86)
 
-#### [v1.7.2](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.1...v1.7.2)
+## v1.7.2
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.1...v1.7.2)
 
 > August 17, 2021
 
@@ -62,7 +74,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Bump glob-parent from 5.1.1 to 5.1.2 [`f2a9cea`](https://github.com/PKief/vscode-markdown-checkbox/commit/f2a9cea)
 - Bump browserslist from 4.16.3 to 4.16.6 [`e9cffde`](https://github.com/PKief/vscode-markdown-checkbox/commit/e9cffde)
 
-#### [v1.7.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.0...v1.7.1)
+## v1.7.1
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.7.0...v1.7.1)
 
 > February 14, 2021
 
@@ -83,7 +97,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Fix tests [`59b8152`](https://github.com/PKief/vscode-markdown-checkbox/commit/59b8152)
 - Update test setup [`1a95134`](https://github.com/PKief/vscode-markdown-checkbox/commit/1a95134)
 
-#### [v1.7.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.6.0...v1.7.0)
+## v1.7.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.6.0...v1.7.0)
 
 > April 29, 2020
 
@@ -95,7 +111,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Make date format configurable (Closes #15) [`823c020`](https://github.com/PKief/vscode-markdown-checkbox/commit/823c020)
 - Fix security vulnerabilities [`b0936b7`](https://github.com/PKief/vscode-markdown-checkbox/commit/b0936b7)
 
-#### [v1.6.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.5.0...v1.6.0)
+## v1.6.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.5.0...v1.6.0)
 
 > April 24, 2019
 
@@ -105,7 +123,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Added configurable checkbox marker (Closes #13) [`55eff86`](https://github.com/PKief/vscode-markdown-checkbox/commit/55eff86)
 - Refactored code [`d2f9ab9`](https://github.com/PKief/vscode-markdown-checkbox/commit/d2f9ab9)
 
-#### [v1.5.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.3...v1.5.0)
+## v1.5.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.3...v1.5.0)
 
 > March 16, 2019
 
@@ -119,27 +139,35 @@ All notable changes to this project will be documented in this file. Dates are d
 - Updated test script [`2975189`](https://github.com/PKief/vscode-markdown-checkbox/commit/2975189)
 - Bundle extension with webpack [`206aad9`](https://github.com/PKief/vscode-markdown-checkbox/commit/206aad9)
 
-#### [v1.4.3](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.2...v1.4.3)
+## v1.4.3
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.2...v1.4.3)
 
 > March 4, 2019
 
 - Respect trailing whitespace on toggle (Fixes #11) [`e7b1560`](https://github.com/PKief/vscode-markdown-checkbox/commit/e7b1560)
 - Separated test files [`6e5648b`](https://github.com/PKief/vscode-markdown-checkbox/commit/6e5648b)
 
-#### [v1.4.2](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.1...v1.4.2)
+## v1.4.2
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.1...v1.4.2)
 
 > January 28, 2019
 
 - Fixes #10 [`f0d9b8d`](https://github.com/PKief/vscode-markdown-checkbox/commit/f0d9b8d)
 
-#### [v1.4.1](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.0...v1.4.1)
+## v1.4.1
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.4.0...v1.4.1)
 
 > November 27, 2018
 
 - Updated package-lock.json [`57048cd`](https://github.com/PKief/vscode-markdown-checkbox/commit/57048cd)
 - Fixed security issue with event-stream dependency [`4e83234`](https://github.com/PKief/vscode-markdown-checkbox/commit/4e83234)
 
-#### [v1.4.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.3.0...v1.4.0)
+## v1.4.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.3.0...v1.4.0)
 
 > October 28, 2018
 
@@ -156,7 +184,9 @@ All notable changes to this project will be documented in this file. Dates are d
 - Changed configuration title [`1c21b7f`](https://github.com/PKief/vscode-markdown-checkbox/commit/1c21b7f)
 - Updated dependencies [`238f504`](https://github.com/PKief/vscode-markdown-checkbox/commit/238f504)
 
-#### [v1.3.0](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.2.0...v1.3.0)
+## v1.3.0
+
+[compare changes](https://github.com/PKief/vscode-markdown-checkbox/compare/v1.2.0...v1.3.0)
 
 > April 22, 2018
 
