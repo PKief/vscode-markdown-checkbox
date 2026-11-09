@@ -1,8 +1,9 @@
-import * as assert from 'assert';
+import { beforeEach, describe, it } from 'vitest';
+import * as assert from 'node:assert';
 import * as vscode from 'vscode';
-import { getDateString, getEditor } from '../../../helpers';
-import { toggleCheckbox } from '../../../toggleCheckbox';
-import { setSettingsToDefault } from '../defaultSettings';
+import { getDateString, getEditor } from './helpers';
+import { toggleCheckbox } from './toggleCheckbox';
+import { resetVscode as setSettingsToDefault } from './vscode.mock';
 
 describe('toggle checkboxes', () => {
   beforeEach(async () => {

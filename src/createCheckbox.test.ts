@@ -1,8 +1,9 @@
-import * as assert from 'assert';
+import { beforeEach, describe, it } from 'vitest';
+import * as assert from 'node:assert';
 import * as vscode from 'vscode';
-import { createCheckbox } from '../../../createCheckbox';
-import { getConfig, getEditor } from '../../../helpers';
-import { setSettingsToDefault } from '../defaultSettings';
+import { createCheckbox } from './createCheckbox';
+import { getConfig, getEditor } from './helpers';
+import { resetVscode as setSettingsToDefault } from './vscode.mock';
 
 describe('create checkboxes', () => {
   beforeEach(async () => {

@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "target": "ES2015",
     "outDir": "out",
-    "lib": ["es6"],
+    "lib": ["ES2015"],
     "strict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noImplicitAny": true,
     "sourceMap": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "types": ["node", "vscode"]
   },
-  "include": [
-    "src/**/*.ts",
-    "./node_modules/vscode/vscode.d.ts",
-    "./node_modules/vscode/lib/*"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.mock.ts"]
 }

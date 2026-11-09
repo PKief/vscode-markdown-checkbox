@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "rootDir": ".",
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "vitest.config.mts"],
+  "exclude": []
+}
