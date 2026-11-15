@@ -186,7 +186,7 @@
     "@types/node": "^24.19.2",
     "@types/vscode": "~1.22.0",
     "@vitest/coverage-v8": "^5.1.0",
-    "@vscode/vsce": "^4.1.0",
+    "@vscode/vsce": "^4.1.1",
     "changelog-machine": "2.1.0",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2",
